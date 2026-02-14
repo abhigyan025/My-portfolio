@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Kumar Abhigyan</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --bg: #fdf6ec;
+    --text: #111;
+    --card-bg: rgba(255,255,255,0.6);
+    --shadow: rgba(0,0,0,0.15);
+}
+
+body.dark {
+    --bg: #111;
+    --text: #fdf6ec;
+    --card-bg: rgba(30,30,30,0.6);
+    --shadow: rgba(0,0,0,0.4);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height:1.8;
+    transition: background 0.3s, color 0.3s;
+}
+
+.menu-icon{
+    position:fixed;
+    top:20px;
+    right:20px;
+    font-size:28px;
+    cursor:pointer;
+    z-index:1001;
+}
+
+.sidebar{
+    position:fixed;
+    right:-250px;
+    top:0;
+    width:250px;
+    height:100%;
+    background:var(--bg);
+    padding:60px 20px;
+    box-shadow:-2px 0 10px rgba(0,0,0,0.1);
+    transition:0.3s;
+    z-index:1000;
+}
+
+.sidebar a{
+    display:block;
+    margin:20px 0;
+    text-decoration:none;
+    color:var(--text);
+}
+
+.sidebar.active{
+    right:0;
+}
+
+.container{
+    max-width:900px;
+    margin:120px auto;
+    padding:0 20px;
+}
+
+h1{
+    font-family:'Playfair Display', serif;
+    font-size:48px;
+    margin-bottom:40px;
+    text-align:center;
+}
+
+p{
+    margin-bottom:25px;
+    font-size:18px;
+}
+
+a.button{
+    display:inline-block;
+    margin-top:40px;
+    text-decoration:none;
+    border:1px solid var(--text);
+    padding:12px 24px;
+    color:var(--text);
+    border-radius:5px;
+    transition:0.3s;
+}
+
+a.button:hover{
+    background: var(--text);
+    color: var(--bg);
+}
+
+#theme-toggle{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    font-size:28px;
+    cursor:pointer;
+    z-index:1001;
+}
+
+@media (max-width:600px){
+    h1{
+        font-size:36px;
+    }
+    p{
+        font-size:16px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="menu-icon" onclick="toggleMenu()">☰</div>
+
+<div class="sidebar" id="sidebar">
+    <a href="index.html">Home</a>
+    <a href="index.html#books">View Books</a>
+    <a href="index.html#blog">Blogs</a>
+    <a href="index.html#achievements">Achievements</a>
+    <a href="index.html#contact">Contact Me</a>
+    <a href="#" id="menu-theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</a>
+</div>
+
+<div class="container">
+    <h1>About Kumar Abhigyan</h1>
+
+    <p>Kumar Abhigyan is a young Indian author born in October 2010 in Jharkhand, India. From a very early age, he has been deeply curious about the world around him — from motorsports and music to cooking and exploring his surroundings. But what truly sets him apart is his sharp analytical mind and his dedication to understanding global issues.</p>
+
+    <p>Kumar has participated in numerous online debates, especially on geopolitics, consistently making his point clearly and respectfully. His writing reflects the same values: critical but courteous, data-driven, and deeply reflective of his perspective.</p>
+
+    <p>In his debut book, <em>The World from an Indian Teenager’s POV</em>, Kumar explores geopolitics, economics, faith, and society from the lens of an Indian teenager. The book resonated widely, selling over 1000 ebooks in its first month and earning consistently positive reviews.</p>
+
+    <p>Beyond geopolitics, Kumar’s interests span motorsports, cooking, and philosophical reflection — passions that reflect both speed and depth, intensity and patience. These contrasting influences subtly shape his writing style: sharp yet thoughtful, opinionated yet reflective.</p>
+
+    <p>At his core, Kumar writes with one belief — that age does not determine the value of insight. In a world increasingly defined by rapid change, he stands as part of a generation that refuses to be silent observers of history. Instead, he chooses to engage, analyze, and contribute.</p>
+
+    <a href="index.html" class="button">← Back to Home</a>
+</div>
+
+<div id="theme-toggle" onclick="toggleTheme()">🌙</div>
+
+<script>
+function toggleMenu(){
+    document.getElementById("sidebar").classList.toggle("active");
+}
+
+function toggleTheme(){
+    document.body.classList.toggle("dark");
+    updateMenuToggle();
+    if(document.body.classList.contains("dark")){
+        localStorage.setItem("theme","dark");
+    } else {
+        localStorage.setItem("theme","light");
+    }
+}
+
+function updateMenuToggle(){
+    const themeBtn = document.getElementById("theme-toggle");
+    const menuBtn = document.getElementById("menu-theme-toggle");
+    if(document.body.classList.contains("dark")){
+        themeBtn.textContent = "☀️";
+        menuBtn.textContent = "☀️ Light Mode";
+    } else {
+        themeBtn.textContent = "🌙";
+        menuBtn.textContent = "🌙 Dark Mode";
+    }
+}
+
+if(localStorage.getItem("theme") === "dark"){
+    document.body.classList.add("dark");
+    updateMenuToggle();
+}
+</script>
+
+</body>
+  </html>
