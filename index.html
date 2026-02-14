@@ -1,170 +1,224 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kumar Abhigyan | Official Website</title>
+<title>Kumar Abhigyan</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
+    scroll-behavior:smooth;
 }
 
 body{
-    background:linear-gradient(135deg,#0f172a,#020617);
-    color:#e2e8f0;
-    overflow-x:hidden;
+    font-family:'Inter', sans-serif;
+    background:#ffffff;
+    color:#111;
+    line-height:1.8;
 }
 
-header{
+nav{
+    position:fixed;
+    width:100%;
+    background:white;
+    padding:20px 10%;
+    display:flex;
+    justify-content:space-between;
+    border-bottom:1px solid #eee;
+    z-index:1000;
+}
+
+nav a{
+    text-decoration:none;
+    color:#111;
+    margin-left:25px;
+    font-size:14px;
+}
+
+section{
+    padding:120px 15%;
+}
+
+.hero{
     height:100vh;
     display:flex;
     flex-direction:column;
     justify-content:center;
-    align-items:center;
-    text-align:center;
 }
 
-header h1{
+.hero h1{
+    font-family:'Playfair Display', serif;
     font-size:60px;
-    font-weight:800;
-    background:linear-gradient(90deg,#3b82f6,#9333ea);
-    -webkit-background-clip:text;
-    color:transparent;
 }
 
-header p{
+.hero p{
     margin-top:20px;
-    font-size:18px;
+    max-width:600px;
+    color:#555;
+}
+
+.button{
+    margin-top:30px;
+    display:inline-block;
+    padding:12px 24px;
+    background:#111;
+    color:white;
+    text-decoration:none;
+    border-radius:5px;
+    transition:0.3s;
+}
+
+.button:hover{
     opacity:0.8;
 }
 
-.btn{
-    margin-top:30px;
-    padding:12px 28px;
-    background:#3b82f6;
-    border:none;
-    border-radius:30px;
-    color:white;
-    cursor:pointer;
-    font-weight:600;
-    transition:0.3s;
-    text-decoration:none;
+h2{
+    font-family:'Playfair Display', serif;
+    font-size:40px;
+    margin-bottom:40px;
 }
 
-.btn:hover{
-    background:#2563eb;
+.book-container{
+    display:flex;
+    flex-wrap:wrap;
+    gap:50px;
+    align-items:center;
+}
+
+.book-cover{
+    position:relative;
+}
+
+.book-cover img{
+    width:300px;
+    border-radius:10px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.15);
+    transition:0.3s;
+}
+
+.book-cover img:hover{
     transform:scale(1.05);
 }
 
-section{
-    padding:80px 10%;
+.badge{
+    position:absolute;
+    top:-15px;
+    left:-15px;
+    background:#111;
+    color:white;
+    padding:8px 14px;
+    font-size:12px;
+    border-radius:30px;
 }
 
-.section-title{
-    font-size:32px;
-    margin-bottom:30px;
-    font-weight:700;
+.reviews{
+    margin-top:60px;
 }
 
-.glass{
-    background:rgba(255,255,255,0.05);
-    backdrop-filter:blur(10px);
-    padding:30px;
-    border-radius:20px;
-    margin-bottom:30px;
-    transition:0.3s;
+.review{
+    border-top:1px solid #eee;
+    padding:20px 0;
+    color:#444;
 }
 
-.glass:hover{
-    transform:translateY(-5px);
-}
-
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
-}
-
-footer{
-    text-align:center;
-    padding:40px;
-    background:#020617;
-    margin-top:50px;
+.footer{
+    padding:60px 15%;
+    border-top:1px solid #eee;
     font-size:14px;
-}
-
-a{
-    color:#3b82f6;
+    color:#777;
 }
 </style>
 </head>
 
 <body>
 
-<header>
+<nav>
+    <div><strong>Kumar Abhigyan</strong></div>
+    <div>
+        <a href="#about">About</a>
+        <a href="#books">Books</a>
+        <a href="#blog">Blogging</a>
+        <a href="#contact">Contact</a>
+    </div>
+</nav>
+
+<section class="hero">
     <h1>Kumar Abhigyan</h1>
-    <p>Young Indian Author | Geopolitical Commentator | Analytical Thinker</p>
-    <a href="#book" class="btn">Explore My Work</a>
-</header>
+    <p>Young Indian author writing analytical reflections on geopolitics, economy, faith, and society — through the lens of a teenager observing the modern world.</p>
+    <a href="#books" class="button">View My Book</a>
+</section>
 
 <section id="about">
-    <h2 class="section-title">About Me</h2>
-    <div class="glass">
-        <p><strong>Kumar Abhigyan</strong> (born October 2010) is a young Indian author from Jharkhand, India. He writes analytical, data-driven commentary on geopolitics, economy, faith, and society, presenting the world through the lens of an Indian teenager.</p>
-        <br>
-        <p>The son of Naveen Kumar Sinha, Abhigyan developed an early curiosity for global affairs and cultural shifts. His writing is respectful yet critical, clear and structured, reflecting his unique worldview.</p>
-        <br>
-        <p>He has won numerous online debates centered around geopolitics, consistently delivering strong, well-structured arguments.</p>
-    </div>
+    <h2>About Kumar Abhigyan</h2>
+    <p>Born in October 2010 and raised in Jharkhand, India, Kumar Abhigyan is a young Indian author known for analytical, data-driven commentary on global affairs.</p>
+    <br>
+    <p>His writing is respectful yet critical, structured yet reflective — presenting how an Indian teenager interprets geopolitics, economy, faith, and cultural change.</p>
+    <br>
+    <p>He has won numerous online debates focused on global political issues, consistently presenting clear and persuasive arguments.</p>
 </section>
 
-<section id="book">
-    <h2 class="section-title">Debut Book</h2>
-    <div class="glass">
-        <h3>The World from an Indian Teenager's POV</h3>
-        <br>
-        <p>This debut book explores politics, economy, faith, and global issues through the perspective of a young Indian thinker.</p>
-        <br>
-        <p><strong>1000+ ebooks sold in the first month of release.</strong></p>
-        <br>
-        <a href="#" class="btn">Buy Now</a>
+<section id="books">
+    <h2>Books</h2>
+
+    <div class="book-container">
+
+        <div class="book-cover">
+            <div class="badge">Featured</div>
+            <img src="cover.jpg" alt="The World from an Indian Teenager's POV">
+        </div>
+
+        <div style="max-width:500px;">
+            <h3>The World from an Indian Teenager's POV</h3>
+            <br>
+            <p>This debut book explores geopolitics, economy, faith, and global systems from a young Indian perspective.</p>
+            <br>
+            <p><strong>1,000+ ebooks sold in the first month of release.</strong></p>
+            <br>
+            <a href="https://www.amazon.in/YOUR-AMAZON-LINK" target="_blank" class="button">
+                Buy on Amazon
+            </a>
+        </div>
+
     </div>
+
+    <div class="reviews">
+        <h3>Reviews</h3>
+
+        <div class="review">
+            ⭐⭐⭐⭐⭐  
+            “A thoughtful and analytical perspective from a remarkably young voice.”
+        </div>
+
+        <div class="review">
+            ⭐⭐⭐⭐⭐  
+            “Clear, structured, and surprisingly mature insights on geopolitics.”
+        </div>
+    </div>
+
 </section>
 
-<section>
-    <h2 class="section-title">Interests</h2>
-    <div class="grid">
-        <div class="glass">Motorsports</div>
-        <div class="glass">Music</div>
-        <div class="glass">Cooking</div>
-        <div class="glass">Exploring the World</div>
-        <div class="glass">Geopolitical Debates</div>
-    </div>
+<section id="blog">
+    <h2>Blogging</h2>
+    <p>Weekly essays and reflections on geopolitics, economic developments, global affairs, and cultural observations.</p>
+    <br>
+    <p>Coming soon: Featured articles and structured blog posts.</p>
 </section>
 
-<section>
-    <h2 class="section-title">Blog (Coming Soon)</h2>
-    <div class="glass">
-        <p>Weekly essays on geopolitics, economy, global affairs, and cultural observations from a teenager's perspective.</p>
-    </div>
+<section id="contact">
+    <h2>Contact Me</h2>
+    <p>For inquiries, collaborations, or discussions:</p>
+    <br>
+    <p><a href="mailto:abhigyan025@gmail.com">abhigyan025@gmail.com</a></p>
 </section>
 
-<section>
-    <h2 class="section-title">Contact</h2>
-    <div class="glass">
-        <p>Email: <a href="mailto:abhigyan025@gmail.com">abhigyan025@gmail.com</a></p>
-    </div>
-</section>
-
-<footer>
-    © 2026 Kumar Abhigyan | All Rights Reserved
-</footer>
+<div class="footer">
+    © 2026 Kumar Abhigyan. All Rights Reserved.
+</div>
 
 </body>
 </html>
