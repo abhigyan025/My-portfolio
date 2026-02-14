@@ -8,6 +8,20 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
+:root {
+    --bg: #fdf6ec;
+    --text: #111;
+    --card-bg: rgba(255,255,255,0.6);
+    --shadow: rgba(0,0,0,0.15);
+}
+
+body.dark {
+    --bg: #111;
+    --text: #fdf6ec;
+    --card-bg: rgba(30,30,30,0.6);
+    --shadow: rgba(0,0,0,0.4);
+}
+
 *{
     margin:0;
     padding:0;
@@ -17,27 +31,43 @@
 
 body{
     font-family:'Inter', sans-serif;
-    background:#ffffff;
-    color:#111;
+    background: var(--bg);
+    color: var(--text);
     line-height:1.8;
+    transition: background 0.3s, color 0.3s;
 }
 
-nav{
+.menu-icon{
     position:fixed;
-    width:100%;
-    background:white;
-    padding:20px 10%;
-    display:flex;
-    justify-content:space-between;
-    border-bottom:1px solid #eee;
+    top:20px;
+    right:20px;
+    font-size:28px;
+    cursor:pointer;
+    z-index:1001;
+}
+
+.sidebar{
+    position:fixed;
+    right:-250px;
+    top:0;
+    width:250px;
+    height:100%;
+    background:var(--bg);
+    padding:60px 20px;
+    box-shadow:-2px 0 10px rgba(0,0,0,0.1);
+    transition:0.3s;
     z-index:1000;
 }
 
-nav a{
+.sidebar a{
+    display:block;
+    margin:20px 0;
     text-decoration:none;
-    color:#111;
-    margin-left:25px;
-    font-size:14px;
+    color:var(--text);
+}
+
+.sidebar.active{
+    right:0;
 }
 
 section{
@@ -45,7 +75,7 @@ section{
 }
 
 .hero{
-    height:100vh;
+    min-height:100vh;
     display:flex;
     flex-direction:column;
     justify-content:center;
@@ -59,28 +89,29 @@ section{
 .hero p{
     margin-top:20px;
     max-width:600px;
-    color:#555;
+    color:var(--text);
 }
 
 .button{
     margin-top:30px;
     display:inline-block;
     padding:12px 24px;
-    background:#111;
-    color:white;
+    border:1px solid var(--text);
     text-decoration:none;
+    color: var(--text);
     border-radius:5px;
     transition:0.3s;
 }
 
 .button:hover{
-    opacity:0.8;
+    background: var(--text);
+    color: var(--bg);
 }
 
 h2{
     font-family:'Playfair Display', serif;
     font-size:40px;
-    margin-bottom:40px;
+    margin-bottom:30px;
 }
 
 .book-container{
@@ -90,76 +121,68 @@ h2{
     align-items:center;
 }
 
-.book-cover{
-    position:relative;
-}
-
 .book-cover img{
-    width:300px;
+    width:280px;
     border-radius:10px;
-    box-shadow:0 20px 40px rgba(0,0,0,0.15);
-    transition:0.3s;
+    box-shadow:0 20px 40px var(--shadow);
 }
 
-.book-cover img:hover{
-    transform:scale(1.05);
+.achievements{
+    display:flex;
+    flex-wrap:wrap;
+    gap:30px;
 }
 
-.badge{
-    position:absolute;
-    top:-15px;
-    left:-15px;
-    background:#111;
-    color:white;
-    padding:8px 14px;
-    font-size:12px;
-    border-radius:30px;
+.achievement-card{
+    flex:1;
+    min-width:200px;
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 10px 30px var(--shadow);
+    text-align:center;
+    transition: transform 0.3s;
 }
 
-.reviews{
-    margin-top:60px;
+.achievement-card:hover{
+    transform: translateY(-5px);
 }
 
-.review{
-    border-top:1px solid #eee;
-    padding:20px 0;
-    color:#444;
+#theme-toggle{
+    position:fixed;
+    bottom:20px;
+    left:20px;
+    font-size:28px;
+    cursor:pointer;
+    z-index:1001;
 }
 
 .footer{
     padding:60px 15%;
-    border-top:1px solid #eee;
+    border-top:1px solid #ddd;
     font-size:14px;
-    color:#777;
+    color: var(--text);
 }
 </style>
 </head>
 
 <body>
 
-<nav>
-    <div><strong>Kumar Abhigyan</strong></div>
-    <div>
-        <a href="#about">About</a>
-        <a href="#books">Books</a>
-        <a href="#blog">Blogging</a>
-        <a href="#contact">Contact</a>
-    </div>
-</nav>
+<div class="menu-icon" onclick="toggleMenu()">☰</div>
+
+<div class="sidebar" id="sidebar">
+    <a href="#books">View Books</a>
+    <a href="#blog">Blogs</a>
+    <a href="#achievements">Achievements</a>
+    <a href="#contact">Contact Me</a>
+    <a href="#" id="menu-theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</a>
+</div>
 
 <section class="hero">
     <h1>Kumar Abhigyan</h1>
-    <p>Young Indian author writing analytical reflections on geopolitics, economy, faith, and society — through the lens of a teenager observing the modern world.</p>
-    <a href="#books" class="button">View My Book</a>
-</section>
-
-<section id="about">
-    <h2>About Kumar Abhigyan</h2>
-    <p>Born in October 2010 and raised in Jharkhand, India, Kumar Abhigyan is a young Indian author known for analytical, data-driven commentary on global affairs.</p>
-    <br>
-    <p>His writing is respectful yet critical, structured yet reflective — presenting how an Indian teenager interprets geopolitics, economy, faith, and cultural change.</p>
-    <br>
-    <p>He has won numerous online debates focused on global political issues, consistently presenting clear and persuasive arguments.</p>
+    <p>Kumar Abhigyan is a young Indian author and independent thinker born in 2010. With a deep interest in geopolitics, motorsports, and exploring the world around him, he represents a generation unafraid to question global ideas.</p>
+    <a href="about.html" class="button">Know more about Kumar Abhigyan</a>
 </section>
 
 <section id="books">
@@ -168,57 +191,84 @@ h2{
     <div class="book-container">
 
         <div class="book-cover">
-            <div class="badge">Featured</div>
             <img src="cover.jpg" alt="The World from an Indian Teenager's POV">
         </div>
 
         <div style="max-width:500px;">
             <h3>The World from an Indian Teenager's POV</h3>
-            <br>
             <p>This debut book explores geopolitics, economy, faith, and global systems from a young Indian perspective.</p>
-            <br>
-            <p><strong>1,000+ ebooks sold in the first month of release.</strong></p>
-            <br>
-            <a href="https://www.amazon.in/YOUR-AMAZON-LINK" target="_blank" class="button">
-                Buy on Amazon
-            </a>
+            <a href="https://a.co/d/bkYAgT" target="_blank" class="button">Buy on Amazon</a>
         </div>
 
     </div>
-
-    <div class="reviews">
-        <h3>Reviews</h3>
-
-        <div class="review">
-            ⭐⭐⭐⭐⭐  
-            “A thoughtful and analytical perspective from a remarkably young voice.”
-        </div>
-
-        <div class="review">
-            ⭐⭐⭐⭐⭐  
-            “Clear, structured, and surprisingly mature insights on geopolitics.”
-        </div>
-    </div>
-
 </section>
 
 <section id="blog">
-    <h2>Blogging</h2>
-    <p>Weekly essays and reflections on geopolitics, economic developments, global affairs, and cultural observations.</p>
-    <br>
-    <p>Coming soon: Featured articles and structured blog posts.</p>
+    <h2>Blog</h2>
+    <p>Essays and reflections on geopolitics, economic developments, and cultural observations.</p>
+</section>
+
+<section id="achievements">
+    <h2>Achievements</h2>
+    <div class="achievements">
+        <div class="achievement-card">
+            <strong>1000+ Ebooks Sold</strong>
+            <p>Within the first month of launch</p>
+        </div>
+        <div class="achievement-card">
+            <strong>Debate Recognition</strong>
+            <p>Consistent recognition in online geopolitical debates</p>
+        </div>
+        <div class="achievement-card">
+            <strong>Reader Appreciation</strong>
+            <p>Consistently positive reviews from readers</p>
+        </div>
+    </div>
 </section>
 
 <section id="contact">
     <h2>Contact Me</h2>
-    <p>For inquiries, collaborations, or discussions:</p>
-    <br>
     <p><a href="mailto:abhigyan025@gmail.com">abhigyan025@gmail.com</a></p>
 </section>
 
 <div class="footer">
     © 2026 Kumar Abhigyan. All Rights Reserved.
 </div>
+
+<div id="theme-toggle" onclick="toggleTheme()">🌙</div>
+
+<script>
+function toggleMenu(){
+    document.getElementById("sidebar").classList.toggle("active");
+}
+
+function toggleTheme(){
+    document.body.classList.toggle("dark");
+    updateMenuToggle();
+    if(document.body.classList.contains("dark")){
+        localStorage.setItem("theme","dark");
+    } else {
+        localStorage.setItem("theme","light");
+    }
+}
+
+function updateMenuToggle(){
+    const themeBtn = document.getElementById("theme-toggle");
+    const menuBtn = document.getElementById("menu-theme-toggle");
+    if(document.body.classList.contains("dark")){
+        themeBtn.textContent = "☀️";
+        menuBtn.textContent = "☀️ Light Mode";
+    } else {
+        themeBtn.textContent = "🌙";
+        menuBtn.textContent = "🌙 Dark Mode";
+    }
+}
+
+if(localStorage.getItem("theme") === "dark"){
+    document.body.classList.add("dark");
+    updateMenuToggle();
+}
+</script>
 
 </body>
 </html>
