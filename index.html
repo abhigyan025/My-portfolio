@@ -1,119 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Kumar Abhigyan | Official Website</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #0f172a;
-            color: #e2e8f0;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kumar Abhigyan | Official Website</title>
 
-        header {
-            background: #1e293b;
-            padding: 20px;
-            text-align: center;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-        header h1 {
-            margin: 0;
-            font-size: 32px;
-        }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
 
-        section {
-            padding: 40px 20px;
-            max-width: 900px;
-            margin: auto;
-        }
+body{
+    background:linear-gradient(135deg,#0f172a,#020617);
+    color:#e2e8f0;
+    overflow-x:hidden;
+}
 
-        h2 {
-            border-bottom: 2px solid #3b82f6;
-            padding-bottom: 10px;
-        }
+header{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
 
-        .card {
-            background: #1e293b;
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
-        }
+header h1{
+    font-size:60px;
+    font-weight:800;
+    background:linear-gradient(90deg,#3b82f6,#9333ea);
+    -webkit-background-clip:text;
+    color:transparent;
+}
 
-        a {
-            color: #3b82f6;
-            text-decoration: none;
-        }
+header p{
+    margin-top:20px;
+    font-size:18px;
+    opacity:0.8;
+}
 
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: #1e293b;
-            margin-top: 40px;
-        }
+.btn{
+    margin-top:30px;
+    padding:12px 28px;
+    background:#3b82f6;
+    border:none;
+    border-radius:30px;
+    color:white;
+    cursor:pointer;
+    font-weight:600;
+    transition:0.3s;
+    text-decoration:none;
+}
 
-        .highlight {
-            color: #3b82f6;
-            font-weight: bold;
-        }
-    </style>
+.btn:hover{
+    background:#2563eb;
+    transform:scale(1.05);
+}
+
+section{
+    padding:80px 10%;
+}
+
+.section-title{
+    font-size:32px;
+    margin-bottom:30px;
+    font-weight:700;
+}
+
+.glass{
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(10px);
+    padding:30px;
+    border-radius:20px;
+    margin-bottom:30px;
+    transition:0.3s;
+}
+
+.glass:hover{
+    transform:translateY(-5px);
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+footer{
+    text-align:center;
+    padding:40px;
+    background:#020617;
+    margin-top:50px;
+    font-size:14px;
+}
+
+a{
+    color:#3b82f6;
+}
+</style>
 </head>
 
 <body>
 
 <header>
     <h1>Kumar Abhigyan</h1>
-    <p>Young Indian Author | Commentator | Analyst</p>
+    <p>Young Indian Author | Geopolitical Commentator | Analytical Thinker</p>
+    <a href="#book" class="btn">Explore My Work</a>
 </header>
 
-<section>
-    <h2>About the Author</h2>
-    <div class="card">
-        <p><strong>Kumar Abhigyan</strong> (born October 2010) is a young Indian author from Jharkhand, India. 
-        He is known for writing analytical, data-driven commentary on geopolitics, economy, faith, and society, 
-        presenting the world through the lens of an Indian teenager.</p>
+<section id="about">
+    <h2 class="section-title">About Me</h2>
+    <div class="glass">
+        <p><strong>Kumar Abhigyan</strong> (born October 2010) is a young Indian author from Jharkhand, India. He writes analytical, data-driven commentary on geopolitics, economy, faith, and society, presenting the world through the lens of an Indian teenager.</p>
+        <br>
+        <p>The son of Naveen Kumar Sinha, Abhigyan developed an early curiosity for global affairs and cultural shifts. His writing is respectful yet critical, clear and structured, reflecting his unique worldview.</p>
+        <br>
+        <p>He has won numerous online debates centered around geopolitics, consistently delivering strong, well-structured arguments.</p>
+    </div>
+</section>
 
-        <p>The son of Naveen Kumar Sinha, Abhigyan developed an early curiosity about global affairs and cultural shifts. 
-        His writing style is respectful yet critical, clear and to the point, while firmly reflecting his personal worldview.</p>
-
-        <p>He has won numerous online debates focused on geopolitics, consistently presenting strong and well-structured arguments.</p>
+<section id="book">
+    <h2 class="section-title">Debut Book</h2>
+    <div class="glass">
+        <h3>The World from an Indian Teenager's POV</h3>
+        <br>
+        <p>This debut book explores politics, economy, faith, and global issues through the perspective of a young Indian thinker.</p>
+        <br>
+        <p><strong>1000+ ebooks sold in the first month of release.</strong></p>
+        <br>
+        <a href="#" class="btn">Buy Now</a>
     </div>
 </section>
 
 <section>
-    <h2>Debut Book</h2>
-    <div class="card">
-        <p><span class="highlight">The World from an Indian Teenager's POV</span> is his debut work, 
-        where he explores politics, economy, faith, and global issues from a young Indian perspective.</p>
-
-        <p>The book sold over <span class="highlight">1,000+ ebooks in its first month</span> of release, 
-        marking a strong beginning to his author journey.</p>
+    <h2 class="section-title">Interests</h2>
+    <div class="grid">
+        <div class="glass">Motorsports</div>
+        <div class="glass">Music</div>
+        <div class="glass">Cooking</div>
+        <div class="glass">Exploring the World</div>
+        <div class="glass">Geopolitical Debates</div>
     </div>
 </section>
 
 <section>
-    <h2>Interests</h2>
-    <div class="card">
-        <p>• Music</p>
-        <p>• Motorsports</p>
-        <p>• Cooking</p>
-        <p>• Exploring the world</p>
-        <p>• Online geopolitical debates</p>
+    <h2 class="section-title">Blog (Coming Soon)</h2>
+    <div class="glass">
+        <p>Weekly essays on geopolitics, economy, global affairs, and cultural observations from a teenager's perspective.</p>
     </div>
 </section>
 
 <section>
-    <h2>Contact</h2>
-    <div class="card">
+    <h2 class="section-title">Contact</h2>
+    <div class="glass">
         <p>Email: <a href="mailto:abhigyan025@gmail.com">abhigyan025@gmail.com</a></p>
     </div>
 </section>
 
 <footer>
-    © 2026 Kumar Abhigyan. All Rights Reserved.
+    © 2026 Kumar Abhigyan | All Rights Reserved
 </footer>
 
 </body>
