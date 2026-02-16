@@ -3,366 +3,271 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kumar Abhigyan | Author</title>
+<title>The World From an Indian Teenager's POV</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
-:root{
---bg:#0f0f0f;
---text:#ffffff;
---sub:#aaaaaa;
---card:#161616;
---accent:#ffffff;
-}
 
-.light-mode{
---bg:#ffffff;
---text:#111111;
---sub:#555555;
---card:#f3f3f3;
---accent:#111111;
+html{
+    scroll-behavior:smooth;
 }
 
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Inter',sans-serif;
 }
 
 body{
-background:var(--bg);
-color:var(--text);
-scroll-behavior:smooth;
-transition:background 0.4s,color 0.4s,opacity 1s ease;
-overflow-x:hidden;
-opacity:0;
+    background:linear-gradient(135deg,#0f0f0f,#1c1c1c,#111);
+    color:white;
+    line-height:1.7;
 }
 
-/* Fade in on load */
-body.loaded{
-opacity:1;
-}
-
-/* Desktop custom cursor */
-@media (pointer: fine){
-body{
-cursor:none;
-}
-.cursor{
-position:fixed;
-width:18px;
-height:18px;
-border-radius:50%;
-background:var(--accent);
-pointer-events:none;
-mix-blend-mode:difference;
-z-index:3000;
-transform:translate(-50%,-50%);
-}
-}
-
-/* Background glow */
-body::before{
-content:"";
-position:fixed;
-width:600px;
-height:600px;
-background:radial-gradient(circle,rgba(255,255,255,0.08),transparent 70%);
-top:20%;
-left:30%;
-z-index:-1;
-animation:moveGlow 14s infinite alternate ease-in-out;
-}
-
-@keyframes moveGlow{
-0%{transform:translate(0,0);}
-100%{transform:translate(120px,80px);}
-}
-
-/* NAV */
-header{
-position:fixed;
-width:100%;
-top:0;
-left:0;
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:20px 8%;
-background:rgba(0,0,0,0.6);
-backdrop-filter:blur(10px);
-z-index:1000;
-}
-
-header h1{
-font-size:18px;
+/* NAVBAR */
+nav{
+    position:fixed;
+    top:0;
+    width:100%;
+    background:rgba(0,0,0,0.8);
+    backdrop-filter:blur(10px);
+    padding:15px 10%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    z-index:1000;
 }
 
 nav a{
-color:var(--text);
-text-decoration:none;
-margin-left:20px;
-font-size:14px;
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+    font-weight:600;
+    font-size:14px;
+    transition:0.3s;
 }
 
-.toggle{
-cursor:pointer;
-margin-left:20px;
-font-size:14px;
+nav a:hover{
+    color:#ff9900;
+}
+
+section{
+    padding:100px 10%;
+    opacity:0;
+    transform:translateY(40px);
+    transition:1s ease;
+}
+
+section.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+h1,h2{
+    font-family:'Playfair Display',serif;
 }
 
 /* HERO */
 .hero{
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-padding:0 8%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    min-height:100vh;
+    justify-content:center;
 }
 
-.hero h2{
-font-size:52px;
-font-weight:700;
-background:linear-gradient(90deg,#ffffff,#888,#ffffff);
-background-size:200% auto;
--webkit-background-clip:text;
-color:transparent;
-animation:shine 6s linear infinite;
-margin-bottom:20px;
+.hero img{
+    width:260px;
+    margin-bottom:30px;
+    box-shadow:0 20px 60px rgba(0,0,0,0.7);
+    border-radius:12px;
 }
 
-@keyframes shine{
-to{background-position:200% center;}
+.hero h1{
+    font-size:42px;
+    margin-bottom:10px;
 }
 
-.hero p{
-max-width:600px;
-color:var(--sub);
+.subtitle{
+    color:#bbb;
+    margin-bottom:30px;
+    font-style:italic;
 }
 
-/* SECTIONS */
-section{
-padding:120px 8%;
+.button-group{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+    justify-content:center;
 }
 
-.book-container{
-display:flex;
-flex-wrap:wrap;
-align-items:center;
-justify-content:center;
-gap:60px;
-opacity:0;
-transform:translateY(40px);
-transition:1s ease;
+.btn{
+    padding:12px 28px;
+    border:none;
+    border-radius:30px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+    text-decoration:none;
 }
 
-.book-container.visible{
-opacity:1;
-transform:translateY(0);
+.btn-primary{
+    background:#ff9900;
+    color:black;
 }
 
-.book-container img{
-width:280px;
-border-radius:20px;
-box-shadow:0 0 40px rgba(0,0,0,0.4);
-animation:float 4s ease-in-out infinite;
+.btn-primary:hover{
+    transform:scale(1.07);
 }
 
-@keyframes float{
-0%,100%{transform:translateY(0);}
-50%{transform:translateY(-12px);}
+.btn-secondary{
+    background:white;
+    color:black;
 }
 
-.book-info{
-max-width:500px;
+.btn-secondary:hover{
+    transform:scale(1.07);
 }
 
-.book-info h3{
-font-size:28px;
-margin-bottom:20px;
+.section-title{
+    font-size:32px;
+    margin-bottom:25px;
+    text-align:center;
 }
 
-.book-info p{
-color:var(--sub);
-margin-bottom:30px;
+.content{
+    max-width:900px;
+    margin:auto;
+    color:#ccc;
+    font-size:18px;
+    text-align:center;
 }
 
-.button{
-display:inline-block;
-padding:12px 28px;
-border-radius:30px;
-background:var(--accent);
-color:var(--bg);
-font-weight:600;
-text-decoration:none;
-cursor:pointer;
-transition:0.3s;
+.content p{
+    margin-bottom:20px;
 }
 
-.button:hover{
-transform:translateY(-4px);
+/* Floating Buy Button */
+.floating-buy{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:#ff9900;
+    color:black;
+    padding:14px 24px;
+    border-radius:40px;
+    font-weight:700;
+    text-decoration:none;
+    box-shadow:0 10px 30px rgba(0,0,0,0.6);
+    transition:0.3s;
 }
 
-/* CONTACT */
-.contact{
-text-align:center;
-background:var(--card);
-padding:100px 8%;
+.floating-buy:hover{
+    transform:scale(1.1);
 }
 
-.contact h2{
-margin-bottom:20px;
+footer{
+    text-align:center;
+    padding:30px;
+    background:black;
+    color:#777;
+    font-size:14px;
 }
 
-.contact a{
-color:var(--text);
-font-size:18px;
-text-decoration:none;
-border-bottom:1px solid var(--sub);
-padding-bottom:4px;
+/* Mobile */
+@media(max-width:768px){
+    .hero h1{
+        font-size:26px;
+    }
+    nav{
+        flex-direction:column;
+        gap:10px;
+    }
 }
 
-/* POPUP */
-.popup{
-display:none;
-position:fixed;
-inset:0;
-background:rgba(0,0,0,0.6);
-backdrop-filter:blur(6px);
-justify-content:center;
-align-items:center;
-z-index:2000;
-}
-
-.popup-box{
-background:var(--card);
-padding:40px;
-border-radius:20px;
-text-align:center;
-width:300px;
-animation:fadeUp 0.4s ease;
-}
-
-@keyframes fadeUp{
-from{opacity:0;transform:translateY(20px);}
-to{opacity:1;transform:translateY(0);}
-}
-
-.popup-box h3{
-margin-bottom:25px;
-}
-
-.popup-box a{
-display:block;
-margin:12px 0;
-padding:12px;
-border-radius:25px;
-background:var(--accent);
-color:var(--bg);
-text-decoration:none;
-font-weight:600;
-}
-
-.close-btn{
-margin-top:15px;
-cursor:pointer;
-color:var(--sub);
-font-size:14px;
-}
 </style>
 </head>
 
 <body>
 
-<div class="cursor"></div>
-
-<header>
-<h1>Kumar Abhigyan</h1>
 <nav>
-<a href="#book">Book</a>
-<a href="#contact">Contact</a>
-<span class="toggle" onclick="toggleMode()">Toggle Mode</span>
+    <div><strong>Kumar Abhigyan</strong></div>
+    <div>
+        <a href="#book">Book</a>
+        <a href="#author">Author</a>
+        <a href="#achievements">Achievements</a>
+    </div>
 </nav>
-</header>
 
-<div class="hero">
-<h2>Words That Question The World</h2>
-<p>A bold exploration of geopolitics, systems, faith, and global realities — from an Indian teenager’s perspective.</p>
-</div>
+<section class="hero" id="book">
+    <img src="cover.jpg" alt="Book Cover">
+    <h1>The World From an Indian Teenager's POV</h1>
+    <p class="subtitle">The world from a young lens</p>
 
-<section id="book">
-<div class="book-container" id="bookSection">
-
-<img src="cover.jpg" alt="The World from an Indian Teenager's POV">
-
-<div class="book-info">
-<h3>The World from an Indian Teenager’s POV</h3>
-<p>An analytical and thought-provoking debut examining global power, narratives, and the structures shaping our future.</p>
-<div class="button" onclick="openPopup()">Buy on Amazon</div>
-</div>
-
-</div>
+    <div class="button-group">
+        <a href="https://amzn.in/d/0gci4Jhn" class="btn btn-primary" target="_blank">Buy Kindle</a>
+        <a href="https://amzn.in/d/0gci4Jhn" class="btn btn-secondary" target="_blank">Buy Paperback</a>
+    </div>
 </section>
 
-<section class="contact" id="contact">
-<h2>Get In Touch</h2>
-<a href="mailto:abhigyan025@gmail.com">abhigyan025@gmail.com</a>
+<section id="about-book">
+    <h2 class="section-title">About the Book</h2>
+    <div class="content">
+        <p><strong>The World from an Indian Teenager's POV</strong><br>
+        Reflections, Dreams, and Observations from a Young Indian Teen</p>
+
+        <p>Life as a teenager in India is complicated, exciting, and full of contradictions. In this honest, curious, and thoughtful book, Kumar Abhigyan shares his unfiltered perspective on India, religion, the world, and his own aspirations.</p>
+
+        <p>From the streets of India to global issues, Kumar reflects on the highs and lows of growing up in a vibrant country, exploring pride, responsibility, and the dreams of a young mind. He questions faith, observes society, and imagines a world where knowledge, curiosity, and courage can make a difference.</p>
+
+        <p>This book is for teens, young adults, and anyone curious about seeing India and the world through fresh eyes. It’s a journey of self-discovery, understanding, and hope — a reminder that every perspective matters.</p>
+    </div>
 </section>
 
-<div class="popup" id="popup">
-<div class="popup-box">
-<h3>Select Format</h3>
-<a href="https://amzn.in/d/0gci4Jhn" target="_blank">eBook</a>
-<a href="https://amzn.in/d/0gci4Jhn" target="_blank">Paperback</a>
-<div class="close-btn" onclick="closePopup()">Close</div>
-</div>
-</div>
+<section id="author">
+    <h2 class="section-title">About the Author</h2>
+    <div class="content">
+        <p><strong>Kumar Abhigyan</strong> (born October 2010) is a young Indian author from Jharkhand, India. He writes analytical, data-driven texts reflecting on society, politics, economy, and culture.</p>
+
+        <p>He developed curiosity about global affairs and faith early in life. He is known for online debate achievements in geopolitics and persuasive argumentation.</p>
+
+        <p>For inquiries: <strong>abhigyan025@gmail.com</strong></p>
+    </div>
+</section>
+
+<section id="achievements">
+    <h2 class="section-title">Achievements</h2>
+    <div class="content">
+        <p>📘 Published Author on Amazon</p>
+        <p>📈 1,000+ eBooks Sold in First Month</p>
+        <p>🏆 Multiple Online Debate Wins</p>
+        <p>🌍 Writing on Global Affairs & Geopolitics</p>
+    </div>
+</section>
+
+<footer>
+    © 2026 Kumar Abhigyan. All rights reserved.
+</footer>
+
+<a href="https://amzn.in/d/0gci4Jhn" class="floating-buy" target="_blank">Buy Now</a>
 
 <script>
-window.addEventListener("load",()=>{
-document.body.classList.add("loaded");
+
+/* Fade in on scroll */
+const sections = document.querySelectorAll("section");
+
+window.addEventListener("scroll", () => {
+    sections.forEach(section => {
+        const sectionTop = section.getBoundingClientRect().top;
+        if(sectionTop < window.innerHeight - 100){
+            section.classList.add("visible");
+        }
+    });
 });
 
-/* Toggle mode */
-function toggleMode(){
-document.body.classList.toggle("light-mode");
-}
-
-/* Scroll animation */
-const observer=new IntersectionObserver(entries=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting){
-entry.target.classList.add("visible");
-}
-});
-});
-observer.observe(document.getElementById("bookSection"));
-
-/* Popup */
-function openPopup(){
-document.getElementById("popup").style.display="flex";
-}
-function closePopup(){
-document.getElementById("popup").style.display="none";
-}
-document.getElementById("popup").addEventListener("click",function(e){
-if(e.target===this){
-closePopup();
-}
-});
-
-/* Cursor (desktop only) */
-if(window.matchMedia("(pointer: fine)").matches){
-const cursor=document.querySelector(".cursor");
-document.addEventListener("mousemove",e=>{
-cursor.style.left=e.clientX+"px";
-cursor.style.top=e.clientY+"px";
-});
-}
 </script>
 
 </body>
