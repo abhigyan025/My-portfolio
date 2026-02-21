@@ -1,219 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
-<head> 
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Kumar Abhigyan",
-  "url": "https://kumarabhigyan.vercel.app",
-  "email": "abhigyan025@gmail.com",
-  "jobTitle": "Author",
-  "nationality": "Indian",
-  "worksFor": {
-    "@type": "Organization",
-    "name": "Independent Author"
-  },
-  "authorOf": {
-    "@type": "Book",
-    "name": "The World From an Indian Teenager's POV",
-    "alternateName": "The world from a young lens",
-    "url": "https://amzn.in/d/0gci4Jhn",
-    "inLanguage": "English",
-    "genre": ["Nonfiction", "Society", "Geopolitics"],
-    "offers": {
-      "@type": "Offer",
-      "url": "https://amzn.in/d/0gci4Jhn",
-      "availability": "https://schema.org/InStock"
-    }
-  }
-}
-    </script>
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The World From an Indian Teenager's POV</title>
+
+<title>Kumar Abhigyan | Author & Commentator</title>
+
+<meta name="description" content="Official website of Kumar Abhigyan — author, student, and commentator writing on society, geopolitics, global economy, and contemporary India.">
+<meta name="keywords" content="Kumar Abhigyan, Indian author, geopolitics, world economy, de-dollarization, social media analysis">
+<meta name="author" content="Kumar Abhigyan">
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://kumarabhigyan.vercel.app/#author",
+      "name": "Kumar Abhigyan",
+      "url": "https://kumarabhigyan.vercel.app",
+      "jobTitle": "Author",
+      "nationality": "Indian"
+    },
+    {
+      "@type": "Book",
+      "name": "The World From an Indian Teenager's POV",
+      "author": {
+        "@id": "https://kumarabhigyan.vercel.app/#author"
+      },
+      "inLanguage": "English",
+      "genre": ["Nonfiction", "Geopolitics", "Society"],
+      "offers": {
+        "@type": "Offer",
+        "url": "https://amzn.in/d/0gci4Jhn",
+        "availability": "https://schema.org/InStock"
+      }
+    }
+  ]
+}
+</script>
+
 <style>
 
-html{
-    scroll-behavior:smooth;
-}
+html { scroll-behavior: smooth; }
 
-*{
+body {
     margin:0;
-    padding:0;
-    box-sizing:border-box;
     font-family:'Inter',sans-serif;
-}
-
-body{
-    background:linear-gradient(135deg,#0f0f0f,#1c1c1c,#111);
-    color:white;
+    background:#f8f8f8;
+    color:#111;
     line-height:1.7;
 }
 
-/* NAVBAR */
-nav{
-    position:fixed;
-    top:0;
-    width:100%;
-    background:rgba(0,0,0,0.8);
-    backdrop-filter:blur(10px);
-    padding:15px 10%;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    z-index:1000;
-}
-
-nav a{
-    color:white;
-    text-decoration:none;
-    margin-left:20px;
-    font-weight:600;
-    font-size:14px;
-    transition:0.3s;
-}
-
-nav a:hover{
-    color:#ff9900;
-}
-
-section{
-    padding:100px 10%;
-    opacity:0;
-    transform:translateY(40px);
-    transition:1s ease;
-}
-
-section.visible{
-    opacity:1;
-    transform:translateY(0);
-}
-
-h1,h2{
+h1,h2,h3 {
     font-family:'Playfair Display',serif;
 }
 
-/* HERO */
-.hero{
+section {
+    padding:100px 10%;
+    max-width:1000px;
+    margin:auto;
+}
+
+nav {
+    position:fixed;
+    top:0;
+    width:100%;
+    background:white;
+    padding:20px 10%;
     display:flex;
-    flex-direction:column;
+    justify-content:space-between;
     align-items:center;
+    box-shadow:0 2px 10px rgba(0,0,0,0.05);
+    z-index:1000;
+}
+
+nav strong {
+    font-family:'Playfair Display',serif;
+    font-size:18px;
+}
+
+.menu-icon {
+    font-size:24px;
+    cursor:pointer;
+}
+
+.sidebar {
+    position:fixed;
+    right:-250px;
+    top:0;
+    width:250px;
+    height:100%;
+    background:white;
+    padding:80px 20px;
+    transition:0.3s;
+    box-shadow:-2px 0 10px rgba(0,0,0,0.1);
+}
+
+.sidebar a {
+    display:block;
+    margin:20px 0;
+    text-decoration:none;
+    color:#111;
+    font-weight:600;
+}
+
+.sidebar.active { right:0; }
+
+.hero {
     text-align:center;
-    min-height:100vh;
-    justify-content:center;
+    margin-top:120px;
 }
 
-.hero img{
-    width:260px;
-    margin-bottom:30px;
-    box-shadow:0 20px 60px rgba(0,0,0,0.7);
-    border-radius:12px;
-}
-
-.hero h1{
-    font-size:42px;
+.hero h1 {
+    font-size:48px;
     margin-bottom:10px;
 }
 
-.subtitle{
-    color:#bbb;
-    margin-bottom:30px;
-    font-style:italic;
-}
-
-.button-group{
-    display:flex;
-    gap:15px;
-    flex-wrap:wrap;
-    justify-content:center;
-}
-
-.btn{
-    padding:12px 28px;
-    border:none;
-    border-radius:30px;
-    font-weight:600;
-    cursor:pointer;
-    transition:0.3s;
-    text-decoration:none;
-}
-
-.btn-primary{
-    background:#ff9900;
-    color:black;
-}
-
-.btn-primary:hover{
-    transform:scale(1.07);
-}
-
-.btn-secondary{
-    background:white;
-    color:black;
-}
-
-.btn-secondary:hover{
-    transform:scale(1.07);
-}
-
-.section-title{
-    font-size:32px;
-    margin-bottom:25px;
-    text-align:center;
-}
-
-.content{
-    max-width:900px;
-    margin:auto;
-    color:#ccc;
-    font-size:18px;
-    text-align:center;
-}
-
-.content p{
-    margin-bottom:20px;
-}
-
-/* Floating Buy Button */
-.floating-buy{
-    position:fixed;
-    bottom:20px;
-    right:20px;
-    background:#ff9900;
-    color:black;
-    padding:14px 24px;
-    border-radius:40px;
-    font-weight:700;
-    text-decoration:none;
-    box-shadow:0 10px 30px rgba(0,0,0,0.6);
-    transition:0.3s;
-}
-
-.floating-buy:hover{
-    transform:scale(1.1);
-}
-
-footer{
-    text-align:center;
-    padding:30px;
-    background:black;
-    color:#777;
+.roles {
+    letter-spacing:3px;
     font-size:14px;
+    margin-bottom:20px;
+    color:#555;
 }
 
-/* Mobile */
+.gold-line {
+    width:60px;
+    height:3px;
+    background:#c8a95a;
+    margin:20px auto;
+}
+
+.button {
+    display:inline-block;
+    padding:12px 28px;
+    background:#111;
+    color:white;
+    text-decoration:none;
+    border-radius:30px;
+    margin-top:20px;
+}
+
+.button:hover {
+    background:#c8a95a;
+    color:black;
+}
+
+.book-layout {
+    display:flex;
+    gap:50px;
+    flex-wrap:wrap;
+    align-items:center;
+}
+
+.book-layout img {
+    width:250px;
+    box-shadow:0 20px 50px rgba(0,0,0,0.15);
+}
+
+.essay {
+    margin-bottom:60px;
+}
+
+footer {
+    text-align:center;
+    padding:40px;
+    font-size:14px;
+    color:#777;
+}
+
 @media(max-width:768px){
-    .hero h1{
-        font-size:26px;
-    }
-    nav{
-        flex-direction:column;
-        gap:10px;
-    }
+    .hero h1 { font-size:32px; }
+    .book-layout { flex-direction:column; text-align:center; }
 }
 
 </style>
@@ -222,80 +182,81 @@ footer{
 <body>
 
 <nav>
-    <div><strong>Kumar Abhigyan</strong></div>
-    <div>
-        <a href="#book">Book</a>
-        <a href="#author">Author</a>
-        <a href="#achievements">Achievements</a>
-    </div>
+<strong>Kumar Abhigyan</strong>
+<div class="menu-icon" onclick="toggleMenu()">☰</div>
 </nav>
 
-<section class="hero" id="book">
-    <img src="cover.jpg" alt="Book Cover">
-    <h1>The World From an Indian Teenager's POV</h1>
-    <p class="subtitle">The world from a young lens</p>
+<div class="sidebar" id="sidebar">
+<a href="#home">Home</a>
+<a href="#book">The Book</a>
+<a href="#essays">Essays</a>
+<a href="#about">About</a>
+<a href="#contact">Contact</a>
+</div>
 
-    <div class="button-group">
-        <a href="https://amzn.in/d/0gci4Jhn" class="btn btn-primary" target="_blank">Buy Kindle</a>
-        <a href="https://amzn.in/d/0gci4Jhn" class="btn btn-secondary" target="_blank">Buy Paperback</a>
-    </div>
+<section class="hero" id="home">
+<h1>Kumar Abhigyan</h1>
+<div class="roles">AUTHOR · STUDENT · DEBATER</div>
+<div class="gold-line"></div>
+<p>Writing on society, geopolitics, and contemporary India through a reflective and analytical lens.</p>
+<a href="#book" class="button">Read the Book</a>
 </section>
 
-<section id="about-book">
-    <h2 class="section-title">About the Book</h2>
-    <div class="content">
-        <p><strong>The World from an Indian Teenager's POV</strong><br>
-        Reflections, Dreams, and Observations from a Young Indian Teen</p>
+<section id="book">
+<h2>The World From an Indian Teenager's POV</h2>
+<div class="gold-line"></div>
 
-        <p>Life as a teenager in India is complicated, exciting, and full of contradictions. In this honest, curious, and thoughtful book, Kumar Abhigyan shares his unfiltered perspective on India, religion, the world, and his own aspirations.</p>
+<div class="book-layout">
+<img src="cover.jpg" alt="Book Cover">
+<div>
+<p><strong>The world from a young lens</strong></p>
+<p>An exploration of society, faith, global affairs, and the evolving perspective of a young Indian observer navigating a complex world.</p>
 
-        <p>From the streets of India to global issues, Kumar reflects on the highs and lows of growing up in a vibrant country, exploring pride, responsibility, and the dreams of a young mind. He questions faith, observes society, and imagines a world where knowledge, curiosity, and courage can make a difference.</p>
-
-        <p>This book is for teens, young adults, and anyone curious about seeing India and the world through fresh eyes. It’s a journey of self-discovery, understanding, and hope — a reminder that every perspective matters.</p>
-    </div>
+<a href="https://amzn.in/d/0gci4Jhn" target="_blank" class="button">Buy Kindle</a>
+<a href="https://amzn.in/d/0gci4Jhn" target="_blank" class="button" style="margin-left:10px;">Buy Paperback</a>
+</div>
+</div>
 </section>
 
-<section id="author">
-    <h2 class="section-title">About the Author</h2>
-    <div class="content">
-        <p><strong>Kumar Abhigyan</strong> (born October 2010) is a young Indian author from Jharkhand, India. He writes analytical, data-driven texts reflecting on society, politics, economy, and culture.</p>
+<section id="essays">
+<h2>Essays</h2>
+<div class="gold-line"></div>
 
-        <p>He developed curiosity about global affairs and faith early in life. He is known for online debate achievements in geopolitics and persuasive argumentation.</p>
+<article class="essay">
+<h3>Dollar Dominance and the Question of De-Dollarization</h3>
+<p>The United States dollar remains the dominant global reserve currency, underpinning international trade, energy markets, and financial systems. Its position is reinforced by institutional stability, deep capital markets, and the global trust built over decades. However, conversations around de-dollarization have intensified in recent years, particularly among emerging economies seeking reduced dependency on Western financial systems.</p>
+<p>While alternatives such as regional currencies and bilateral trade settlements are being explored, replacing the dollar is not a simple political decision. It requires liquidity, global trust, and financial infrastructure on a comparable scale. For now, de-dollarization appears gradual rather than revolutionary, reflecting structural shifts rather than abrupt transformation.</p>
+</article>
 
-        <p>For inquiries: <strong>abhigyan025@gmail.com</strong></p>
-    </div>
+<article class="essay">
+<h3>Social Media and the Architecture of Modern Opinion</h3>
+<p>Social media has reshaped how information circulates, compressing time and amplifying voices at unprecedented scale. Algorithms prioritize engagement, often rewarding speed and emotional intensity over depth. As a result, public discourse increasingly reflects visibility rather than deliberation.</p>
+<p>For younger generations, platforms serve as primary exposure to global politics and cultural debates. This creates opportunity for awareness but also risk of echo chambers and polarization. The responsibility, therefore, lies not only with platforms but with individuals to approach information critically and thoughtfully.</p>
+</article>
+
 </section>
 
-<section id="achievements">
-    <h2 class="section-title">Achievements</h2>
-    <div class="content">
-        <p>📘 Published Author on Amazon</p>
-        <p>📈 1,000+ eBooks Sold in First Month</p>
-        <p>🏆 Multiple Online Debate Wins</p>
-        <p>🌍 Writing on Global Affairs & Geopolitics</p>
-    </div>
+<section id="about">
+<h2>About</h2>
+<div class="gold-line"></div>
+<p>Kumar Abhigyan is an Indian author and commentator writing on geopolitics, society, and global affairs. His work seeks to present structured, reflective observations rooted in critical inquiry and intellectual curiosity.</p>
+</section>
+
+<section id="contact">
+<h2>Contact</h2>
+<div class="gold-line"></div>
+<p>For inquiries and correspondence:</p>
+<p><strong>abhigyan025@gmail.com</strong></p>
 </section>
 
 <footer>
-    © 2026 Kumar Abhigyan. All rights reserved.
+© 2026 Kumar Abhigyan. All rights reserved.
 </footer>
 
-<a href="https://amzn.in/d/0gci4Jhn" class="floating-buy" target="_blank">Buy Now</a>
-
 <script>
-
-/* Fade in on scroll */
-const sections = document.querySelectorAll("section");
-
-window.addEventListener("scroll", () => {
-    sections.forEach(section => {
-        const sectionTop = section.getBoundingClientRect().top;
-        if(sectionTop < window.innerHeight - 100){
-            section.classList.add("visible");
-        }
-    });
-});
-
+function toggleMenu(){
+    document.getElementById("sidebar").classList.toggle("active");
+}
 </script>
 
 </body>
