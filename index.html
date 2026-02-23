@@ -6,6 +6,8 @@
 
 <title>Kumar Abhigyan | Writer & Commentator</title>
 
+<meta name="description" content="Official website of Kumar Abhigyan — essays on geopolitics, world economy, de-dollarization, and digital society.">
+
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
@@ -14,6 +16,7 @@ margin:0;
 font-family:'Inter',sans-serif;
 background:#f6f1e8;
 color:#111;
+line-height:1.8;
 overflow-x:hidden;
 }
 
@@ -47,7 +50,6 @@ background:none;
 border:none;
 font-size:26px;
 cursor:pointer;
-z-index:3001;
 }
 
 /* SIDEBAR */
@@ -102,7 +104,7 @@ text-align:center;
 }
 
 .hero h1{
-font-size:48px;
+font-size:44px;
 margin-bottom:10px;
 }
 
@@ -119,8 +121,72 @@ background:#c4a24a;
 margin:25px auto;
 }
 
+/* Expand */
+.expand-btn{
+margin-top:15px;
+display:inline-block;
+cursor:pointer;
+font-weight:600;
+color:#c4a24a;
+}
+
+.expand-content{
+max-height:0;
+overflow:hidden;
+transition:max-height 0.6s ease;
+}
+
+/* Cards */
+.achievements{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+}
+
+.card{
+background:white;
+padding:25px;
+border-top:3px solid #c4a24a;
+box-shadow:0 10px 25px rgba(0,0,0,0.05);
+}
+
+/* Book */
+.book-layout{
+display:flex;
+gap:60px;
+flex-wrap:wrap;
+}
+
+.book-layout img{
+width:240px;
+box-shadow:0 20px 40px rgba(0,0,0,0.15);
+}
+
+.button{
+display:inline-block;
+padding:12px 24px;
+background:#111;
+color:white;
+text-decoration:none;
+border-radius:25px;
+margin-top:20px;
+}
+
+.button:hover{
+background:#c4a24a;
+color:black;
+}
+
+footer{
+text-align:center;
+padding:60px;
+color:#666;
+font-size:14px;
+}
+
 @media(max-width:768px){
-.hero h1{font-size:32px;}
+.hero h1{font-size:30px;}
+.book-layout{flex-direction:column;}
 }
 </style>
 </head>
@@ -135,46 +201,134 @@ margin:25px auto;
 <div class="overlay" id="overlay"></div>
 
 <div class="sidebar" id="sidebar">
-<a href="#">Home</a>
-<a href="#">Meet</a>
-<a href="#">Book</a>
-<a href="#">Achievements</a>
-<a href="#">Essays</a>
-<a href="#">Contact</a>
+<a href="#home">Home</a>
+<a href="#meet">Meet</a>
+<a href="#book">Book</a>
+<a href="#achievements">Achievements</a>
+<a href="#essays">Essays</a>
+<a href="#contact">Contact</a>
 </div>
 
-<section class="hero">
+<section class="hero" id="home">
 <h1>Kumar Abhigyan</h1>
 <div class="roles">Writer. Observer. Analyst.</div>
 <div class="gold-line"></div>
 <p>Observations from a generation thinking critically about the world.</p>
 </section>
 
+<section id="meet">
+<h2>Meet Kumar Abhigyan</h2>
+<div class="gold-line"></div>
+<p>Kumar Abhigyan is an Indian teenage writer focused on geopolitics, economics, and society.</p>
+
+<div class="expand-btn" onclick="toggleExpand(this)">Read More ↓</div>
+<div class="expand-content">
+<p>Born in October 2010 and based in Jharkhand, he developed early interest in global power structures, economic systems, and digital discourse. His perspective blends generational thinking with analytical structure.</p>
+<p>Through debates and essays, he explores topics such as de-dollarization, global finance, social media dynamics, and shifting world order.</p>
+</div>
+</section>
+
+<section id="book">
+<h2>The World From an Indian Teenager’s POV</h2>
+<div class="gold-line"></div>
+
+<div class="book-layout">
+<img src="cover.jpg" alt="Book Cover">
+
+<div>
+<p><strong>A reflection on modern global shifts.</strong></p>
+<p>An analytical look at identity, economy, society, and generational thought.</p>
+
+<div class="expand-btn" onclick="toggleExpand(this)">Read More ↓</div>
+<div class="expand-content">
+<p>The book reflects on de-dollarization debates, faith in contemporary society, and India's evolving global position. It presents structured observations rather than rigid conclusions.</p>
+</div>
+
+<a href="https://amzn.in/d/0gci4Jhn" target="_blank" class="button">Buy on Amazon</a>
+</div>
+</div>
+</section>
+
+<section id="achievements">
+<h2>Achievements</h2>
+<div class="gold-line"></div>
+
+<div class="achievements">
+<div class="card">Published Author on Amazon</div>
+<div class="card">1,000+ eBooks Sold in First Month</div>
+<div class="card">Multiple Geopolitical Debate Wins</div>
+<div class="card">Essayist on Global Economy</div>
+</div>
+</section>
+
+<section id="essays">
+<h2>Essays</h2>
+<div class="gold-line"></div>
+
+<article>
+<h3>Dollar Dominance & De-Dollarization</h3>
+<p>The US dollar continues to dominate global trade and reserve systems.</p>
+
+<div class="expand-btn" onclick="toggleExpand(this)">Continue Reading ↓</div>
+<div class="expand-content">
+<p>Its dominance stems from liquidity, institutional trust, and deep capital markets. While discussions of de-dollarization are rising among emerging economies, systemic currency replacement requires long-term confidence and stability.</p>
+<p>Shifts in settlement mechanisms may occur gradually rather than abruptly.</p>
+</div>
+</article>
+
+<br>
+
+<article>
+<h3>Social Media & Modern Discourse</h3>
+<p>Social media platforms have reshaped public opinion and generational awareness.</p>
+
+<div class="expand-btn" onclick="toggleExpand(this)">Continue Reading ↓</div>
+<div class="expand-content">
+<p>Algorithms amplify engagement, often prioritizing emotion over nuance. This dynamic influences political narratives and digital identity formation.</p>
+<p>Critical thinking becomes essential in navigating the modern information ecosystem.</p>
+</div>
+</article>
+
+</section>
+
+<section id="contact">
+<h2>Contact</h2>
+<div class="gold-line"></div>
+<p>For inquiries:</p>
+<p><strong>abhigyan025@gmail.com</strong></p>
+</section>
+
+<footer>
+© 2026 Kumar Abhigyan. All rights reserved.
+</footer>
+
 <script>
 const menuBtn = document.getElementById("menuBtn");
 const sidebar = document.getElementById("sidebar");
 const overlay = document.getElementById("overlay");
 
-menuBtn.addEventListener("click", () => {
+menuBtn.addEventListener("click", function(){
 sidebar.classList.add("active");
 overlay.classList.add("active");
 document.body.style.overflow = "hidden";
 });
 
-overlay.addEventListener("click", () => {
+overlay.addEventListener("click", function(){
 sidebar.classList.remove("active");
 overlay.classList.remove("active");
 document.body.style.overflow = "auto";
 });
-</script>
 
-</body>
-</html>        const top = section.getBoundingClientRect().top;
-        if(top < window.innerHeight - 100){
-            section.classList.add("visible");
-        }
-    });
-});
+function toggleExpand(btn){
+const content = btn.nextElementSibling;
+if(content.style.maxHeight){
+content.style.maxHeight = null;
+btn.innerHTML = btn.innerHTML.replace("↑","↓");
+}else{
+content.style.maxHeight = content.scrollHeight + "px";
+btn.innerHTML = btn.innerHTML.replace("↓","↑");
+}
+}
 </script>
 
 </body>
