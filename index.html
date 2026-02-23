@@ -6,25 +6,27 @@
 
 <title>Kumar Abhigyan | Writer & Commentator</title>
 
-<meta name="description" content="Official website of Kumar Abhigyan — essays on geopolitics, global economy, society, and contemporary thought.">
-<meta name="keywords" content="Kumar Abhigyan, world economy, dollar dominance, de-dollarization, social media analysis, geopolitics">
+<meta name="description" content="Official website of Kumar Abhigyan — essays on geopolitics, global economy, and contemporary thought.">
+<meta name="keywords" content="Kumar Abhigyan, geopolitics, world economy, de-dollarization, social media analysis">
 <meta name="author" content="Kumar Abhigyan">
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
 html { scroll-behavior: smooth; }
 
 body {
     margin:0;
-    font-family:'Inter',sans-serif;
+    font-family:'Inter', sans-serif;
     background:#f6f1e8;
     color:#1a1a1a;
     line-height:1.8;
+    overflow-x:hidden;
 }
 
 h1,h2,h3 {
-    font-family:'Playfair Display',serif;
+    font-family:'Playfair Display', serif;
+    font-weight:600;
 }
 
 section {
@@ -33,7 +35,7 @@ section {
     margin:auto;
     opacity:0;
     transform:translateY(40px);
-    transition:1s ease;
+    transition:0.9s ease;
 }
 
 section.visible {
@@ -56,26 +58,31 @@ nav {
 }
 
 nav strong {
-    font-family:'Playfair Display',serif;
     font-size:18px;
 }
 
 .menu {
-    font-size:24px;
+    font-size:26px;
     cursor:pointer;
 }
 
+/* SIDEBAR (Fixed Properly) */
 .sidebar {
     position:fixed;
     top:0;
-    right:-260px;
+    right:0;
     width:260px;
-    height:100%;
-    background:white;
+    height:100vh;
+    background:#ffffff;
     padding:100px 30px;
-    transition:0.4s;
-    box-shadow:-5px 0 20px rgba(0,0,0,0.1);
+    transform:translateX(100%);
+    transition:transform 0.4s ease;
+    box-shadow:-5px 0 20px rgba(0,0,0,0.15);
     z-index:2000;
+}
+
+.sidebar.active {
+    transform:translateX(0);
 }
 
 .sidebar a {
@@ -86,30 +93,25 @@ nav strong {
     font-weight:600;
 }
 
-.sidebar.active { right:0; }
-
 .overlay {
     position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.3);
+    inset:0;
+    background:rgba(0,0,0,0.4);
     opacity:0;
-    visibility:hidden;
-    transition:0.3s;
+    pointer-events:none;
+    transition:opacity 0.3s ease;
     z-index:1500;
 }
 
 .overlay.active {
     opacity:1;
-    visibility:visible;
+    pointer-events:auto;
 }
 
 /* HERO */
 .hero {
     text-align:center;
-    margin-top:120px;
+    margin-top:140px;
 }
 
 .hero h1 {
@@ -130,7 +132,7 @@ nav strong {
     margin:25px auto;
 }
 
-/* Expand Button */
+/* Expandable */
 .expand-btn {
     margin-top:20px;
     display:inline-block;
@@ -166,6 +168,7 @@ nav strong {
     text-decoration:none;
     border-radius:30px;
     margin-top:20px;
+    transition:0.3s;
 }
 
 .button:hover {
@@ -173,7 +176,7 @@ nav strong {
     color:black;
 }
 
-/* Achievement cards */
+/* Achievements */
 .achievements {
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
@@ -190,7 +193,7 @@ nav strong {
 /* Footer */
 footer {
     text-align:center;
-    padding:50px;
+    padding:60px;
     font-size:14px;
     color:#666;
 }
@@ -230,13 +233,13 @@ footer {
 <section id="meet">
 <h2>Meet Kumar Abhigyan</h2>
 <div class="gold-line"></div>
-<p>Kumar Abhigyan is an Indian writer exploring society, geopolitics, and global systems through structured reflection and critical inquiry.</p>
+<p>Kumar Abhigyan is an Indian writer exploring geopolitics, society, and global systems through structured reflection.</p>
 
 <div class="expand-btn" onclick="toggleExpand(this)">Read More ↓</div>
 <div class="expand-content">
-<p>Born in October 2010 and based in Jharkhand, India, Abhigyan developed an early curiosity about global affairs, economic systems, and faith in contemporary society. His work reflects an analytical approach shaped by structured debate and sustained intellectual exploration.</p>
-<p>He has participated in numerous online debates focused on geopolitics and global power structures, earning recognition for clarity and persuasive reasoning. His writing aims not to provoke reaction, but to encourage thoughtful engagement with complex issues.</p>
-<p>Through essays and commentary, he seeks to understand how power, ideas, and institutions shape the world — and how a critically thinking generation interprets those shifts.</p>
+<p>Born in October 2010 and based in Jharkhand, India, he developed an early interest in economic systems, global power structures, and digital discourse. His writing blends analytical thinking with generational perspective.</p>
+<p>He has participated in multiple online debates focused on geopolitics and global affairs, recognized for clarity and persuasive reasoning.</p>
+<p>Through essays and commentary, he aims to present thoughtful observations that encourage dialogue rather than division.</p>
 </div>
 </section>
 
@@ -246,18 +249,18 @@ footer {
 
 <div class="book-layout">
 <img src="cover.jpg" alt="Book Cover">
+
 <div>
 <p><strong>The world from a young lens</strong></p>
-<p>An exploration of India, global affairs, and identity from a reflective and questioning perspective.</p>
+<p>An exploration of identity, economics, society, and global change through a reflective teenage perspective.</p>
 
 <div class="expand-btn" onclick="toggleExpand(this)">Read More ↓</div>
 <div class="expand-content">
-<p>The book examines the intersection of youth, faith, responsibility, and global systems. It reflects on national identity, the evolving geopolitical landscape, and the intellectual challenges of growing up in a rapidly changing world.</p>
-<p>Rather than offering conclusions, it presents structured observations intended to spark dialogue and thoughtful examination among readers.</p>
+<p>The book examines themes such as national identity, de-dollarization, religion, generational thinking, and the evolving geopolitical landscape.</p>
+<p>It does not claim authority — it presents structured reflection intended to inspire thought.</p>
 </div>
 
-<a href="https://amzn.in/d/0gci4Jhn" target="_blank" class="button">Buy Kindle</a>
-<a href="https://amzn.in/d/0gci4Jhn" target="_blank" class="button">Buy Paperback</a>
+<a href="https://amzn.in/d/0gci4Jhn" target="_blank" class="button">Buy on Amazon</a>
 </div>
 </div>
 </section>
@@ -270,7 +273,7 @@ footer {
 <div class="card">Published Author on Amazon</div>
 <div class="card">1,000+ eBooks Sold in First Month</div>
 <div class="card">Multiple Geopolitical Debate Wins</div>
-<div class="card">Writing on Global Affairs & Economic Systems</div>
+<div class="card">Writer on Global Economic Systems</div>
 </div>
 </section>
 
@@ -279,24 +282,24 @@ footer {
 <div class="gold-line"></div>
 
 <article>
-<h3>Dollar Dominance and De-Dollarization</h3>
-<p>The United States dollar remains central to global trade and reserve systems. Its dominance is supported by liquidity, institutional trust, and financial infrastructure developed over decades.</p>
+<h3>Dollar Dominance & De-Dollarization</h3>
+<p>The US dollar remains the dominant reserve currency due to liquidity, institutional trust, and financial infrastructure.</p>
 
 <div class="expand-btn" onclick="toggleExpand(this)">Continue Reading ↓</div>
 <div class="expand-content">
-<p>Discussions of de-dollarization have gained traction among emerging economies seeking financial autonomy. However, replacing a reserve currency involves more than political alignment; it requires deep capital markets, stability, and sustained global confidence.</p>
-<p>While diversification efforts may gradually reshape aspects of trade settlement, systemic change is likely to unfold incrementally rather than abruptly.</p>
+<p>While discussions of de-dollarization have intensified, structural change in global finance requires long-term confidence, deep capital markets, and systemic stability.</p>
+<p>Shifts may occur gradually as emerging economies diversify reserves and settlement mechanisms.</p>
 </div>
 </article>
 
 <article>
-<h3>Social Media and Modern Discourse</h3>
-<p>Social media platforms have reshaped the architecture of public opinion, amplifying voices and accelerating information flow.</p>
+<h3>Social Media & Public Discourse</h3>
+<p>Social media has transformed how narratives form and spread across societies.</p>
 
 <div class="expand-btn" onclick="toggleExpand(this)">Continue Reading ↓</div>
 <div class="expand-content">
-<p>Algorithms prioritize engagement, often rewarding emotional intensity over depth. This dynamic can foster polarization while simultaneously broadening access to global conversations.</p>
-<p>For younger generations, digital platforms are primary arenas of political and cultural exposure, demanding critical engagement and media literacy.</p>
+<p>Algorithms prioritize engagement, often amplifying emotion over nuance. This reshapes political awareness and generational discourse.</p>
+<p>Critical thinking becomes essential in navigating digital ecosystems responsibly.</p>
 </div>
 </article>
 
@@ -305,7 +308,7 @@ footer {
 <section id="contact">
 <h2>Contact</h2>
 <div class="gold-line"></div>
-<p>For inquiries and correspondence:</p>
+<p>For inquiries:</p>
 <p><strong>abhigyan025@gmail.com</strong></p>
 </section>
 
@@ -315,11 +318,13 @@ footer {
 
 <script>
 function openMenu(){
+    document.body.style.overflow = "hidden";
     document.getElementById("sidebar").classList.add("active");
     document.getElementById("overlay").classList.add("active");
 }
 
 function closeMenu(){
+    document.body.style.overflow = "auto";
     document.getElementById("sidebar").classList.remove("active");
     document.getElementById("overlay").classList.remove("active");
 }
@@ -328,7 +333,7 @@ function toggleExpand(btn){
     const content = btn.nextElementSibling;
     if(content.style.maxHeight){
         content.style.maxHeight = null;
-        btn.innerHTML = btn.innerHTML.includes("More") || btn.innerHTML.includes("Continue") ? btn.innerHTML.replace("↑","↓") : btn.innerHTML;
+        btn.innerHTML = btn.innerHTML.replace("↑","↓");
     } else {
         content.style.maxHeight = content.scrollHeight + "px";
         btn.innerHTML = btn.innerHTML.replace("↓","↑");
