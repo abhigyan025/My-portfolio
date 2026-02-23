@@ -4,54 +4,23 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Kumar Abhigyan | Author & Commentator</title>
+<title>Kumar Abhigyan | Writer & Commentator</title>
 
-<meta name="description" content="Official website of Kumar Abhigyan — author, student, and commentator writing on society, geopolitics, global economy, and contemporary India.">
-<meta name="keywords" content="Kumar Abhigyan, Indian author, geopolitics, world economy, de-dollarization, social media analysis">
+<meta name="description" content="Official website of Kumar Abhigyan — essays on geopolitics, global economy, society, and contemporary thought.">
+<meta name="keywords" content="Kumar Abhigyan, world economy, dollar dominance, de-dollarization, social media analysis, geopolitics">
 <meta name="author" content="Kumar Abhigyan">
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Person",
-      "@id": "https://kumarabhigyan.vercel.app/#author",
-      "name": "Kumar Abhigyan",
-      "url": "https://kumarabhigyan.vercel.app",
-      "jobTitle": "Author",
-      "nationality": "Indian"
-    },
-    {
-      "@type": "Book",
-      "name": "The World From an Indian Teenager's POV",
-      "author": {
-        "@id": "https://kumarabhigyan.vercel.app/#author"
-      },
-      "inLanguage": "English",
-      "genre": ["Nonfiction", "Geopolitics", "Society"],
-      "offers": {
-        "@type": "Offer",
-        "url": "https://amzn.in/d/0gci4Jhn",
-        "availability": "https://schema.org/InStock"
-      }
-    }
-  ]
-}
-</script>
-
 <style>
-
 html { scroll-behavior: smooth; }
 
 body {
     margin:0;
     font-family:'Inter',sans-serif;
-    background:#f8f8f8;
-    color:#111;
-    line-height:1.7;
+    background:#f6f1e8;
+    color:#1a1a1a;
+    line-height:1.8;
 }
 
 h1,h2,h3 {
@@ -59,21 +28,30 @@ h1,h2,h3 {
 }
 
 section {
-    padding:100px 10%;
+    padding:110px 12%;
     max-width:1000px;
     margin:auto;
+    opacity:0;
+    transform:translateY(40px);
+    transition:1s ease;
 }
 
+section.visible {
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* NAV */
 nav {
     position:fixed;
     top:0;
     width:100%;
-    background:white;
-    padding:20px 10%;
+    background:#f6f1e8;
+    padding:20px 12%;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    box-shadow:0 2px 10px rgba(0,0,0,0.05);
+    border-bottom:1px solid #e4dccf;
     z-index:1000;
 }
 
@@ -82,26 +60,27 @@ nav strong {
     font-size:18px;
 }
 
-.menu-icon {
+.menu {
     font-size:24px;
     cursor:pointer;
 }
 
 .sidebar {
     position:fixed;
-    right:-250px;
     top:0;
-    width:250px;
+    right:-260px;
+    width:260px;
     height:100%;
     background:white;
-    padding:80px 20px;
-    transition:0.3s;
-    box-shadow:-2px 0 10px rgba(0,0,0,0.1);
+    padding:100px 30px;
+    transition:0.4s;
+    box-shadow:-5px 0 20px rgba(0,0,0,0.1);
+    z-index:2000;
 }
 
 .sidebar a {
     display:block;
-    margin:20px 0;
+    margin:25px 0;
     text-decoration:none;
     color:#111;
     font-weight:600;
@@ -109,34 +88,80 @@ nav strong {
 
 .sidebar.active { right:0; }
 
+.overlay {
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.3);
+    opacity:0;
+    visibility:hidden;
+    transition:0.3s;
+    z-index:1500;
+}
+
+.overlay.active {
+    opacity:1;
+    visibility:visible;
+}
+
+/* HERO */
 .hero {
     text-align:center;
     margin-top:120px;
 }
 
 .hero h1 {
-    font-size:48px;
+    font-size:52px;
     margin-bottom:10px;
 }
 
 .roles {
-    letter-spacing:3px;
-    font-size:14px;
-    margin-bottom:20px;
+    letter-spacing:4px;
+    font-size:13px;
     color:#555;
 }
 
 .gold-line {
-    width:60px;
+    width:70px;
     height:3px;
-    background:#c8a95a;
-    margin:20px auto;
+    background:#c4a24a;
+    margin:25px auto;
+}
+
+/* Expand Button */
+.expand-btn {
+    margin-top:20px;
+    display:inline-block;
+    cursor:pointer;
+    font-weight:600;
+    color:#c4a24a;
+}
+
+.expand-content {
+    max-height:0;
+    overflow:hidden;
+    transition:max-height 0.8s ease;
+}
+
+/* Book Layout */
+.book-layout {
+    display:flex;
+    gap:60px;
+    flex-wrap:wrap;
+    align-items:flex-start;
+}
+
+.book-layout img {
+    width:260px;
+    box-shadow:0 20px 50px rgba(0,0,0,0.15);
 }
 
 .button {
     display:inline-block;
-    padding:12px 28px;
-    background:#111;
+    padding:12px 26px;
+    background:#1a1a1a;
     color:white;
     text-decoration:none;
     border-radius:30px;
@@ -144,38 +169,36 @@ nav strong {
 }
 
 .button:hover {
-    background:#c8a95a;
+    background:#c4a24a;
     color:black;
 }
 
-.book-layout {
-    display:flex;
-    gap:50px;
-    flex-wrap:wrap;
-    align-items:center;
+/* Achievement cards */
+.achievements {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
 }
 
-.book-layout img {
-    width:250px;
-    box-shadow:0 20px 50px rgba(0,0,0,0.15);
+.card {
+    background:white;
+    padding:25px;
+    border-top:3px solid #c4a24a;
+    box-shadow:0 10px 25px rgba(0,0,0,0.05);
 }
 
-.essay {
-    margin-bottom:60px;
-}
-
+/* Footer */
 footer {
     text-align:center;
-    padding:40px;
+    padding:50px;
     font-size:14px;
-    color:#777;
+    color:#666;
 }
 
 @media(max-width:768px){
-    .hero h1 { font-size:32px; }
-    .book-layout { flex-direction:column; text-align:center; }
+    .hero h1 { font-size:34px; }
+    .book-layout { flex-direction:column; }
 }
-
 </style>
 </head>
 
@@ -183,38 +206,71 @@ footer {
 
 <nav>
 <strong>Kumar Abhigyan</strong>
-<div class="menu-icon" onclick="toggleMenu()">☰</div>
+<div class="menu" onclick="openMenu()">☰</div>
 </nav>
 
+<div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
 <div class="sidebar" id="sidebar">
-<a href="#home">Home</a>
-<a href="#book">The Book</a>
-<a href="#essays">Essays</a>
-<a href="#about">About</a>
-<a href="#contact">Contact</a>
+<a href="#home" onclick="closeMenu()">Home</a>
+<a href="#meet" onclick="closeMenu()">Meet</a>
+<a href="#book" onclick="closeMenu()">Book</a>
+<a href="#achievements" onclick="closeMenu()">Achievements</a>
+<a href="#essays" onclick="closeMenu()">Essays</a>
+<a href="#contact" onclick="closeMenu()">Contact</a>
 </div>
 
 <section class="hero" id="home">
 <h1>Kumar Abhigyan</h1>
-<div class="roles">AUTHOR · STUDENT · DEBATER</div>
+<div class="roles">Writer. Observer. Analyst.</div>
 <div class="gold-line"></div>
-<p>Writing on society, geopolitics, and contemporary India through a reflective and analytical lens.</p>
-<a href="#book" class="button">Read the Book</a>
+<p>Observations from a generation thinking critically about the world.</p>
+</section>
+
+<section id="meet">
+<h2>Meet Kumar Abhigyan</h2>
+<div class="gold-line"></div>
+<p>Kumar Abhigyan is an Indian writer exploring society, geopolitics, and global systems through structured reflection and critical inquiry.</p>
+
+<div class="expand-btn" onclick="toggleExpand(this)">Read More ↓</div>
+<div class="expand-content">
+<p>Born in October 2010 and based in Jharkhand, India, Abhigyan developed an early curiosity about global affairs, economic systems, and faith in contemporary society. His work reflects an analytical approach shaped by structured debate and sustained intellectual exploration.</p>
+<p>He has participated in numerous online debates focused on geopolitics and global power structures, earning recognition for clarity and persuasive reasoning. His writing aims not to provoke reaction, but to encourage thoughtful engagement with complex issues.</p>
+<p>Through essays and commentary, he seeks to understand how power, ideas, and institutions shape the world — and how a critically thinking generation interprets those shifts.</p>
+</div>
 </section>
 
 <section id="book">
-<h2>The World From an Indian Teenager's POV</h2>
+<h2>The World From an Indian Teenager’s POV</h2>
 <div class="gold-line"></div>
 
 <div class="book-layout">
 <img src="cover.jpg" alt="Book Cover">
 <div>
 <p><strong>The world from a young lens</strong></p>
-<p>An exploration of society, faith, global affairs, and the evolving perspective of a young Indian observer navigating a complex world.</p>
+<p>An exploration of India, global affairs, and identity from a reflective and questioning perspective.</p>
+
+<div class="expand-btn" onclick="toggleExpand(this)">Read More ↓</div>
+<div class="expand-content">
+<p>The book examines the intersection of youth, faith, responsibility, and global systems. It reflects on national identity, the evolving geopolitical landscape, and the intellectual challenges of growing up in a rapidly changing world.</p>
+<p>Rather than offering conclusions, it presents structured observations intended to spark dialogue and thoughtful examination among readers.</p>
+</div>
 
 <a href="https://amzn.in/d/0gci4Jhn" target="_blank" class="button">Buy Kindle</a>
-<a href="https://amzn.in/d/0gci4Jhn" target="_blank" class="button" style="margin-left:10px;">Buy Paperback</a>
+<a href="https://amzn.in/d/0gci4Jhn" target="_blank" class="button">Buy Paperback</a>
 </div>
+</div>
+</section>
+
+<section id="achievements">
+<h2>Achievements</h2>
+<div class="gold-line"></div>
+
+<div class="achievements">
+<div class="card">Published Author on Amazon</div>
+<div class="card">1,000+ eBooks Sold in First Month</div>
+<div class="card">Multiple Geopolitical Debate Wins</div>
+<div class="card">Writing on Global Affairs & Economic Systems</div>
 </div>
 </section>
 
@@ -222,24 +278,28 @@ footer {
 <h2>Essays</h2>
 <div class="gold-line"></div>
 
-<article class="essay">
-<h3>Dollar Dominance and the Question of De-Dollarization</h3>
-<p>The United States dollar remains the dominant global reserve currency, underpinning international trade, energy markets, and financial systems. Its position is reinforced by institutional stability, deep capital markets, and the global trust built over decades. However, conversations around de-dollarization have intensified in recent years, particularly among emerging economies seeking reduced dependency on Western financial systems.</p>
-<p>While alternatives such as regional currencies and bilateral trade settlements are being explored, replacing the dollar is not a simple political decision. It requires liquidity, global trust, and financial infrastructure on a comparable scale. For now, de-dollarization appears gradual rather than revolutionary, reflecting structural shifts rather than abrupt transformation.</p>
+<article>
+<h3>Dollar Dominance and De-Dollarization</h3>
+<p>The United States dollar remains central to global trade and reserve systems. Its dominance is supported by liquidity, institutional trust, and financial infrastructure developed over decades.</p>
+
+<div class="expand-btn" onclick="toggleExpand(this)">Continue Reading ↓</div>
+<div class="expand-content">
+<p>Discussions of de-dollarization have gained traction among emerging economies seeking financial autonomy. However, replacing a reserve currency involves more than political alignment; it requires deep capital markets, stability, and sustained global confidence.</p>
+<p>While diversification efforts may gradually reshape aspects of trade settlement, systemic change is likely to unfold incrementally rather than abruptly.</p>
+</div>
 </article>
 
-<article class="essay">
-<h3>Social Media and the Architecture of Modern Opinion</h3>
-<p>Social media has reshaped how information circulates, compressing time and amplifying voices at unprecedented scale. Algorithms prioritize engagement, often rewarding speed and emotional intensity over depth. As a result, public discourse increasingly reflects visibility rather than deliberation.</p>
-<p>For younger generations, platforms serve as primary exposure to global politics and cultural debates. This creates opportunity for awareness but also risk of echo chambers and polarization. The responsibility, therefore, lies not only with platforms but with individuals to approach information critically and thoughtfully.</p>
+<article>
+<h3>Social Media and Modern Discourse</h3>
+<p>Social media platforms have reshaped the architecture of public opinion, amplifying voices and accelerating information flow.</p>
+
+<div class="expand-btn" onclick="toggleExpand(this)">Continue Reading ↓</div>
+<div class="expand-content">
+<p>Algorithms prioritize engagement, often rewarding emotional intensity over depth. This dynamic can foster polarization while simultaneously broadening access to global conversations.</p>
+<p>For younger generations, digital platforms are primary arenas of political and cultural exposure, demanding critical engagement and media literacy.</p>
+</div>
 </article>
 
-</section>
-
-<section id="about">
-<h2>About</h2>
-<div class="gold-line"></div>
-<p>Kumar Abhigyan is an Indian author and commentator writing on geopolitics, society, and global affairs. His work seeks to present structured, reflective observations rooted in critical inquiry and intellectual curiosity.</p>
 </section>
 
 <section id="contact">
@@ -254,9 +314,36 @@ footer {
 </footer>
 
 <script>
-function toggleMenu(){
-    document.getElementById("sidebar").classList.toggle("active");
+function openMenu(){
+    document.getElementById("sidebar").classList.add("active");
+    document.getElementById("overlay").classList.add("active");
 }
+
+function closeMenu(){
+    document.getElementById("sidebar").classList.remove("active");
+    document.getElementById("overlay").classList.remove("active");
+}
+
+function toggleExpand(btn){
+    const content = btn.nextElementSibling;
+    if(content.style.maxHeight){
+        content.style.maxHeight = null;
+        btn.innerHTML = btn.innerHTML.includes("More") || btn.innerHTML.includes("Continue") ? btn.innerHTML.replace("↑","↓") : btn.innerHTML;
+    } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+        btn.innerHTML = btn.innerHTML.replace("↓","↑");
+    }
+}
+
+const sections = document.querySelectorAll("section");
+window.addEventListener("scroll", () => {
+    sections.forEach(section => {
+        const top = section.getBoundingClientRect().top;
+        if(top < window.innerHeight - 100){
+            section.classList.add("visible");
+        }
+    });
+});
 </script>
 
 </body>
