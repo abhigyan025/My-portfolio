@@ -6,201 +6,121 @@
 
 <title>Kumar Abhigyan | Writer & Commentator</title>
 
-<meta name="description" content="Official website of Kumar Abhigyan — essays on geopolitics, global economy, and contemporary thought.">
-<meta name="keywords" content="Kumar Abhigyan, geopolitics, world economy, de-dollarization, social media analysis">
-<meta name="author" content="Kumar Abhigyan">
-
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
-html { scroll-behavior: smooth; }
-
-body {
-    margin:0;
-    font-family:'Inter', sans-serif;
-    background:#f6f1e8;
-    color:#1a1a1a;
-    line-height:1.8;
-    overflow-x:hidden;
+body{
+margin:0;
+font-family:'Inter',sans-serif;
+background:#f6f1e8;
+color:#111;
+overflow-x:hidden;
 }
 
-h1,h2,h3 {
-    font-family:'Playfair Display', serif;
-    font-weight:600;
+h1,h2,h3{
+font-family:'Playfair Display',serif;
 }
 
-section {
-    padding:110px 12%;
-    max-width:1000px;
-    margin:auto;
-    opacity:0;
-    transform:translateY(40px);
-    transition:0.9s ease;
-}
-
-section.visible {
-    opacity:1;
-    transform:translateY(0);
+section{
+padding:110px 12%;
+max-width:1000px;
+margin:auto;
 }
 
 /* NAV */
-nav {
-    position:fixed;
-    top:0;
-    width:100%;
-    background:#f6f1e8;
-    padding:20px 12%;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    border-bottom:1px solid #e4dccf;
-    z-index:1000;
+nav{
+position:fixed;
+top:0;
+left:0;
+right:0;
+background:#f6f1e8;
+padding:20px 12%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+border-bottom:1px solid #e5dccf;
+z-index:3000;
 }
 
-nav strong {
-    font-size:18px;
+.menu-btn{
+background:none;
+border:none;
+font-size:26px;
+cursor:pointer;
+z-index:3001;
 }
 
-.menu {
-    font-size:26px;
-    cursor:pointer;
+/* SIDEBAR */
+.sidebar{
+position:fixed;
+top:0;
+right:0;
+width:260px;
+height:100%;
+background:white;
+padding:100px 30px;
+transform:translateX(100%);
+transition:0.4s ease;
+box-shadow:-5px 0 20px rgba(0,0,0,0.15);
+z-index:2500;
 }
 
-/* SIDEBAR (Fixed Properly) */
-.sidebar {
-    position:fixed;
-    top:0;
-    right:0;
-    width:260px;
-    height:100vh;
-    background:#ffffff;
-    padding:100px 30px;
-    transform:translateX(100%);
-    transition:transform 0.4s ease;
-    box-shadow:-5px 0 20px rgba(0,0,0,0.15);
-    z-index:2000;
+.sidebar.active{
+transform:translateX(0);
 }
 
-.sidebar.active {
-    transform:translateX(0);
+.sidebar a{
+display:block;
+margin:25px 0;
+text-decoration:none;
+color:#111;
+font-weight:600;
 }
 
-.sidebar a {
-    display:block;
-    margin:25px 0;
-    text-decoration:none;
-    color:#111;
-    font-weight:600;
+.overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.4);
+opacity:0;
+visibility:hidden;
+transition:0.3s;
+z-index:2000;
 }
 
-.overlay {
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,0.4);
-    opacity:0;
-    pointer-events:none;
-    transition:opacity 0.3s ease;
-    z-index:1500;
-}
-
-.overlay.active {
-    opacity:1;
-    pointer-events:auto;
+.overlay.active{
+opacity:1;
+visibility:visible;
 }
 
 /* HERO */
-.hero {
-    text-align:center;
-    margin-top:140px;
+.hero{
+margin-top:140px;
+text-align:center;
 }
 
-.hero h1 {
-    font-size:52px;
-    margin-bottom:10px;
+.hero h1{
+font-size:48px;
+margin-bottom:10px;
 }
 
-.roles {
-    letter-spacing:4px;
-    font-size:13px;
-    color:#555;
+.roles{
+letter-spacing:4px;
+font-size:13px;
+color:#555;
 }
 
-.gold-line {
-    width:70px;
-    height:3px;
-    background:#c4a24a;
-    margin:25px auto;
-}
-
-/* Expandable */
-.expand-btn {
-    margin-top:20px;
-    display:inline-block;
-    cursor:pointer;
-    font-weight:600;
-    color:#c4a24a;
-}
-
-.expand-content {
-    max-height:0;
-    overflow:hidden;
-    transition:max-height 0.8s ease;
-}
-
-/* Book Layout */
-.book-layout {
-    display:flex;
-    gap:60px;
-    flex-wrap:wrap;
-    align-items:flex-start;
-}
-
-.book-layout img {
-    width:260px;
-    box-shadow:0 20px 50px rgba(0,0,0,0.15);
-}
-
-.button {
-    display:inline-block;
-    padding:12px 26px;
-    background:#1a1a1a;
-    color:white;
-    text-decoration:none;
-    border-radius:30px;
-    margin-top:20px;
-    transition:0.3s;
-}
-
-.button:hover {
-    background:#c4a24a;
-    color:black;
-}
-
-/* Achievements */
-.achievements {
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:20px;
-}
-
-.card {
-    background:white;
-    padding:25px;
-    border-top:3px solid #c4a24a;
-    box-shadow:0 10px 25px rgba(0,0,0,0.05);
-}
-
-/* Footer */
-footer {
-    text-align:center;
-    padding:60px;
-    font-size:14px;
-    color:#666;
+.gold-line{
+width:70px;
+height:3px;
+background:#c4a24a;
+margin:25px auto;
 }
 
 @media(max-width:768px){
-    .hero h1 { font-size:34px; }
-    .book-layout { flex-direction:column; }
+.hero h1{font-size:32px;}
 }
 </style>
 </head>
@@ -209,141 +129,47 @@ footer {
 
 <nav>
 <strong>Kumar Abhigyan</strong>
-<div class="menu" onclick="openMenu()">☰</div>
+<button class="menu-btn" id="menuBtn">☰</button>
 </nav>
 
-<div class="overlay" id="overlay" onclick="closeMenu()"></div>
+<div class="overlay" id="overlay"></div>
 
 <div class="sidebar" id="sidebar">
-<a href="#home" onclick="closeMenu()">Home</a>
-<a href="#meet" onclick="closeMenu()">Meet</a>
-<a href="#book" onclick="closeMenu()">Book</a>
-<a href="#achievements" onclick="closeMenu()">Achievements</a>
-<a href="#essays" onclick="closeMenu()">Essays</a>
-<a href="#contact" onclick="closeMenu()">Contact</a>
+<a href="#">Home</a>
+<a href="#">Meet</a>
+<a href="#">Book</a>
+<a href="#">Achievements</a>
+<a href="#">Essays</a>
+<a href="#">Contact</a>
 </div>
 
-<section class="hero" id="home">
+<section class="hero">
 <h1>Kumar Abhigyan</h1>
 <div class="roles">Writer. Observer. Analyst.</div>
 <div class="gold-line"></div>
 <p>Observations from a generation thinking critically about the world.</p>
 </section>
 
-<section id="meet">
-<h2>Meet Kumar Abhigyan</h2>
-<div class="gold-line"></div>
-<p>Kumar Abhigyan is an Indian writer exploring geopolitics, society, and global systems through structured reflection.</p>
-
-<div class="expand-btn" onclick="toggleExpand(this)">Read More ↓</div>
-<div class="expand-content">
-<p>Born in October 2010 and based in Jharkhand, India, he developed an early interest in economic systems, global power structures, and digital discourse. His writing blends analytical thinking with generational perspective.</p>
-<p>He has participated in multiple online debates focused on geopolitics and global affairs, recognized for clarity and persuasive reasoning.</p>
-<p>Through essays and commentary, he aims to present thoughtful observations that encourage dialogue rather than division.</p>
-</div>
-</section>
-
-<section id="book">
-<h2>The World From an Indian Teenager’s POV</h2>
-<div class="gold-line"></div>
-
-<div class="book-layout">
-<img src="cover.jpg" alt="Book Cover">
-
-<div>
-<p><strong>The world from a young lens</strong></p>
-<p>An exploration of identity, economics, society, and global change through a reflective teenage perspective.</p>
-
-<div class="expand-btn" onclick="toggleExpand(this)">Read More ↓</div>
-<div class="expand-content">
-<p>The book examines themes such as national identity, de-dollarization, religion, generational thinking, and the evolving geopolitical landscape.</p>
-<p>It does not claim authority — it presents structured reflection intended to inspire thought.</p>
-</div>
-
-<a href="https://amzn.in/d/0gci4Jhn" target="_blank" class="button">Buy on Amazon</a>
-</div>
-</div>
-</section>
-
-<section id="achievements">
-<h2>Achievements</h2>
-<div class="gold-line"></div>
-
-<div class="achievements">
-<div class="card">Published Author on Amazon</div>
-<div class="card">1,000+ eBooks Sold in First Month</div>
-<div class="card">Multiple Geopolitical Debate Wins</div>
-<div class="card">Writer on Global Economic Systems</div>
-</div>
-</section>
-
-<section id="essays">
-<h2>Essays</h2>
-<div class="gold-line"></div>
-
-<article>
-<h3>Dollar Dominance & De-Dollarization</h3>
-<p>The US dollar remains the dominant reserve currency due to liquidity, institutional trust, and financial infrastructure.</p>
-
-<div class="expand-btn" onclick="toggleExpand(this)">Continue Reading ↓</div>
-<div class="expand-content">
-<p>While discussions of de-dollarization have intensified, structural change in global finance requires long-term confidence, deep capital markets, and systemic stability.</p>
-<p>Shifts may occur gradually as emerging economies diversify reserves and settlement mechanisms.</p>
-</div>
-</article>
-
-<article>
-<h3>Social Media & Public Discourse</h3>
-<p>Social media has transformed how narratives form and spread across societies.</p>
-
-<div class="expand-btn" onclick="toggleExpand(this)">Continue Reading ↓</div>
-<div class="expand-content">
-<p>Algorithms prioritize engagement, often amplifying emotion over nuance. This reshapes political awareness and generational discourse.</p>
-<p>Critical thinking becomes essential in navigating digital ecosystems responsibly.</p>
-</div>
-</article>
-
-</section>
-
-<section id="contact">
-<h2>Contact</h2>
-<div class="gold-line"></div>
-<p>For inquiries:</p>
-<p><strong>abhigyan025@gmail.com</strong></p>
-</section>
-
-<footer>
-© 2026 Kumar Abhigyan. All rights reserved.
-</footer>
-
 <script>
-function openMenu(){
-    document.body.style.overflow = "hidden";
-    document.getElementById("sidebar").classList.add("active");
-    document.getElementById("overlay").classList.add("active");
-}
+const menuBtn = document.getElementById("menuBtn");
+const sidebar = document.getElementById("sidebar");
+const overlay = document.getElementById("overlay");
 
-function closeMenu(){
-    document.body.style.overflow = "auto";
-    document.getElementById("sidebar").classList.remove("active");
-    document.getElementById("overlay").classList.remove("active");
-}
+menuBtn.addEventListener("click", () => {
+sidebar.classList.add("active");
+overlay.classList.add("active");
+document.body.style.overflow = "hidden";
+});
 
-function toggleExpand(btn){
-    const content = btn.nextElementSibling;
-    if(content.style.maxHeight){
-        content.style.maxHeight = null;
-        btn.innerHTML = btn.innerHTML.replace("↑","↓");
-    } else {
-        content.style.maxHeight = content.scrollHeight + "px";
-        btn.innerHTML = btn.innerHTML.replace("↓","↑");
-    }
-}
+overlay.addEventListener("click", () => {
+sidebar.classList.remove("active");
+overlay.classList.remove("active");
+document.body.style.overflow = "auto";
+});
+</script>
 
-const sections = document.querySelectorAll("section");
-window.addEventListener("scroll", () => {
-    sections.forEach(section => {
-        const top = section.getBoundingClientRect().top;
+</body>
+</html>        const top = section.getBoundingClientRect().top;
         if(top < window.innerHeight - 100){
             section.classList.add("visible");
         }
