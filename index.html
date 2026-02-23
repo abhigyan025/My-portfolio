@@ -3,30 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Kumar Abhigyan | Author | Student | Debater</title>
-<meta name="description" content="Official website of Kumar Abhigyan — Indian author, student, and debater. Author of The World From an Indian Teenager's POV. Essays on world economy, de-dollarization, geopolitics, and society.">
-<meta name="keywords" content="Kumar Abhigyan, Indian teenage author, world economy, de-dollarization, geopolitics, Indian student writer, The World From an Indian Teenager's POV">
+
+<meta name="description" content="Official website of Kumar Abhigyan — Indian author, student, and geopolitical thinker. Author of The World From an Indian Teenager's POV. Essays on de-dollarization, world economy, currency dominance, and global transformation.">
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
-
 html{scroll-behavior:smooth;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+body{background:#f8f6f2;color:#222;line-height:1.8;}
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Inter',sans-serif;
-}
-
-body{
-background:#f8f6f2;
-color:#222;
-line-height:1.8;
-}
-
-/* NAVIGATION */
 nav{
 position:fixed;
 top:0;
@@ -40,110 +28,71 @@ box-shadow:0 2px 10px rgba(0,0,0,0.05);
 z-index:1000;
 }
 
-.logo{
-font-weight:600;
-font-size:18px;
-}
+.logo{font-weight:600;font-size:18px;}
 
-.menu{
-display:flex;
-gap:25px;
-}
+.menu{display:flex;gap:25px;}
+.menu a{text-decoration:none;color:#222;font-weight:500;}
 
-.menu a{
-text-decoration:none;
-color:#222;
-font-weight:500;
-transition:0.3s;
-}
-
-.menu a:hover{
-color:#b8860b;
-}
-
-/* Hamburger */
-.hamburger{
-display:none;
-font-size:26px;
-cursor:pointer;
-}
+.hamburger{display:none;font-size:26px;cursor:pointer;}
 
 .mobile-menu{
 display:none;
 flex-direction:column;
-background:#f8f6f2;
 position:absolute;
 top:60px;
 right:8%;
-width:200px;
-box-shadow:0 5px 20px rgba(0,0,0,0.1);
+background:#fff;
 padding:15px;
+box-shadow:0 5px 20px rgba(0,0,0,0.1);
 }
 
-.mobile-menu a{
-margin:10px 0;
-text-decoration:none;
-color:#222;
-}
+.mobile-menu a{margin:10px 0;text-decoration:none;color:#222;}
 
-/* Sections */
 section{
-padding:120px 8% 80px 8%;
-max-width:1100px;
+padding:140px 8% 80px 8%;
+max-width:1000px;
 margin:auto;
 }
 
-h1,h2{
-font-family:'Playfair Display',serif;
-margin-bottom:20px;
-}
+h1,h2{font-family:'Playfair Display',serif;margin-bottom:20px;}
 
-.hero{
-text-align:center;
-padding-top:160px;
-}
-
-.hero h1{
-font-size:48px;
-}
-
-.hero p{
-color:#555;
-margin:10px 0;
-}
+.hero{text-align:center;padding-top:180px;}
+.hero h1{font-size:48px;}
 
 .btn{
 display:inline-block;
-margin:10px 10px 0 10px;
-padding:12px 28px;
-border-radius:30px;
+margin-top:15px;
+padding:10px 22px;
+border-radius:25px;
 text-decoration:none;
 font-weight:600;
-transition:0.3s;
-}
-
-.primary{
 background:#222;
-color:white;
+color:#fff;
+cursor:pointer;
 }
 
 .secondary{
+background:none;
 border:2px solid #222;
 color:#222;
 }
 
-.btn:hover{
-opacity:0.85;
+.read-more{
+margin-top:20px;
+display:inline-block;
+cursor:pointer;
+font-weight:600;
+color:#555;
 }
 
-/* Content */
-.content{
-max-width:900px;
-font-size:17px;
+.hidden{
+max-height:0;
+overflow:hidden;
+transition:max-height 0.6s ease;
 }
 
-.content p{
-margin-bottom:18px;
+.expanded{
+max-height:5000px;
 }
 
 footer{
@@ -153,35 +102,24 @@ background:#222;
 color:#eee;
 }
 
-/* Responsive */
 @media(max-width:768px){
 .menu{display:none;}
 .hamburger{display:block;}
 .mobile-menu.show{display:flex;}
 .hero h1{font-size:32px;}
 }
-
 </style>
 
-<!-- Structured Data -->
 <script type="application/ld+json">
 {
- "@context": "https://schema.org",
- "@type": "Person",
- "name": "Kumar Abhigyan",
- "url": "https://kumarabhigyan.vercel.app",
- "jobTitle": "Author",
- "nationality": "Indian",
- "authorOf": {
-   "@type": "Book",
-   "name": "The World From an Indian Teenager's POV",
-   "inLanguage": "English",
-   "genre": ["Nonfiction","Geopolitics","World Economy"],
-   "offers": {
-     "@type": "Offer",
-     "url": "https://amzn.in/d/0gci4Jhn",
-     "availability": "https://schema.org/InStock"
-   }
+ "@context":"https://schema.org",
+ "@type":"Person",
+ "name":"Kumar Abhigyan",
+ "jobTitle":"Author",
+ "nationality":"Indian",
+ "authorOf":{
+   "@type":"Book",
+   "name":"The World From an Indian Teenager's POV"
  }
 }
 </script>
@@ -217,80 +155,102 @@ color:#eee;
 <!-- HERO -->
 <section class="hero" id="hero">
 <h1>Kumar Abhigyan</h1>
-<p>Author</p>
-<p>Student</p>
-<p>Debater & Thinker</p>
-<a href="https://amzn.in/d/0gci4Jhn" class="btn primary" target="_blank">Buy Kindle eBook</a>
+<p>Author • Student • Debater • Geopolitical Thinker</p>
+<a href="https://amzn.in/d/0gci4Jhn" class="btn" target="_blank">Buy Kindle</a>
 <a href="https://store.pothi.com/book/kumar-abhigyan-world-indian-teenagers-pov/" class="btn secondary" target="_blank">Buy Paperback</a>
 </section>
 
 <!-- ABOUT -->
 <section id="about">
 <h2>Meet Kumar Abhigyan</h2>
-<div class="content">
-<p>Kumar Abhigyan is a young Indian author, student, and independent thinker focused on global affairs, world economy, geopolitics, and societal transformation. Born in 2010, he represents a generation growing up in a rapidly shifting global order.</p>
 
-<p>His intellectual interests include de-dollarization, currency dominance, emerging multipolar power structures, India's economic future, and the influence of digital media on political narratives. From an early age, he developed a strong curiosity about how global systems operate — from central banking policies to geopolitical alliances.</p>
+<p>
+Kumar Abhigyan is a young Indian author and analytical thinker focused on global economics, currency dominance, de-dollarization, and geopolitical power transitions. Growing up in a rapidly evolving India, he represents a generation observing the transformation of global order in real time.
+</p>
 
-<p>Beyond writing, Kumar actively engages in debate and analytical discussions. His arguments often revolve around macroeconomic trends, the role of the US dollar in global trade, BRICS expansion, energy markets, and the reshaping of international economic order.</p>
+<div class="read-more" onclick="expandSection('aboutFull')">Read More</div>
 
-<p>As a student, he balances academic responsibilities with research, writing, and continuous learning. His work reflects a belief that young voices deserve space in serious global conversations. He aims to build a platform rooted in data-driven thought, structured reasoning, and intellectual honesty.</p>
+<div id="aboutFull" class="hidden">
+<p>
+Born in 2010, Kumar developed early curiosity about how the world functions beyond surface-level narratives. While many teenagers consume global events passively, he studies the structure beneath headlines: how reserve currencies operate, how oil trade reinforces dollar dominance, and how emerging economies attempt to reshape financial systems.
+</p>
 
-<p>This website serves as his official platform for essays, reflections, and long-term intellectual projects.</p>
+<p>
+His intellectual focus includes the mechanics of the US dollar as the global reserve currency, the strategic expansion of BRICS nations, bilateral trade agreements bypassing dollar settlements, and the implications of digital currencies in sovereign policy. He analyzes how economic leverage influences geopolitical power, and how information ecosystems amplify or distort these shifts.
+</p>
+
+<p>
+As a student, he balances academics with independent research, reading about monetary policy, global trade routes, sanctions systems, and institutional power frameworks. He believes youth perspectives deserve space in serious discussions about world order, economic independence, and national growth trajectories.
+</p>
+
+<p>
+His long-term vision is to build a structured intellectual platform centered on data-backed reasoning, disciplined argumentation, and analytical writing that contributes to discussions on global economic transitions.
+</p>
 </div>
 </section>
 
 <!-- BOOK -->
 <section id="book">
 <h2>The World From an Indian Teenager's POV</h2>
-<div class="content">
-<p><strong>The World From an Indian Teenager's POV</strong> is a nonfiction exploration of society, identity, religion, economy, and global transformation through the lens of a young Indian mind.</p>
 
-<p>The book reflects on contradictions within modern India, cultural pride, global perception, and personal growth. It questions narratives, examines structural systems, and discusses how economic power shifts influence everyday lives.</p>
+<p>
+This nonfiction work reflects on identity, economy, society, and global power structures through the lens of a young Indian observer navigating modern complexity.
+</p>
 
-<p>It also addresses themes such as faith, nationalism, youth responsibility, social media influence, and the psychological impact of globalization.</p>
+<div class="read-more" onclick="expandSection('bookFull')">Read More</div>
 
-<p>Rather than presenting rigid conclusions, the book invites readers to think critically and independently. It is designed for teenagers, young adults, and anyone interested in understanding global affairs from a fresh generational perspective.</p>
+<div id="bookFull" class="hidden">
+<p>
+The book examines themes including nationalism, globalization, faith, digital influence, economic disparity, and generational responsibility. It explores how India positions itself within global systems dominated by Western financial architecture and how youth interpret these transitions.
+</p>
+
+<p>
+It addresses de-dollarization trends, the psychological impact of global competition, cultural contradictions, and the role of independent thought in a hyper-connected world. Rather than offering rigid ideology, it encourages analytical thinking and intellectual courage.
+</p>
+
+<p>
+Designed for young readers and policy-curious audiences, the book bridges personal reflection with macro-level observation, creating a hybrid between memoir-style thought and geopolitical commentary.
+</p>
 </div>
 </section>
 
 <!-- ACHIEVEMENTS -->
 <section id="achievements">
 <h2>Achievements</h2>
-<div class="content">
+
 <p>• Published Author on Amazon Kindle</p>
 <p>• Paperback Edition Available Internationally</p>
-<p>• 1,000+ eBooks Sold in Initial Release Period</p>
-<p>• Active Contributor to Geopolitical and Economic Discussions</p>
-<p>• Recognized for Analytical Debate Skills</p>
-</div>
+<p>• Early Sales Momentum in Launch Phase</p>
+<p>• Active Engagement in Analytical Debate</p>
+<p>• Focused Research in Global Economy & Currency Systems</p>
+
 </section>
 
 <!-- ESSAYS -->
 <section id="essays">
-<h2>Essays & Research Focus</h2>
-<div class="content">
-<p>Kumar writes analytical essays centered on global currency systems, de-dollarization trends, and economic power transitions.</p>
+<h2>Essays</h2>
 
-<p>Topics include:</p>
+<p>
+Current essays focus on the dominance of the US dollar in global trade and the growing movement toward de-dollarization led by emerging economies.
+</p>
 
-<p>• Why the US Dollar Dominates Global Trade</p>
-<p>• BRICS Expansion and Alternative Reserve Currencies</p>
-<p>• The Role of Energy Markets in Currency Power</p>
-<p>• Social Media Influence on Political Narratives</p>
-<p>• India's Economic Growth and Strategic Position</p>
+<div class="read-more" onclick="expandSection('essayFull')">Read More</div>
 
-<p>Future essays will explore digital currencies, central bank policies, sovereign debt structures, and emerging geopolitical alignments.</p>
+<div id="essayFull" class="hidden">
+<p>
+Topics include the petrodollar system, reserve currency mechanics, sovereign debt structures, sanctions leverage, and currency swap agreements between emerging markets. Additional essays analyze how social media platforms influence political opinion formation and economic narratives among youth populations.
+</p>
+
+<p>
+Future research will examine digital currency frameworks, central bank digital currencies (CBDCs), strategic commodity leverage, and India's role in shaping a multipolar economic future.
+</p>
 </div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact">
 <h2>Contact</h2>
-<div class="content">
-<p>For collaborations, discussions, or inquiries:</p>
-<p><strong>Email:</strong> abhigyan025@gmail.com</p>
-</div>
+<p>Email: abhigyan025@gmail.com</p>
 </section>
 
 <footer>
@@ -300,6 +260,11 @@ color:#eee;
 <script>
 function toggleMenu(){
 document.getElementById("mobileMenu").classList.toggle("show");
+}
+
+function expandSection(id){
+var section = document.getElementById(id);
+section.classList.toggle("expanded");
 }
 </script>
 
