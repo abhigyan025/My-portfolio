@@ -4,32 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Kumar Abhigyan | Author, Student, Debater</title>
-<meta name="description" content="Official website of Kumar Abhigyan – Indian author, student, and debater. Author of The World From an Indian Teenager's POV. Essays on geopolitics, dollar dominance, de-dollarization, and social media.">
-<meta name="keywords" content="Kumar Abhigyan, Indian author, teen author India, dollar dominance, de-dollarization, geopolitics essays, social media analysis, The World From an Indian Teenager's POV">
-<meta name="author" content="Kumar Abhigyan">
-
-<meta property="og:title" content="Kumar Abhigyan | Official Website">
-<meta property="og:description" content="Author of The World From an Indian Teenager's POV. Essays on geopolitics and youth thought.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://kumarabhigyan.vercel.app">
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Kumar Abhigyan",
-  "url": "https://kumarabhigyan.vercel.app",
-  "jobTitle": "Author",
-  "nationality": "Indian",
-  "knowsAbout": ["Geopolitics","World Economy","Dollar Dominance","De-dollarization","Youth Political Thought"],
-  "authorOf": {
-    "@type": "Book",
-    "name": "The World From an Indian Teenager's POV",
-    "inLanguage": "English"
-  }
-}
-</script>
+<title>Kumar Abhigyan | Author • Debater • Political Observer</title>
+<meta name="description" content="Official website of Kumar Abhigyan – Indian author of The World From an Indian Teenager's POV. Essays on geopolitics, dollar dominance, de-dollarization, and youth political thought.">
 
 <style>
 :root{
@@ -38,15 +14,31 @@
 --navy:#0f1a2b;
 }
 
-html{scroll-behavior:smooth;}
-*{margin:0;padding:0;box-sizing:border-box;font-family:Georgia, serif;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+font-family:Georgia,serif;
+background:var(--ivory);
+color:#222;
+line-height:1.7;
+scroll-behavior:smooth;
+}
 
-body{background:var(--ivory);color:#222;line-height:1.7;}
+section{
+padding:100px 8%;
+opacity:0;
+transform:translateY(40px);
+transition:1s ease;
+}
 
-section{padding:100px 8%;transition:1s;opacity:0;transform:translateY(40px);}
-section.visible{opacity:1;transform:translateY(0);}
+section.visible{
+opacity:1;
+transform:translateY(0);
+}
 
-h1,h2{font-weight:600;margin-bottom:20px;}
+h1,h2{
+margin-bottom:20px;
+font-weight:600;
+}
 
 nav{
 position:fixed;
@@ -57,8 +49,8 @@ padding:15px 8%;
 display:flex;
 justify-content:space-between;
 align-items:center;
-z-index:1000;
 border-bottom:1px solid #ddd;
+z-index:1000;
 }
 
 nav a{
@@ -68,43 +60,65 @@ margin-left:20px;
 font-weight:600;
 }
 
-.hamburger{
-display:none;
-font-size:26px;
-cursor:pointer;
-}
-
-.mobile-menu{
-display:none;
-flex-direction:column;
-background:var(--ivory);
-position:absolute;
-top:60px;
-right:8%;
-padding:20px;
-border:1px solid #ddd;
-}
-
 .hero{
 min-height:100vh;
 display:flex;
 flex-direction:column;
 justify-content:center;
+align-items:center;
 text-align:center;
-background:linear-gradient(to bottom,var(--ivory),#f3efe4);
+background:linear-gradient(to bottom,var(--ivory),#efe9dc);
 }
 
-.hero h1{font-size:48px;}
-.hero p{font-size:20px;color:#555;}
+.hero h1{
+font-size:52px;
+}
+
+.tagline{
+margin-top:20px;
+font-size:18px;
+letter-spacing:2px;
+color:#555;
+}
+
+.punchline{
+background:white;
+padding:25px;
+text-align:center;
+border-top:2px solid var(--gold);
+border-bottom:2px solid var(--gold);
+font-weight:600;
+letter-spacing:1px;
+}
+
+.book-container{
+display:flex;
+gap:50px;
+align-items:center;
+flex-wrap:wrap;
+}
+
+.book-container img{
+width:280px;
+box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
 
 .gold-btn{
 background:var(--gold);
 color:white;
 padding:12px 25px;
 text-decoration:none;
-border-radius:4px;
 display:inline-block;
 margin:10px 10px 0 0;
+border-radius:3px;
+}
+
+.card{
+background:white;
+padding:30px;
+margin-bottom:30px;
+border-left:5px solid var(--gold);
+box-shadow:0 5px 15px rgba(0,0,0,0.05);
 }
 
 .navy{
@@ -112,15 +126,11 @@ background:linear-gradient(to bottom,var(--navy),#16243a);
 color:white;
 }
 
-.card{
-background:white;
-padding:30px;
+.navy .card{
+background:#1d2b45;
+color:white;
 border-left:5px solid var(--gold);
-margin-bottom:30px;
-box-shadow:0 5px 15px rgba(0,0,0,0.05);
 }
-
-.read-more{color:var(--gold);cursor:pointer;font-weight:600;}
 
 footer{
 text-align:center;
@@ -129,9 +139,13 @@ background:#eee;
 }
 
 @media(max-width:768px){
-nav a{display:none;}
-.hamburger{display:block;}
-.mobile-menu a{margin:10px 0;}
+.book-container{
+flex-direction:column;
+text-align:center;
+}
+nav a{
+display:none;
+}
 }
 </style>
 </head>
@@ -140,16 +154,7 @@ nav a{display:none;}
 
 <nav>
 <div><strong>Kumar Abhigyan</strong></div>
-<div class="hamburger" onclick="toggleMenu()">☰</div>
 <div>
-<a href="#hero">Hero</a>
-<a href="#about">Meet</a>
-<a href="#book">Book</a>
-<a href="#achievements">Achievements</a>
-<a href="#essays">Essays</a>
-<a href="#contact">Contact</a>
-</div>
-<div class="mobile-menu" id="mobileMenu">
 <a href="#hero">Hero</a>
 <a href="#about">Meet</a>
 <a href="#book">Book</a>
@@ -159,116 +164,83 @@ nav a{display:none;}
 </div>
 </nav>
 
+<!-- HERO -->
 <section class="hero" id="hero">
-<h1>Meet Abhigyan</h1>
-<p>The World From an Indian Teenager's POV</p>
+<h1>Kumar Abhigyan</h1>
+<div class="tagline">
+Author • Debater • Political Observer
+</div>
 </section>
 
-<section id="about">
-<h2>Meet Kumar Abhigyan</h2>
-
-<p>
-Kumar Abhigyan is a young Indian author, student, and analytical thinker focused on geopolitics, global economics, and youth intellectual engagement. Growing up in India, he developed a deep curiosity about global power structures, currency systems, religion, and how narratives shape political reality.
-</p>
-
-<div id="aboutFull" style="display:none;">
-<p>
-From an early age, Abhigyan gravitated toward complex global discussions that many adults hesitate to approach. Rather than limiting himself to surface-level commentary, he began studying the architecture of global systems — how the US dollar achieved dominance after Bretton Woods, how trade deficits shape monetary leverage, and how emerging powers explore alternatives to dollar-based settlements.
-</p>
-
-<p>
-His analytical style blends structured reasoning with conviction. He examines not just what is happening, but why institutions behave the way they do. For instance, dollar dominance is not merely about currency preference — it is tied to military influence, financial infrastructure, SWIFT control, and trust networks. In his work, he questions whether de-dollarization efforts represent genuine systemic change or strategic diversification.
-</p>
-
-<p>
-Beyond geopolitics, Abhigyan studies youth political psychology and the digital transformation of discourse. Social media platforms have altered attention spans, reward outrage over nuance, and amplify emotional polarization. He critiques these patterns while acknowledging their role in democratizing voice.
-</p>
-
-<p>
-His intellectual development has been shaped by debate culture. Structured argumentation, counter-claim analysis, and evidence-based reasoning form the foundation of his thinking. He believes ideas must withstand scrutiny rather than rely on volume.
-</p>
-
-<p>
-As an author of "The World From an Indian Teenager's POV," he presents reflections on society, faith, national identity, and global order — not as conclusions imposed on the reader, but as structured explorations meant to provoke independent thought.
-</p>
-
-<p>
-His long-term vision is to build an intellectual brand grounded in clarity, courage, and disciplined reasoning. Rather than chasing viral commentary, he aims to contribute sustained analysis that evolves with global shifts.
-</p>
+<div class="punchline">
+The World From an Indian Teenager's POV
 </div>
 
-<p class="read-more" onclick="toggleAbout()">Read More</p>
+<!-- MEET -->
+<section id="about">
+<h2>Meet Kumar Abhigyan</h2>
+<p>
+Kumar Abhigyan is an Indian author and emerging geopolitical thinker exploring global power structures, dollar dominance, de-dollarization, and youth political psychology. His work blends analytical reasoning with reflective conviction.
+</p>
 </section>
 
+<!-- BOOK -->
 <section id="book">
 <h2>The World From an Indian Teenager's POV</h2>
 
+<div class="book-container">
+<img src="cover.jpg" alt="The World From an Indian Teenager's POV Book Cover">
+
+<div>
 <p>
-This book explores global politics, society, religion, identity, and the economic systems that shape modern life. It presents reflections from a young Indian perspective navigating an interconnected yet divided world.
+A structured exploration of geopolitics, faith, economics, and youth intellectual identity in a rapidly shifting global order. The book examines power structures, currency dominance, social narratives, and the future of multipolarity.
 </p>
 
-<div id="bookFull" style="display:none;">
-<p>
-The book examines how currency dominance affects sovereignty, how faith intersects with national development, and how emerging economies challenge established hierarchies. It questions whether de-dollarization is a symbolic shift or structural transformation.
-</p>
-
-<p>
-Abhigyan explores India’s evolving role in global geopolitics — balancing strategic autonomy while navigating multipolar tensions. He analyzes how youth perception differs from traditional elite narratives.
-</p>
-
-<p>
-The text combines analytical commentary with introspective reflection. It is not merely descriptive; it is interpretive. It challenges assumptions about power, morality, and global order.
-</p>
-
-<p>
-By presenting structured arguments rather than emotional claims, the book positions itself within a growing space of youth intellectual literature that seeks clarity over chaos.
-</p>
+<a href="https://amzn.in/d/0gci4Jhn" target="_blank" class="gold-btn">Buy Kindle</a>
+<a href="https://store.pothi.com/book/kumar-abhigyan-world-indian-teenagers-pov/" target="_blank" class="gold-btn">Buy Paperback</a>
 </div>
 
-<p class="read-more" onclick="toggleBook()">Read More</p>
-
-<br><br>
-<a href="https://amzn.in/d/0gci4Jhn" class="gold-btn" target="_blank">Buy Kindle eBook</a>
-<a href="https://store.pothi.com/book/kumar-abhigyan-world-indian-teenagers-pov/" class="gold-btn" target="_blank">Buy Paperback</a>
+</div>
 </section>
 
+<!-- ACHIEVEMENTS -->
 <section id="achievements">
 <h2>Achievements</h2>
 
 <div class="card">
 <h3>Published Author</h3>
-<p>Successfully published and distributed work exploring geopolitics and youth intellectual perspective.</p>
+<p>Author of analytical reflections on geopolitics and youth thought.</p>
 </div>
 
 <div class="card">
 <h3>Geopolitical Analysis</h3>
-<p>Focused research and structured writing on dollar dominance, de-dollarization, and global economic shifts.</p>
+<p>Focused commentary on dollar dominance, de-dollarization, and global economic shifts.</p>
 </div>
 
 <div class="card">
-<h3>Debate & Argumentation</h3>
-<p>Engaged in structured debate environments emphasizing logical clarity and counter-argument strength.</p>
+<h3>Structured Debate Engagement</h3>
+<p>Active participation in structured intellectual debate environments emphasizing logical clarity.</p>
 </div>
 
 </section>
 
+<!-- ESSAYS -->
 <section class="navy" id="essays">
 <h2>Essays</h2>
 
 <div class="card">
 <h3>Dollar Dominance & De-Dollarization</h3>
-<p>An analytical exploration of how the US dollar achieved reserve status and whether global systems are shifting away from it.</p>
 <a href="/essays/dollar-dominance.html" class="gold-btn">Read Full Analysis</a>
 </div>
 
 <div class="card">
 <h3>Social Media & Youth Political Psychology</h3>
-<p>Examining how digital platforms shape youth political thought, identity, and polarization.</p>
 <a href="/essays/social-media-youth.html" class="gold-btn">Read Full Analysis</a>
 </div>
 
 </section>
 
+<!-- CONTACT -->
 <section id="contact">
 <h2>Contact</h2>
 <p>Email: abhigyan025@gmail.com</p>
@@ -279,26 +251,13 @@ By presenting structured arguments rather than emotional claims, the book positi
 </footer>
 
 <script>
-function toggleMenu(){
-let menu=document.getElementById("mobileMenu");
-menu.style.display=menu.style.display==="flex"?"none":"flex";
-}
-
-function toggleAbout(){
-let full=document.getElementById("aboutFull");
-full.style.display=full.style.display==="block"?"none":"block";
-}
-
-function toggleBook(){
-let full=document.getElementById("bookFull");
-full.style.display=full.style.display==="block"?"none":"block";
-}
-
 const sections=document.querySelectorAll("section");
 window.addEventListener("scroll",()=>{
 sections.forEach(sec=>{
 const top=sec.getBoundingClientRect().top;
-if(top<window.innerHeight-100){sec.classList.add("visible");}
+if(top<window.innerHeight-100){
+sec.classList.add("visible");
+}
 });
 });
 </script>
