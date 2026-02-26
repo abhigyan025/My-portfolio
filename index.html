@@ -111,6 +111,7 @@ text-decoration:none;
 display:inline-block;
 margin:10px 10px 0 0;
 border-radius:3px;
+cursor:pointer;
 }
 
 .card{
@@ -136,6 +137,21 @@ footer{
 text-align:center;
 padding:40px;
 background:#eee;
+}
+
+.read-more-btn{
+background:var(--gold);
+color:white;
+padding:10px 20px;
+border:none;
+border-radius:3px;
+cursor:pointer;
+font-weight:600;
+margin-top:10px;
+}
+
+.preview p{
+margin-bottom:15px;
 }
 
 @media(max-width:768px){
@@ -179,9 +195,25 @@ The World From an Indian Teenager's POV
 <!-- MEET -->
 <section id="about">
 <h2>Meet Kumar Abhigyan</h2>
+
+<div class="preview">
 <p>
-Kumar Abhigyan is an Indian author and emerging geopolitical thinker exploring global power structures, dollar dominance, de-dollarization, and youth political psychology. His work blends analytical reasoning with reflective conviction.
+Kumar Abhigyan is a young author and geopolitical thinker from Jharkhand, India. With a passion for analyzing global power, economics, and youth political thought, he shares the perspective of Indian teenagers on world affairs. A strong debater and independent thinker, Kumar aims to inspire teens to question narratives, explore ideas critically, and understand complex global issues from a fresh point of view. His work combines honest reflections with structured reasoning, offering a voice for young Indians eager to contribute meaningfully to society.
 </p>
+<button class="read-more-btn" onclick="toggleContent('about')">Read More</button>
+</div>
+
+<div class="full-content" id="about-full" style="display:none;">
+<p>
+Kumar Abhigyan is a remarkable young author and emerging geopolitical thinker hailing from Jharkhand, India. From an early age, Kumar found himself intrigued by the workings of global power and the role of economics and politics in shaping societies. Unlike many teenagers, he did not wait for guidance or mentorship; instead, he began writing down his thoughts and reflections on these topics, sharing them through essays, online debates, and analytical commentaries. His independent approach demonstrates a rare clarity of thought and a desire to engage deeply with the world around him.
+</p>
+<p>
+As a participant in numerous online debates, Kumar honed his ability to dissect arguments and present structured reasoning. These experiences reinforced his understanding of the importance of evidence, logic, and perspective, particularly in discussions that influence public opinion. Rather than following popular narratives, Kumar focuses on authentic, fact-based insights, aiming to provide readers with a lens that reflects the real concerns and potential solutions relevant to today's youth.
+</p>
+<p>
+Beyond analysis, Kumar’s mission is to amplify the voices of teenagers across India. He believes that young people, often dismissed as inexperienced, possess unique perspectives that can enrich societal conversations. By sharing his own insights and observations, he seeks to create a platform where teen perspectives on politics, economics, and social issues are not just heard but respected. Through writing, debating, and engaging with ideas critically, Kumar Abhigyan is building a body of work that encourages thoughtful reflection, civic awareness, and the empowerment of youth to become active contributors to India’s intellectual and social discourse.
+</p>
+</div>
 </section>
 
 <!-- BOOK -->
@@ -190,16 +222,33 @@ Kumar Abhigyan is an Indian author and emerging geopolitical thinker exploring g
 
 <div class="book-container">
 <img src="cover.jpg" alt="The World From an Indian Teenager's POV Book Cover">
-
 <div>
+<div class="preview">
 <p>
-A structured exploration of geopolitics, faith, economics, and youth intellectual identity in a rapidly shifting global order. The book examines power structures, currency dominance, social narratives, and the future of multipolarity.
+<strong>The World From an Indian Teenager's POV</strong> is a book that explores geopolitics, faith, economics, and the identity of youth in a rapidly changing world. Kumar Abhigyan examines global power structures, the challenges facing India and the world, and most importantly, proposes practical solutions to these complex issues. Written with clarity and insight, the book aims to provide young readers—and anyone curious about global affairs—with a fact-based, thoughtful overview of contemporary challenges and possibilities.
 </p>
+<button class="read-more-btn" onclick="toggleContent('book')">Read More</button>
+</div>
 
+<div class="full-content" id="book-full" style="display:none;">
+<p>
+<strong>The World From an Indian Teenager's POV</strong> is an in-depth exploration of the contemporary challenges facing India and the global community. In this book, Kumar Abhigyan navigates the intricate networks of geopolitics, economics, social narratives, and the evolving identity of youth in a rapidly transforming world. Through structured analysis and insightful commentary, the book aims to equip readers with both understanding and actionable perspectives.
+</p>
+<p>
+One of the central objectives of the book is to shed light on the dominance of global powers and the complex dynamics of international relations. Kumar examines the influence of currency systems, trade relationships, and strategic alliances while reflecting on how these forces shape India’s position in the global order. By providing clear explanations supported by facts and evidence, the book allows readers to comprehend issues that are often misrepresented or oversimplified in mainstream discourse.
+</p>
+<p>
+Beyond analysis, the book emphasizes solutions. Kumar believes that identifying problems without proposing actionable paths forward is incomplete. Accordingly, he offers recommendations ranging from policy perspectives to societal engagement strategies, aiming to foster critical thinking and proactive solutions among young readers. Whether exploring the nuances of multipolarity, economic reforms, or social challenges, the book consistently ties insights to tangible approaches for improvement.
+</p>
+<p>
+Importantly, the book captures the viewpoint of Indian teenagers, whose perspectives are frequently overlooked in national and global conversations. Kumar’s reflections provide a bridge between youth experiences and complex geopolitical realities, encouraging young readers to see themselves as informed participants in shaping society. By blending analytical rigor with accessible prose, the book invites readers to think deeply, question assumptions, and engage with global and national issues responsibly.
+</p>
+<p>
+Ultimately, <strong>The World From an Indian Teenager's POV</strong> is not just a reflection of challenges—it is a roadmap for thought, discussion, and action. Kumar Abhigyan’s work demonstrates how a young author, with curiosity, honesty, and commitment, can contribute meaningfully to societal discourse. The book stands as a testament to the power of youth perspective and evidence-based analysis in navigating the complexities of today’s world.
+</p>
 <a href="https://amzn.in/d/0gci4Jhn" target="_blank" class="gold-btn">Buy Kindle</a>
 <a href="https://store.pothi.com/book/kumar-abhigyan-world-indian-teenagers-pov/" target="_blank" class="gold-btn">Buy Paperback</a>
 </div>
-
 </div>
 </section>
 
@@ -260,6 +309,11 @@ sec.classList.add("visible");
 }
 });
 });
+
+function toggleContent(section){
+  const full = document.getElementById(section+'-full');
+  full.style.display = full.style.display === 'none' ? 'block' : 'none';
+}
 </script>
 
 </body>
