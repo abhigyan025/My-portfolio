@@ -2,59 +2,97 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Kumar Abhigyan | Author</title>
 
-<meta name="description" content="Official website of Kumar Abhigyan, author of The Illusion of Stability and The World from an Indian Teenager's POV.">
-
 <link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
 
 <header>
-<h1>Kumar Abhigyan</h1>
 
-<nav>
+<div class="logo">Kumar Abhigyan</div>
+
+<div class="hamburger" id="hamburger">
+<span></span>
+<span></span>
+<span></span>
+</div>
+
+<nav id="nav">
+
 <a href="#home">Home</a>
 <a href="#about">Meet Kumar Abhigyan</a>
 <a href="#books">Books</a>
 <a href="#achievements">Achievements</a>
 <a href="#essays">Essays</a>
 <a href="#contact">Contact</a>
+
 </nav>
 
 </header>
 
 <section id="home" class="hero">
 
-<h2>Author • Thinker • Global Observer</h2>
+<h1>
+Author.<br>
+Political Thinker.<br>
+Global Observer
+</h1>
 
 <p>
-Kumar Abhigyan is one of the youngest authors writing about geopolitics,
-global affairs, and world issues.
+Exploring geopolitics, society, culture and global power dynamics through analytical writing.
 </p>
 
 </section>
 
-<section id="about">
+<section id="about" class="reveal">
 
 <h2>Meet Kumar Abhigyan</h2>
 
-<p>
-Kumar Abhigyan is a young author exploring the world through the lens of
-geopolitics, international relations, and social observation.
+<p id="about-short">
 
-His works analyse global structures, power shifts, and the narratives
-shaping modern society. Through books and essays, he aims to provide
-a thoughtful perspective on the evolving world.
+Kumar Abhigyan (born October 2010) is a young Indian author, writer, and commentator from Jharkhand, India. 
+He writes analytical, data-driven texts reflecting his perspective on global affairs, society, politics, 
+economics and culture. His work aims to present the thoughts of an Indian teenager in a respectful, clear 
+and critically thoughtful manner.
 
-He is also an active debater with multiple online and debate wins,
-and a published author on Kindle.
 </p>
+
+<div id="about-full">
+
+<p>
+
+Abhigyan developed a strong curiosity about international politics, faith and societal dynamics from an early age. 
+His writing combines reflection with structured analysis, enabling readers to engage with complex issues through 
+the lens of a thoughtful young observer.
+
+</p>
+
+<p>
+
+He is particularly known for his participation in online debates focused on geopolitics and world affairs, 
+where he has won numerous competitions by presenting well-structured arguments and persuasive reasoning.
+
+</p>
+
+<p>
+
+Beyond writing and debate, Abhigyan enjoys music, motorsports, cooking, and exploring new perspectives 
+through discussion and research.
+
+</p>
+
+</div>
+
+<button class="read-more" onclick="toggleAbout()">Read More</button>
 
 </section>
 
@@ -62,58 +100,64 @@ and a published author on Kindle.
 
 <h2>Books</h2>
 
-<div class="book">
+<div class="book-grid">
+
+<div class="book reveal">
 
 <img src="cover.jpg">
 
 <h3>The World from an Indian Teenager's POV</h3>
 
 <p>
-A reflection on the global system seen through the eyes of a young
-Indian observer.
+A reflective exploration of global politics, society and culture through the perspective of an Indian teenager.
 </p>
 
-<a class="btn" href="demo1.pdf">Read Demo</a>
+<div class="buttons">
 
-<a class="btn gold" href="https://amzn.in/d/0iYn7fPK">Buy Ebook</a>
+<a href="demo1.pdf">Read Demo</a>
 
-<a class="btn gold" href="https://store.pothi.com/book/kumar-abhigyan-world-indian-teenagers-pov/">Buy Paperback</a>
+<a href="https://amzn.in/d/0iYn7fPK" class="gold">Buy Ebook</a>
+
+<a href="https://store.pothi.com/book/kumar-abhigyan-world-indian-teenagers-pov/" class="gold">Buy Paperback</a>
 
 </div>
 
-<div class="book">
+</div>
+
+<div class="book reveal">
 
 <img src="cover2.jpg">
 
 <h3>The Global Lens</h3>
-
 <h4>The Illusion of Stability</h4>
 
 <p>
-An exploration of the fragile balance that defines the modern world
-order and the systems that sustain it.
+An analytical examination of global power structures and the fragile equilibrium sustaining modern stability.
 </p>
 
-<a class="btn" href="demo2.pdf">Read Demo</a>
+<div class="buttons">
 
-<a class="btn gold" href="https://amzn.in/d/01CfxcuQ">Buy Ebook</a>
+<a href="demo2.pdf">Read Demo</a>
+
+<a href="https://amzn.in/d/01CfxcuQ" class="gold">Buy Ebook</a>
+
+</div>
+
+</div>
 
 </div>
 
 </section>
 
-<section id="achievements">
+<section id="achievements" class="reveal">
 
 <h2>Achievements</h2>
 
 <ul>
 
 <li>Published author on Kindle</li>
-
-<li>One of the youngest voices writing on global affairs</li>
-
-<li>Multiple online debate wins</li>
-
+<li>Young voice discussing global affairs</li>
+<li>Multiple online debate victories</li>
 <li>Competitive debate achievements</li>
 
 </ul>
@@ -124,32 +168,49 @@ order and the systems that sustain it.
 
 <h2>Essays</h2>
 
-<div class="essay">
+<div class="essay-box reveal">
 
 <h3>The Illusion of Stability</h3>
 
-<p>
-The modern world often appears stable. Institutions function,
-markets fluctuate within expected ranges, and global diplomacy
-maintains a sense of balance. Yet beneath this surface lies a far
-more fragile structure...
+<p id="essay-short">
+
+Modern global stability often appears stronger than it truly is. Institutions function, diplomacy operates 
+and economic systems interconnect nations across continents.
 
 </p>
 
-<a class="btn" href="illusion-full.pdf">Read More</a>
+<div id="essay-full">
+
+<p>
+
+Yet beneath this appearance lies a far more fragile structure built upon political consensus, economic 
+interdependence and carefully maintained narratives of order.
+
+</p>
+
+<p>
+
+Understanding this fragility reveals how quickly stability can transform into uncertainty when underlying 
+assumptions collapse.
+
+</p>
+
+</div>
+
+<button class="read-more" onclick="toggleEssay()">Read More</button>
 
 </div>
 
 </section>
 
-<section id="contact">
+<section id="contact" class="reveal">
 
 <h2>Contact</h2>
 
 <p>Email: abhigyan025@gmail.com</p>
 
 <p>
-Instagram:
+Instagram: 
 <a href="https://www.instagram.com/kumar.abhigyan_?igsh=dWYybm81N2l0bHNn">
 @kumar.abhigyan_
 </a>
@@ -159,9 +220,11 @@ Instagram:
 
 <footer>
 
-<p>© 2026 Kumar Abhigyan</p>
+© 2026 Kumar Abhigyan
 
 </footer>
+
+<script src="script.js"></script>
 
 </body>
 
