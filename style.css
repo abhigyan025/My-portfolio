@@ -1,0 +1,73 @@
+body{
+font-family: Georgia, serif;
+margin:0;
+background:#f8f7f3;
+color:#111;
+}
+
+header{
+background:#0b1a35;
+color:white;
+padding:20px;
+text-align:center;
+}
+
+nav a{
+color:white;
+margin:0 10px;
+text-decoration:none;
+font-weight:bold;
+}
+
+.hero{
+text-align:center;
+padding:80px 20px;
+}
+
+section{
+padding:60px 20px;
+max-width:900px;
+margin:auto;
+}
+
+h2{
+color:#0b1a35;
+border-bottom:2px solid gold;
+padding-bottom:10px;
+}
+
+.book{
+margin-top:40px;
+}
+
+.book img{
+width:200px;
+display:block;
+margin-bottom:10px;
+}
+
+.btn{
+display:inline-block;
+margin:10px 5px;
+padding:10px 20px;
+background:#0b1a35;
+color:white;
+text-decoration:none;
+border-radius:5px;
+}
+
+.btn.gold{
+background:gold;
+color:black;
+}
+
+ul{
+line-height:2;
+}
+
+footer{
+text-align:center;
+padding:20px;
+background:#0b1a35;
+color:white;
+}
