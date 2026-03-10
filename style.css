@@ -1,71 +1,72 @@
 body{
 margin:0;
-font-family:Inter;
-background:#faf9f6;
-color:#222;
+font-family:'Inter',sans-serif;
+background:#F7F4ED;
+color:#1a1a1a;
 line-height:1.7;
 }
 
-header{
+h1,h2,h3,h4{
+font-family:'Playfair Display',serif;
+margin-bottom:15px;
+}
+
+section{
+padding:100px 10%;
+}
+
+/* NAVBAR */
+
+#navbar{
+position:fixed;
+top:0;
+width:100%;
+background:rgba(247,244,237,0.9);
+backdrop-filter:blur(6px);
+z-index:1000;
+border-bottom:1px solid #e5e0d6;
+}
+
+.nav-container{
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:25px 8%;
-background:white;
-position:sticky;
-top:0;
-z-index:1000;
-box-shadow:0 4px 20px rgba(0,0,0,0.05);
+padding:18px 10%;
 }
 
 .logo{
-font-family:Playfair Display;
-font-size:22px;
 font-weight:600;
+font-size:18px;
+letter-spacing:1px;
 }
 
-nav{
-display:flex;
-gap:30px;
-}
-
-nav a{
+.nav-links a{
+margin-left:28px;
 text-decoration:none;
-color:#333;
-font-weight:500;
+color:#1a1a1a;
+font-size:14px;
 position:relative;
 }
 
-nav a::after{
+.nav-links a:after{
 content:"";
-width:0;
-height:2px;
-background:gold;
 position:absolute;
+width:0;
+height:1px;
 bottom:-4px;
 left:0;
+background:#C6A55C;
 transition:0.3s;
 }
 
-nav a:hover::after{
+.nav-links a:hover:after{
 width:100%;
 }
 
-.hamburger{
-display:none;
-flex-direction:column;
-cursor:pointer;
-}
-
-.hamburger span{
-width:25px;
-height:3px;
-background:black;
-margin:4px;
-}
+/* HERO */
 
 .hero{
-height:80vh;
+height:90vh;
 display:flex;
 flex-direction:column;
 justify-content:center;
@@ -74,133 +75,114 @@ text-align:center;
 }
 
 .hero h1{
-font-family:Playfair Display;
-font-size:90px;
-font-weight:600;
-margin:0;
+font-size:64px;
+margin-bottom:10px;
 }
 
-.tagline{
-margin-top:15px;
-font-size:22px;
-letter-spacing:1px;
+.hero h2{
+font-size:20px;
+font-weight:400;
+color:#555;
 }
 
-section{
-max-width:1000px;
+/* ABOUT */
+
+.about{
+max-width:800px;
 margin:auto;
-padding:100px 20px;
+text-align:center;
 }
 
-h2{
-font-family:Playfair Display;
-font-size:42px;
-margin-bottom:30px;
+.about button{
+margin-top:20px;
+padding:10px 22px;
+border:none;
+background:#C6A55C;
+color:white;
+cursor:pointer;
 }
 
-.book-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:60px;
+/* BOOKS */
+
+.books{
+text-align:center;
 }
 
 .book{
-text-align:center;
-transition:transform 0.4s;
-}
-
-.book:hover{
-transform:translateY(-10px);
+margin-top:70px;
 }
 
 .book img{
-width:230px;
-border-radius:6px;
-box-shadow:0 20px 40px rgba(0,0,0,0.25);
+width:220px;
+border-radius:8px;
+box-shadow:0 10px 25px rgba(0,0,0,0.15);
+transition:0.3s;
 }
 
-.buttons a{
+.book img:hover{
+transform:scale(1.04);
+}
+
+.book-buttons{
+margin-top:15px;
+}
+
+.book-buttons a{
 display:inline-block;
 margin:6px;
 padding:10px 18px;
-background:#eee;
 text-decoration:none;
-color:black;
-border-radius:4px;
+border:1px solid #C6A55C;
+color:#C6A55C;
+font-size:14px;
+transition:0.3s;
 }
 
-.buttons a.gold{
-background:gold;
+.book-buttons a:hover{
+background:#C6A55C;
+color:white;
 }
+
+/* ACHIEVEMENTS */
 
 .achievements{
-list-style:square;
-padding-left:20px;
+text-align:center;
+max-width:800px;
+margin:auto;
+}
+
+/* ESSAYS */
+
+.essays{
+background:#0f1c2e;
+color:white;
+text-align:center;
 }
 
 .essay-box{
-background:#0c1a34;
-color:white;
-padding:40px;
-border-radius:10px;
+background:#162844;
+padding:30px;
+max-width:600px;
+margin:auto;
+border-radius:8px;
 }
 
-.read-more{
-margin-top:15px;
-background:gold;
-border:none;
-padding:8px 16px;
-cursor:pointer;
+/* CONTACT */
+
+.contact{
+text-align:center;
 }
+
+.contact a{
+color:#C6A55C;
+text-decoration:none;
+}
+
+/* FOOTER */
 
 footer{
 text-align:center;
 padding:40px;
-background:white;
-}
-
-#about-full,
-#essay-full{
-display:none;
-}
-
-.reveal{
-opacity:0;
-transform:translateY(40px);
-transition:1s;
-}
-
-.reveal.active{
-opacity:1;
-transform:none;
-}
-
-@media(max-width:900px){
-
-.hero h1{
-font-size:50px;
-}
-
-.book-grid{
-grid-template-columns:1fr;
-}
-
-nav{
-position:absolute;
-right:0;
-top:70px;
-background:white;
-flex-direction:column;
-display:none;
-padding:20px;
-}
-
-nav.active{
-display:flex;
-}
-
-.hamburger{
-display:flex;
-}
-
+border-top:1px solid #e5e0d6;
+margin-top:60px;
 }
