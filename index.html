@@ -1,77 +1,80 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Kumar Abhigyan</title><link rel="stylesheet" href="style.css"><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"></head><body><header id="navbar"><div class="nav-container"><div class="logo">
-Kumar Abhigyan
-</div><nav class="nav-links"><a href="#home">Home</a>
-<a href="#about">Meet Kumar Abhigyan</a>
-<a href="#books">Books</a>
-<a href="#achievements">Achievements</a>
-<a href="#essays">Essays</a>
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Kumar Abhigyan</title><link rel="stylesheet" href="style.css"><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"></head><body><header id="navbar"><div class="nav-container"><div class="logo">Kumar Abhigyan</div><button class="theme-toggle" onclick="toggleTheme()">◐</button>
+
+<div class="hamburger" onclick="toggleMenu()">☰</div><nav id="menu" class="nav-menu">
+<a href="#home">Home</a>
+<a href="#latest">Latest</a>
+<a href="#books">Works</a>
+<a href="#about">About</a>
 <a href="#contact">Contact</a>
+</nav></div></header><section id="home" class="hero"><h1>Kumar Abhigyan</h1>
+<h2>Author ▪ Debater ▪ Global Observer</h2><p id="hero-rotate">Observing a world in motion</p></section><section class="signature">
+<p>“Truth is available. Clarity is rare.”</p>
+</section><section id="latest" class="latest"><div class="latest-grid"><div class="latest-text"><h2>Latest Release</h2><h3>Dreams Beyond The Moonrise</h3><p>
+A reflection on ambition, imagination, and the quiet distance between dreams and reality.
+</p><div class="buttons">
+<a href="#">Read Demo</a>
+<a href="#">Buy Ebook</a>
+</div></div><div class="latest-image">
+<img src="cover2.jpg">
+</div></div></section><section id="books" class="books"><h2>Works</h2><h3 class="section-sub">The Global Lens</h3><div class="book-grid"><div class="book-card">
+<img src="cover2.jpg">
+<h4>Book I</h4>
+<h3>The Illusion of Stability</h3><div class="buttons">
+<a href="demo2.pdf" target="_blank">Read Demo</a>
+<a href="https://amzn.in/d/0cI5FLPC" target="_blank">Buy Ebook</a>
+</div></div></div><h3 class="section-sub">The World From an Indian Teenager's POV</h3><div class="book-grid"><div class="book-card">
+<img src="cover.jpg">
+<h3>The World From an Indian Teenager's POV</h3><div class="buttons">
+<a href="demo1.pdf" target="_blank">Read Demo</a>
+<a href="https://amzn.in/d/023z6hzL" target="_blank">Buy Ebook</a>
+<a href="https://store.pothi.com/book/kumar-abhigyan-world-indian-teenagers-pov/" target="_blank">Buy Paperback</a>
+</div></div></div></section><section id="about" class="about"><h2>Meet Kumar Abhigyan</h2><p id="about-preview">
+Kumar Abhigyan is a young Indian author and commentator exploring the modern world through analytical and reflective writing.
+</p><p id="about-full" class="hidden">
+Kumar Abhigyan (born October 2010) is a young Indian author, writer, and commentator from Jharkhand, India. His work reflects a deep curiosity about global affairs, society, and power structures.Through his writing, he presents thoughtful, data-driven perspectives shaped by observation and critical thinking.
 
-</nav></div></header><section id="home" class="hero"><h1>Kumar Abhigyan</h1><h2>
-Author ▪ Debater ▪ Political Observer
-</h2></section><section id="about" class="about"><h2>Meet Kumar Abhigyan</h2><p id="about-preview">Kumar Abhigyan (born October 2010) is a young Indian author, writer, and commentator from Jharkhand, India. He writes analytical, data-driven texts that reflect his perspective on the world, society, politics, economy, and culture...
+He is also known for his achievements in multiple online debates focused on geopolitics.
 
-</p><p id="about-full" style="display:none;">Kumar Abhigyan (born October 2010) is a young Indian author, writer, and commentator from Jharkhand, India. He writes analytical, data-driven texts that reflect his perspective on the world, society, politics, economy, and culture, aiming to present the thoughts of an Indian teenager in a clear, respectful, and critical manner.
-
-Abhigyan developed a strong curiosity about global affairs, faith, and societal dynamics from an early age. His writing combines reflection with analysis, allowing readers to engage with complex ideas through the lens of a thoughtful young observer.
-
-Abhigyan is also known for his achievements in multiple online debates, particularly those focused on geopolitics, where he has won numerous competitions, consistently making his points clear and persuasive.
-
-Beyond his intellectual pursuits, he enjoys music, motorsports, cooking, exploring the world around him, and participating in discussions that challenge and expand his worldview.
+Beyond writing, he explores music, motorsports, cooking, and the dynamics of the world around him.
 
 </p><button onclick="toggleAbout()">Read More</button>
 
-</section><section id="books" class="books"><h2>Works in Literature</h2><div class="book"><img src="cover.jpg" alt="The World from an Indian Teenager's POV"><h3>The World from an Indian Teenager's POV</h3><p>
-A reflection on global affairs and society through the perspective of an Indian teenager observing the modern world.
-</p><div class="book-buttons"><a href="demo1.pdf" target="_blank">
-Read Demo
-</a><a href="https://amzn.in/d/023z6hzL" target="_blank">
-Buy Ebook
-</a><a href="https://store.pothi.com/book/kumar-abhigyan-world-indian-teenagers-pov/" target="_blank">
-Buy Paperback
-</a></div></div><div class="book"><img src="cover2.jpg" alt="The Illusion of Stability"><h3>The Global Lens</h3><h4>The Illusion of Stability</h4><p>
-An analytical examination of how the modern world's apparent stability often hides deeper geopolitical tensions and structural fragility.
-</p><div class="book-buttons"><a href="demo2.pdf" target="_blank">
-Read Demo
-</a><a href="https://amzn.in/d/0cI5FLPC" target="_blank">
-Buy Ebook
-</a></div></div></section><section id="achievements" class="achievements"><h2>Achievements</h2><p>• Published author on Kindle
-• Author of analytical works on global affairs
-• Winner of multiple online debate competitions
-• One of the youngest writers discussing global geopolitical issues
-
-</p></section><section id="essays" class="essays"><h2>Essays</h2><div class="essay-box"><p>This section features reflections, essays, and analytical thoughts exploring geopolitics, society, and philosophy through the perspective of a young observer of the modern world.
-
-</p></div></section><section id="contact" class="contact"><h2>Contact</h2><p>Email:
-<a href="mailto:abhigyan025@gmail.com">
-
-abhigyan025@gmail.com
-
-</a></p><p>Instagram:
+</section><section id="contact" class="contact"><h2>Contact</h2><p>Email: <a href="mailto:abhigyan025@gmail.com">abhigyan025@gmail.com</a></p><p>
+Instagram:
 <a href="https://www.instagram.com/kumar.abhigyan_?igsh=dWYybm81N2l0bHNn" target="_blank">
-
 kumar.abhigyan_
-
-</a></p></section><footer><p>© 2026 Kumar Abhigyan
-
-</p></footer><script>
+</a>
+</p></section><footer>
+<p>Kumar Abhigyan</p>
+<p>Writing on the modern world</p>
+</footer><script>
 
 function toggleAbout(){
-
-var full = document.getElementById("about-full");
-
-if(full.style.display === "none"){
-
-full.style.display = "block";
-
-}else{
-
-full.style.display = "none";
-
+document.getElementById("about-full").classList.toggle("hidden");
 }
 
+function toggleMenu(){
+document.getElementById("menu").classList.toggle("show");
 }
+
+function toggleTheme(){
+document.body.classList.toggle("dark");
+}
+
+const lines = [
+"Observing a world in motion",
+"Writing what others ignore",
+"A lens on power and society"
+];
+
+let i = 0;
+
+setInterval(() => {
+document.getElementById("hero-rotate").innerText = lines[i];
+i = (i + 1) % lines.length;
+}, 4000);
 
 </script><script src="script2.js"></script></body>
 </html>
