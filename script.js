@@ -1,54 +1,113 @@
-// INTRO
-const text="Kumar Abhigyan";
-let i=0;
+// ================= INTRO SEQUENCE =================
 
-setTimeout(()=>{
-document.getElementById("intro-line").style.opacity=0;
+const introLine = document.getElementById("intro-line");
+const introName = document.getElementById("intro-name");
+const intro = document.getElementById("intro");
 
-let typing=setInterval(()=>{
-document.getElementById("intro-name").innerText=text.slice(0,i)+"|";
-i++;
-if(i>text.length){
-clearInterval(typing);
-setTimeout(()=>{
-document.getElementById("intro").style.display="none";
-},800);
+const nameText = "Kumar Abhigyan";
+let index = 0;
+
+// Step 1: Fade out "Clarity takes time."
+setTimeout(() => {
+introLine.style.opacity = "0";
+
+// Step 2: Start typing name
+setTimeout(() => {
+    const typing = setInterval(() => {
+        introName.innerText = nameText.slice(0, index) + "|";
+        index++;
+
+        if (index > nameText.length) {
+            clearInterval(typing);
+
+            // Remove cursor after short pause
+            setTimeout(() => {
+                introName.innerText = nameText;
+
+                // Step 3: Fade out intro
+                setTimeout(() => {
+                    intro.style.opacity = "0";
+                    setTimeout(() => {
+                        intro.style.display = "none";
+                    }, 500);
+                }, 600);
+
+            }, 500);
+        }
+
+    }, 55); // typing speed
+
+}, 300);
+
+}, 1000);
+
+// ================= HERO TEXT ROTATION =================
+
+const lines = [
+"Observing systems and power",
+"Clarity over noise",
+"Understanding what shifts beneath the surface",
+"Thinking beyond reactions"
+];
+
+let lineIndex = 0;
+const rotateEl = document.getElementById("rotate");
+
+function rotateText() {
+rotateEl.style.opacity = "0";
+
+setTimeout(() => {
+    rotateEl.innerText = lines[lineIndex];
+    rotateEl.style.opacity = "1";
+
+    lineIndex = (lineIndex + 1) % lines.length;
+}, 300);
+
 }
-},60);
 
-},1000);
+// initial
+rotateEl.innerText = lines[0];
 
-// MENU
-function toggleMenu(){
-document.getElementById("menu").classList.toggle("show");
+// loop
+setInterval(rotateText, 3200);
+
+// ================= MENU TOGGLE =================
+
+const menu = document.getElementById("menu");
+
+function toggleMenu() {
+menu.classList.toggle("show");
 }
 
-// ESSAY
-function toggleEssay(){
-let el=document.getElementById("essay-more");
-el.style.display=el.style.display==="block"?"none":"block";
-}
-
-// ROTATE
-const lines=["Clarity over noise","Thinking deeper","Observing systems"];
-let j=0;
-setInterval(()=>{
-document.getElementById("rotate").innerText=lines[j];
-j=(j+1)%lines.length;
-},3000);
-
-// REVEAL
-const reveals=document.querySelectorAll("section,.book,.about-block");
-
-const observer=new IntersectionObserver(entries=>{
-entries.forEach(e=>{
-if(e.isIntersecting){
-e.target.classList.add("active");
-}
+// close menu when clicking link
+document.querySelectorAll("#menu a").forEach(link => {
+link.addEventListener("click", () => {
+menu.classList.remove("show");
 });
 });
 
-reveals.forEach(el=>{
-el.classList.add("reveal");
-observer.observe(el);
-});
+// ================= ABOUT TOGGLE =================
+
+function toggleAbout() {
+const about = document.getElementById("about-more");
+
+if (about.style.display === "block") {
+    about.style.display = "none";
+} else {
+    about.style.display = "block";
+}
+
+}
+
+// ================= ESSAY TOGGLE =================
+
+function toggleEssay() {
+const essay = document.getElementById("essay-more");
+
+if (essay.style.display === "block") {
+    essay.style.display = "none";
+} else {
+    essay.style.display = "block";
+}
+
+}
