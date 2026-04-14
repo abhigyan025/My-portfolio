@@ -1,51 +1,54 @@
-const hamburger = document.getElementById("hamburger")
-const nav = document.getElementById("nav")
+// INTRO
+const text="Kumar Abhigyan";
+let i=0;
 
-hamburger.onclick = () => {
-nav.classList.toggle("active")
+setTimeout(()=>{
+document.getElementById("intro-line").style.opacity=0;
+
+let typing=setInterval(()=>{
+document.getElementById("intro-name").innerText=text.slice(0,i)+"|";
+i++;
+if(i>text.length){
+clearInterval(typing);
+setTimeout(()=>{
+document.getElementById("intro").style.display="none";
+},800);
+}
+},60);
+
+},1000);
+
+// MENU
+function toggleMenu(){
+document.getElementById("menu").classList.toggle("show");
 }
 
-function toggleAbout(){
-
-let full = document.getElementById("about-full")
-
-if(full.style.display === "block"){
-full.style.display="none"
-}
-else{
-full.style.display="block"
-}
-
-}
-
+// ESSAY
 function toggleEssay(){
-
-let full = document.getElementById("essay-full")
-
-if(full.style.display === "block"){
-full.style.display="none"
-}
-else{
-full.style.display="block"
+let el=document.getElementById("essay-more");
+el.style.display=el.style.display==="block"?"none":"block";
 }
 
+// ROTATE
+const lines=["Clarity over noise","Thinking deeper","Observing systems"];
+let j=0;
+setInterval(()=>{
+document.getElementById("rotate").innerText=lines[j];
+j=(j+1)%lines.length;
+},3000);
+
+// REVEAL
+const reveals=document.querySelectorAll("section,.book,.about-block");
+
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(e=>{
+if(e.isIntersecting){
+e.target.classList.add("active");
 }
+});
+});
 
-function reveal(){
-
-let reveals = document.querySelectorAll(".reveal")
-
-for(let i=0;i<reveals.length;i++){
-
-let windowHeight = window.innerHeight
-let elementTop = reveals[i].getBoundingClientRect().top
-
-if(elementTop < windowHeight - 100){
-reveals[i].classList.add("active")
-}
-
-}
-
-}
-
-window.addEventListener("scroll", reveal)
+reveals.forEach(el=>{
+el.classList.add("reveal");
+observer.observe(el);
+});
