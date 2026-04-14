@@ -1,51 +1,37 @@
-const hamburger = document.getElementById("hamburger")
-const nav = document.getElementById("nav")
+const lines = [
+"Observing power, systems, and society",
+"Understanding what changes — and what only appears to",
+"Writing what most people overlook",
+"Clarity over noise. Always.",
+"A perspective shaped by questions, not assumptions"
+];
 
-hamburger.onclick = () => {
-nav.classList.toggle("active")
+let i = 0;
+setInterval(()=>{
+document.getElementById("hero-rotate").innerText = lines[i];
+i = (i+1)%lines.length;
+},3000);
+
+// MENU
+function toggleMenu(){
+document.getElementById("menu").classList.toggle("show");
+document.getElementById("overlay").classList.toggle("show");
 }
 
+// ABOUT
 function toggleAbout(){
-
-let full = document.getElementById("about-full")
-
-if(full.style.display === "block"){
-full.style.display="none"
-}
-else{
-full.style.display="block"
+document.getElementById("about-full").classList.toggle("show");
 }
 
+// ESSAY
+function openEssay(){
+document.getElementById("essay-modal").style.display="flex";
 }
 
-function toggleEssay(){
-
-let full = document.getElementById("essay-full")
-
-if(full.style.display === "block"){
-full.style.display="none"
-}
-else{
-full.style.display="block"
+function closeEssay(){
+document.getElementById("essay-modal").style.display="none";
 }
 
-}
-
-function reveal(){
-
-let reveals = document.querySelectorAll(".reveal")
-
-for(let i=0;i<reveals.length;i++){
-
-let windowHeight = window.innerHeight
-let elementTop = reveals[i].getBoundingClientRect().top
-
-if(elementTop < windowHeight - 100){
-reveals[i].classList.add("active")
-}
-
-}
-
-}
-
-window.addEventListener("scroll", reveal)
+// GSAP ANIMATIONS
+gsap.from(".hero h1",{opacity:0,y:30,duration:1});
+gsap.from(".book",{opacity:0,y:40,stagger:0.2,scrollTrigger:".book"});
