@@ -5,96 +5,116 @@
 <title>Kumar Abhigyan</title><link rel="stylesheet" href="style.css"><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 </head><body><header id="navbar">
 <div class="nav-container"><div class="logo">Kumar Abhigyan</div><div class="nav-right">
-<button onclick="toggleTheme()">◐</button>
-<div class="hamburger" onclick="toggleMenu()">☰</div>
-</div><nav id="menu" class="nav-menu">
-<a href="#home">Home</a>
-<a href="#latest">Latest</a>
-<a href="#books">Works</a>
-<a href="#essays">Essays</a>
-<a href="#about">About</a>
-<a href="#contact">Contact</a>
-</nav></div>
-</header><!-- HERO --><section id="home" class="hero reveal">
+<button class="theme-toggle" onclick="toggleTheme()">◐</button>
+<div class="hamburger" onclick="toggleMenu()">
+<span></span><span></span><span></span>
+</div>
+</div></div><nav id="menu" class="side-menu">
+<a href="#home" onclick="toggleMenu()">Home</a>
+<a href="#latest" onclick="toggleMenu()">Latest</a>
+<a href="#books" onclick="toggleMenu()">Works</a>
+<a href="#essays" onclick="toggleMenu()">Essays</a>
+<a href="#about" onclick="toggleMenu()">About</a>
+<a href="#contact" onclick="toggleMenu()">Contact</a>
+</nav><div id="overlay" onclick="toggleMenu()"></div>
+</header><!-- HERO --><section id="home" class="hero">
 <div class="hero-inner"><h1>Kumar Abhigyan</h1>
-<h2>Author ▪ Debater ▪ Political Observer</h2><p class="hero-quote">“Truth is available. Clarity is rare.”</p><p id="hero-rotate">Observing a world in motion</p></div>
+<h2>Author ▪ Debater ▪ Political Observer</h2><p id="hero-rotate"></p><div class="scroll-indicator">↓</div></div>
 </section><!-- LATEST --><section id="latest" class="latest reveal">
 <div class="container grid"><div>
 <p class="label">Latest Release</p><h2>Dreams Beyond The Moonrise</h2><p class="desc">
-A reflective work exploring ambition, imagination, and the silent distance between aspiration and reality.
+A reflective work exploring ambition, imagination, and the distance between aspiration and reality.
 </p><div class="btns">
-<a href="Demo_Moonlight.pdf">Read Demo</a>
-<a href="#">Buy Ebook</a>
+<a href="https://docs.google.com/document/d/1hX5D8Ji7ckjub0adSA4PB3Sn8DvbhAqhfdLxCyDeeRw/preview">Read Demo</a>
+<a href="https://amzn.in/d/0gVSUUmd">Buy Ebook</a>
 </div>
 </div><img src="jpg.4"></div>
 </section><!-- BOOKS --><section id="books" class="books reveal">
-<div class="container"><h2>Works</h2><h3 class="series">The Global Lens</h3><div class="cards"><div class="card">
+<div class="container"><h2>Works</h2><div class="scroll-row"><div class="card">
 <img src="jpg.2">
-<h4>Book I</h4>
 <h3>The Illusion of Stability</h3>
 <div class="btns small">
-<a href="Demo_Illusion.pdf">Demo</a>
+<a href="https://docs.google.com/document/d/1P_Wta6BUcECNzEKLSVpIUhwUVImD2bTd6KkgeDDpkns/preview">Demo</a>
 <a href="https://amzn.in/d/0cI5FLPC">Buy</a>
 </div>
 </div><div class="card">
 <img src="jpg.3">
-<h4>Book II</h4>
 <h3>Threads of Tomorrow</h3>
 <div class="btns small">
-<a href="Demo_Threads.pdf">Demo</a>
-<a href="#">Buy</a>
+<a href="https://docs.google.com/document/d/1SfJ8AGDsl_oIxxhMbH65jzSPVIRGAdrN_gmJZsz-1oo/preview">Demo</a>
+<a href="https://amzn.in/d/06dcVKSE">Buy</a>
 </div>
 </div><div class="card">
 <img src="jpg.4">
-<h4>Book III</h4>
 <h3>Dreams Beyond The Moonrise</h3>
 <div class="btns small">
-<a href="Demo_Moonlight.pdf">Demo</a>
-<a href="#">Buy</a>
+<a href="https://docs.google.com/document/d/1hX5D8Ji7ckjub0adSA4PB3Sn8DvbhAqhfdLxCyDeeRw/preview">Demo</a>
+<a href="https://amzn.in/d/0gVSUUmd">Buy</a>
 </div>
-</div></div><h3 class="series">The World From an Indian Teenager's POV</h3><div class="cards"><div class="card">
+</div><div class="card center">
 <img src="jpg.1">
 <h3>The World From an Indian Teenager's POV</h3>
 <div class="btns small">
-<a href="Demo_Teenager.pdf">Demo</a>
+<a href="https://docs.google.com/document/d/1vKai0FN4P92hSbNgSvuZVGJo-z1Cm6r7/preview">Demo</a>
 <a href="https://amzn.in/d/023z6hzL">Ebook</a>
 <a href="https://store.pothi.com/book/kumar-abhigyan-world-indian-teenagers-pov/">Paper</a>
 </div>
 </div></div></div>
 </section><!-- ESSAYS --><section id="essays" class="essays reveal">
-<div class="container narrow"><h2>Essays</h2><div class="essay-box glass"><p>
-Most change does not announce itself. It forms quietly — in decisions that seem small, in patterns we fail to notice, and in systems we assume are stable. By the time we recognize it, it has already taken shape.
-</p><p>
-Understanding the world, then, is not about reacting faster — but observing deeper.
-</p><button class="glass-btn">Read More</button>
+<div class="container narrow"><h2>Essays</h2><div class="essay-box">
+<p>
+Most change does not announce itself. It forms quietly — in decisions that seem small and patterns we overlook.
+</p><button class="glass-btn" onclick="openEssay()">Read More</button>
 
 </div></div>
-</section><!-- ABOUT --><section id="about" class="about reveal">
-<div class="container narrow"><h2>Meet Kumar Abhigyan</h2><p id="about-preview">
-Kumar Abhigyan (born October 2010) is a young Indian author, writer, and commentator from Jharkhand, India. His work reflects a sustained engagement with the structures that shape the modern world — from politics and economics to culture and society. He approaches these subjects with clarity, restraint, and thoughtful analysis rather than quick conclusions.
+</section><div id="essay-modal">
+<div class="essay-content">
+<p>
+Understanding the world is not about reacting faster, but observing deeper. The systems we trust are often more fragile than they appear — not because they are weak, but because we misunderstand them.
+</p>
+<button onclick="closeEssay()">Close</button>
+</div>
+</div><!-- ABOUT --><section id="about" class="about reveal">
+<div class="container narrow"><h2>Meet Kumar Abhigyan</h2><p>
+Kumar Abhigyan is a young Indian author, writer, and commentator whose work reflects a structured engagement with global systems, society, and culture.
 </p><div id="about-full">
 <p>
-His interest in global affairs and societal dynamics developed early, driven by curiosity and a desire to understand how systems function beneath the surface. Over time, this evolved into a disciplined habit of observation — one that now defines both his writing and worldview.Rather than positioning his work as definitive, he treats writing as an ongoing inquiry. His texts explore, question, and refine understanding, allowing readers to engage deeply without being overwhelmed.
-
-Alongside writing, he has participated in multiple online debates, particularly in geopolitics, where he has demonstrated clarity, composure, and strong reasoning.
-
-Beyond intellectual pursuits, he engages with music, motorsports, cooking, and exploration — building a broader perspective shaped by both thought and experience.
-
-Through his work, Kumar Abhigyan represents a thoughtful and emerging voice — one that reflects the mindset of a young observer engaging seriously with a rapidly evolving world.
-
+His writing is driven by observation, curiosity, and a consistent effort to understand deeper patterns beneath visible events. Through analytical clarity and thoughtful reflection, his work offers a perspective shaped by both inquiry and discipline.
 </p>
 </div><button class="glass-btn" onclick="toggleAbout()">Read More</button>
 
 </div>
 </section><!-- CONTACT --><section id="contact" class="contact reveal">
-<div class="container narrow"><h2>Contact</h2><p><a href="mailto:abhigyan025@gmail.com">abhigyan025@gmail.com</a></p><p><a href="https://www.instagram.com/kumar.abhigyan_" target="_blank">Instagram</a></p></div>
+<div class="container narrow"><h2>Contact</h2><div class="contact-box">
+<a href="mailto:abhigyan025@gmail.com">abhigyan025@gmail.com</a>
+<a href="https://www.instagram.com/kumar.abhigyan_">Instagram</a>
+</div></div>
 </section><footer>
-<p>Kumar Abhigyan</p>
-<p class="muted">Writing on the modern world</p>
+<p class="quote">Clarity over noise. Always.</p>
+<p class="name">Kumar Abhigyan</p>
+<p class="easter">Oh captain, my captain</p>
 </footer><script>
+
+const lines = [
+"Observing power, systems, and society",
+"Understanding what changes — and what only appears to",
+"Writing what most people overlook",
+"Clarity over noise. Always.",
+"A perspective shaped by questions, not assumptions"
+];
+
+let i = 0;
+function rotateText(){
+document.getElementById("hero-rotate").innerText = lines[i];
+i = (i + 1) % lines.length;
+}
+setInterval(rotateText, 3000);
+rotateText();
+
 
 function toggleMenu(){
 document.getElementById("menu").classList.toggle("show");
+document.getElementById("overlay").classList.toggle("show");
 }
 
 function toggleTheme(){
@@ -105,19 +125,13 @@ function toggleAbout(){
 document.getElementById("about-full").classList.toggle("show");
 }
 
-
-/* SCROLL REVEAL */
-
-const reveals = document.querySelectorAll(".reveal");
-
-window.addEventListener("scroll", () => {
-reveals.forEach(el => {
-const top = el.getBoundingClientRect().top;
-if(top < window.innerHeight - 100){
-el.classList.add("active");
+function openEssay(){
+document.getElementById("essay-modal").classList.add("show");
 }
-});
-});
+
+function closeEssay(){
+document.getElementById("essay-modal").classList.remove("show");
+}
 
 </script></body>
 </html>
