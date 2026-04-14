@@ -2,136 +2,105 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kumar Abhigyan</title><link rel="stylesheet" href="style.css"><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-</head><body><header id="navbar">
-<div class="nav-container"><div class="logo">Kumar Abhigyan</div><div class="nav-right">
-<button class="theme-toggle" onclick="toggleTheme()">◐</button>
+<title>Kumar Abhigyan</title><link rel="stylesheet" href="style.css"><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"><!-- GSAP --><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script></head><body><!-- NAV --><header id="navbar">
+<div class="nav-container">
+<div class="logo">Kumar Abhigyan</div><div class="nav-right">
 <div class="hamburger" onclick="toggleMenu()">
 <span></span><span></span><span></span>
 </div>
-</div></div><nav id="menu" class="side-menu">
-<a href="#home" onclick="toggleMenu()">Home</a>
-<a href="#latest" onclick="toggleMenu()">Latest</a>
-<a href="#books" onclick="toggleMenu()">Works</a>
-<a href="#essays" onclick="toggleMenu()">Essays</a>
-<a href="#about" onclick="toggleMenu()">About</a>
-<a href="#contact" onclick="toggleMenu()">Contact</a>
+</div>
+</div><nav id="menu" class="side-menu">
+<a href="#home">Home<span>Identity</span></a>
+<a href="#featured">Latest<span>Release</span></a>
+<a href="#books">Works<span>Books</span></a>
+<a href="#essays">Essays<span>Thoughts</span></a>
+<a href="#about">About<span>Profile</span></a>
+<a href="#contact">Contact<span>Reach out</span></a>
 </nav><div id="overlay" onclick="toggleMenu()"></div>
 </header><!-- HERO --><section id="home" class="hero">
-<div class="hero-inner"><h1>Kumar Abhigyan</h1>
-<h2>Author ▪ Debater ▪ Political Observer</h2><p id="hero-rotate"></p><div class="scroll-indicator">↓</div></div>
-</section><!-- LATEST --><section id="latest" class="latest reveal">
-<div class="container grid"><div>
-<p class="label">Latest Release</p><h2>Dreams Beyond The Moonrise</h2><p class="desc">
-A reflective work exploring ambition, imagination, and the distance between aspiration and reality.
-</p><div class="btns">
+<div class="hero-inner">
+<h1>Kumar Abhigyan</h1>
+<p id="hero-rotate"></p>
+</div>
+</section><!-- FEATURED --><section id="featured" class="featured">
+<div class="container center">
+<img src="Moonrise.jpg" class="featured-img">
+<h2>Dreams Beyond The Moonrise</h2><div class="btns">
 <a href="https://docs.google.com/document/d/1hX5D8Ji7ckjub0adSA4PB3Sn8DvbhAqhfdLxCyDeeRw/preview">Read Demo</a>
 <a href="https://amzn.in/d/0gVSUUmd">Buy Ebook</a>
 </div>
-</div><img src="jpg.4"></div>
-</section><!-- BOOKS --><section id="books" class="books reveal">
-<div class="container"><h2>Works</h2><div class="scroll-row"><div class="card">
-<img src="jpg.2">
+</div>
+</section><!-- BOOKS --><section id="books" class="books">
+<div class="container"><h2>Works</h2><div class="book-list"><div class="book">
+<img src="Illusion.jpg">
+<div>
 <h3>The Illusion of Stability</h3>
-<div class="btns small">
+<div class="btns">
 <a href="https://docs.google.com/document/d/1P_Wta6BUcECNzEKLSVpIUhwUVImD2bTd6KkgeDDpkns/preview">Demo</a>
 <a href="https://amzn.in/d/0cI5FLPC">Buy</a>
 </div>
-</div><div class="card">
-<img src="jpg.3">
+</div>
+</div><div class="book reverse">
+<img src="Threads.jpg">
+<div>
 <h3>Threads of Tomorrow</h3>
-<div class="btns small">
+<div class="btns">
 <a href="https://docs.google.com/document/d/1SfJ8AGDsl_oIxxhMbH65jzSPVIRGAdrN_gmJZsz-1oo/preview">Demo</a>
 <a href="https://amzn.in/d/06dcVKSE">Buy</a>
 </div>
-</div><div class="card">
-<img src="jpg.4">
+</div>
+</div><div class="book">
+<img src="Moonrise.jpg">
+<div>
 <h3>Dreams Beyond The Moonrise</h3>
-<div class="btns small">
+<div class="btns">
 <a href="https://docs.google.com/document/d/1hX5D8Ji7ckjub0adSA4PB3Sn8DvbhAqhfdLxCyDeeRw/preview">Demo</a>
 <a href="https://amzn.in/d/0gVSUUmd">Buy</a>
 </div>
-</div><div class="card center">
-<img src="jpg.1">
+</div>
+</div><div class="book reverse">
+<img src="Teenager.jpg">
+<div>
 <h3>The World From an Indian Teenager's POV</h3>
-<div class="btns small">
+<div class="btns">
 <a href="https://docs.google.com/document/d/1vKai0FN4P92hSbNgSvuZVGJo-z1Cm6r7/preview">Demo</a>
 <a href="https://amzn.in/d/023z6hzL">Ebook</a>
-<a href="https://store.pothi.com/book/kumar-abhigyan-world-indian-teenagers-pov/">Paper</a>
+<a href="https://store.pothi.com/book/kumar-abhigyan-world-indian-teenagers-pov/">Paperback</a>
 </div>
-</div></div></div>
-</section><!-- ESSAYS --><section id="essays" class="essays reveal">
+</div>
+</div></div>
+</div>
+</section><!-- ESSAYS --><section id="essays" class="essays">
 <div class="container narrow"><h2>Essays</h2><div class="essay-box">
-<p>
-Most change does not announce itself. It forms quietly — in decisions that seem small and patterns we overlook.
-</p><button class="glass-btn" onclick="openEssay()">Read More</button>
-
+<p>Most change forms quietly, in patterns we overlook.</p>
+<button onclick="openEssay()">Read More</button>
 </div></div>
 </section><div id="essay-modal">
 <div class="essay-content">
-<p>
-Understanding the world is not about reacting faster, but observing deeper. The systems we trust are often more fragile than they appear — not because they are weak, but because we misunderstand them.
-</p>
+<p>Understanding the world is not about reacting faster, but observing deeper...</p>
 <button onclick="closeEssay()">Close</button>
 </div>
-</div><!-- ABOUT --><section id="about" class="about reveal">
+</div><!-- ABOUT --><section id="about" class="about">
 <div class="container narrow"><h2>Meet Kumar Abhigyan</h2><p>
 Kumar Abhigyan is a young Indian author, writer, and commentator whose work reflects a structured engagement with global systems, society, and culture.
 </p><div id="about-full">
 <p>
-His writing is driven by observation, curiosity, and a consistent effort to understand deeper patterns beneath visible events. Through analytical clarity and thoughtful reflection, his work offers a perspective shaped by both inquiry and discipline.
+His writing extends beyond surface-level observation, exploring patterns that shape political and social realities. From geopolitics to culture, his work reflects a disciplined curiosity and a commitment to clarity over noise. Through essays, books, and discussions, he continues to refine a perspective grounded in questioning, reflection, and analysis.
 </p>
-</div><button class="glass-btn" onclick="toggleAbout()">Read More</button>
+</div><button onclick="toggleAbout()">Read More</button>
 
 </div>
-</section><!-- CONTACT --><section id="contact" class="contact reveal">
-<div class="container narrow"><h2>Contact</h2><div class="contact-box">
+</section><!-- CONTACT --><section id="contact">
+<div class="container narrow">
+<h2>Contact</h2>
+<div class="contact-box">
 <a href="mailto:abhigyan025@gmail.com">abhigyan025@gmail.com</a>
 <a href="https://www.instagram.com/kumar.abhigyan_">Instagram</a>
-</div></div>
+</div>
+</div>
 </section><footer>
 <p class="quote">Clarity over noise. Always.</p>
-<p class="name">Kumar Abhigyan</p>
+<p>Kumar Abhigyan</p>
 <p class="easter">Oh captain, my captain</p>
-</footer><script>
-
-const lines = [
-"Observing power, systems, and society",
-"Understanding what changes — and what only appears to",
-"Writing what most people overlook",
-"Clarity over noise. Always.",
-"A perspective shaped by questions, not assumptions"
-];
-
-let i = 0;
-function rotateText(){
-document.getElementById("hero-rotate").innerText = lines[i];
-i = (i + 1) % lines.length;
-}
-setInterval(rotateText, 3000);
-rotateText();
-
-
-function toggleMenu(){
-document.getElementById("menu").classList.toggle("show");
-document.getElementById("overlay").classList.toggle("show");
-}
-
-function toggleTheme(){
-document.body.classList.toggle("dark");
-}
-
-function toggleAbout(){
-document.getElementById("about-full").classList.toggle("show");
-}
-
-function openEssay(){
-document.getElementById("essay-modal").classList.add("show");
-}
-
-function closeEssay(){
-document.getElementById("essay-modal").classList.remove("show");
-}
-
-</script></body>
+</footer><script src="script.js"></script></body>
 </html>
