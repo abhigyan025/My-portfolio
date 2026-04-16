@@ -1,0 +1,143 @@
+*{margin:0;padding:0;box-sizing:border-box;}
+
+a{
+text-decoration:none;
+color:inherit;
+}
+
+body{
+font-family:'Inter',sans-serif;
+background:
+linear-gradient(rgba(244,241,234,0.92),rgba(244,241,234,0.92)),
+url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+color:#111;
+line-height:1.7;
+}
+
+/* NAV */
+.nav{
+display:flex;
+justify-content:space-between;
+padding:20px 30px;
+}
+
+.menu-btn span{
+display:block;
+height:2px;
+width:24px;
+background:#111;
+margin:5px 0;
+}
+
+.menu{
+position:fixed;
+inset:0;
+background:rgba(244,241,234,0.95);
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+gap:30px;
+opacity:0;
+pointer-events:none;
+transition:.4s;
+}
+
+.menu.show{
+opacity:1;
+pointer-events:auto;
+}
+
+/* HERO */
+.hero{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
+
+.hero-main{
+font-size:clamp(40px,6vw,70px);
+}
+
+.hero-subline{
+font-size:clamp(20px,2vw,28px);
+opacity:.6;
+}
+
+.hero-line{
+width:60px;
+height:2px;
+background:#111;
+margin-top:20px;
+opacity:.4;
+}
+
+/* FEATURED */
+.featured{
+text-align:center;
+padding:120px 20px;
+}
+
+.featured img{
+width:260px;
+box-shadow:0 40px 120px rgba(0,0,0,.3);
+}
+
+.featured-sub{
+opacity:.7;
+margin:10px auto;
+max-width:500px;
+}
+
+/* BOOKS */
+.book{
+text-align:center;
+margin:80px 0;
+}
+
+.book img{
+width:160px;
+box-shadow:0 20px 60px rgba(0,0,0,.25);
+}
+
+/* BUTTONS */
+.btns a{
+padding:12px 24px;
+border-radius:999px;
+border:1px solid rgba(0,0,0,.15);
+background:rgba(255,255,255,.6);
+display:inline-block;
+margin:6px;
+transition:.3s;
+}
+
+.btns a:hover{
+background:#111;
+color:#fff;
+}
+
+/* ABOUT */
+.about-more{
+display:none;
+}
+
+/* FOOTER */
+footer{
+text-align:center;
+padding:80px;
+}
+
+/* REVEAL */
+.reveal{
+opacity:0;
+transform:translateY(40px);
+transition:.8s;
+}
+
+.reveal.active{
+opacity:1;
+transform:translateY(0);
+}
