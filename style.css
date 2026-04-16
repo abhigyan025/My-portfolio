@@ -1,0 +1,367 @@
+/* =========================
+RESET
+========================= */
+*,
+*::before,
+*::after {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+/* REMOVE BLUE LINKS */
+a {
+text-decoration: none;
+color: inherit;
+}
+
+/* =========================
+BODY (PAPER BACKGROUND)
+========================= */
+body {
+font-family: 'Inter', sans-serif;
+
+background:
+linear-gradient(rgba(244,241,234,0.94), rgba(244,241,234,0.94)),
+url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+
+color: #111;
+line-height: 1.7;
+-webkit-font-smoothing: antialiased;
+overflow-x: hidden;
+}
+
+/* =========================
+TYPOGRAPHY
+========================= */
+h1, h2, h3 {
+font-family: 'Playfair Display', serif;
+letter-spacing: 0.4px;
+}
+
+.section-title {
+font-size: clamp(28px, 4vw, 48px);
+text-align: center;
+margin-bottom: 60px;
+}
+
+/* =========================
+NAV
+========================= */
+.nav {
+display: flex;
+justify-content: space-between;
+padding: 22px 28px;
+}
+
+.logo {
+font-weight: 500;
+letter-spacing: 1px;
+}
+
+.menu-btn span {
+display: block;
+width: 26px;
+height: 2px;
+background: #111;
+margin: 6px 0;
+transition: 0.3s;
+}
+
+.menu {
+position: fixed;
+inset: 0;
+background: rgba(244,241,234,0.96);
+backdrop-filter: blur(18px);
+
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+gap: 30px;
+
+opacity: 0;
+pointer-events: none;
+transform: scale(1.04);
+transition: all 0.5s ease;
+}
+
+.menu.show {
+opacity: 1;
+pointer-events: auto;
+transform: scale(1);
+}
+
+.menu a {
+font-size: 28px;
+transition: 0.3s;
+}
+
+.menu a:hover {
+transform: translateY(-3px);
+opacity: 0.6;
+}
+
+/* =========================
+INTRO
+========================= */
+#intro {
+position: fixed;
+inset: 0;
+background: #f4f1ea;
+
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+
+z-index: 999;
+transition: 0.6s ease;
+}
+
+#intro-line {
+opacity: 0.7;
+margin-bottom: 10px;
+}
+
+/* =========================
+HERO
+========================= */
+.hero {
+height: 100vh;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+
+text-align: center;
+padding: 0 20px;
+
+transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.hero-main {
+font-size: clamp(42px, 7vw, 80px);
+line-height: 1.1;
+}
+
+.hero-subline {
+display: block;
+font-size: clamp(18px, 2.5vw, 26px);
+opacity: 0.6;
+margin-top: 10px;
+}
+
+.hero-sub {
+margin-top: 18px;
+max-width: 500px;
+opacity: 0.7;
+}
+
+.hero-line {
+width: 60px;
+height: 2px;
+background: #111;
+margin-top: 28px;
+opacity: 0.4;
+}
+
+/* =========================
+SECTIONS
+========================= */
+section {
+max-width: 1100px;
+margin: auto;
+padding: 120px 20px;
+
+opacity: 0;
+transform: translateY(40px);
+animation: fadeUp 0.8s ease forwards;
+}
+
+@keyframes fadeUp {
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+
+/* =========================
+FEATURED
+========================= */
+.featured {
+text-align: center;
+}
+
+.featured img {
+width: 280px;
+box-shadow: 0 50px 140px rgba(0,0,0,0.35);
+transition: 0.5s ease;
+}
+
+.featured img:hover {
+transform: scale(1.05);
+}
+
+.featured-sub {
+max-width: 520px;
+margin: 14px auto;
+opacity: 0.7;
+}
+
+/* =========================
+BOOKS
+========================= */
+.book {
+text-align: center;
+margin: 90px 0;
+}
+
+.book img {
+width: 170px;
+margin-bottom: 12px;
+box-shadow: 0 25px 80px rgba(0,0,0,0.25);
+
+transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.book img:hover {
+transform: scale(1.06) rotateZ(-0.5deg);
+box-shadow: 0 35px 110px rgba(0,0,0,0.35);
+}
+
+/* =========================
+BUTTONS (PREMIUM GLASS)
+========================= */
+.btns a {
+padding: 12px 26px;
+border-radius: 999px;
+border: 1px solid rgba(0,0,0,0.15);
+
+background: rgba(255,255,255,0.6);
+backdrop-filter: blur(18px);
+
+font-size: 14px;
+letter-spacing: 0.3px;
+
+display: inline-block;
+margin: 6px;
+
+transition: all 0.35s cubic-bezier(.25,.8,.25,1);
+}
+
+.btns a:hover {
+background: #111;
+color: #fff;
+transform: translateY(-4px) scale(1.03);
+box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+/* =========================
+ABOUT + ESSAYS
+========================= */
+.about-short,
+.essay-intro {
+max-width: 600px;
+margin: auto;
+opacity: 0.75;
+}
+
+.about-more {
+display: none;
+max-width: 700px;
+margin: 20px auto;
+}
+
+.read-btn {
+margin-top: 14px;
+padding: 8px 18px;
+border: 1px solid rgba(0,0,0,0.2);
+background: transparent;
+cursor: pointer;
+transition: 0.3s;
+}
+
+.read-btn:hover {
+background: #111;
+color: #fff;
+}
+
+/* =========================
+CONTACT
+========================= */
+.contact-links {
+text-align: center;
+}
+
+.contact-links a {
+display: block;
+margin: 10px 0;
+position: relative;
+}
+
+.contact-links a::after {
+content: "";
+position: absolute;
+left: 0;
+bottom: -2px;
+width: 0%;
+height: 1px;
+background: #111;
+transition: 0.3s;
+}
+
+.contact-links a:hover::after {
+width: 100%;
+}
+
+/* =========================
+FOOTER
+========================= */
+footer {
+text-align: center;
+padding: 100px 20px;
+}
+
+.footer-quote {
+font-size: 18px;
+margin-bottom: 10px;
+}
+
+.easter {
+font-size: 12px;
+opacity: 0.5;
+}
+
+/* =========================
+REVEAL (SCROLL)
+========================= */
+.reveal {
+opacity: 0;
+transform: translateY(50px);
+transition: all 0.9s ease;
+}
+
+.reveal.active {
+opacity: 1;
+transform: translateY(0);
+}
+
+/* =========================
+RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+
+section {
+padding: 100px 16px;
+}
+
+.hero-main {
+font-size: 42px;
+}
+
+.menu a {
+font-size: 24px;
+}
+
+  }
