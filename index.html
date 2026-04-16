@@ -1,65 +1,160 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kumar Abhigyan</title><link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
-</head><body><!-- INTRO --><div id="intro">
-<p id="intro-line">Clarity takes time.</p>
-<h1 id="intro-name"></h1>
-</div><!-- NAV --><header class="header">
-<div class="nav">
-<div class="logo">Kumar Abhigyan</div>
-<div class="menu-btn" onclick="toggleMenu()">☰</div>
-</div><nav id="menu" class="menu">
-<a href="#home">Home</a>
-<a href="#featured">Latest</a>
-<a href="#books">Books</a>
-<a href="#about">About</a>
-<a href="#contact">Contact</a>
-</nav>
-</header><!-- HERO --><section id="home" class="hero">
-<h1 class="hero-title">Clarity over noise.</h1>
-<p class="hero-sub">Understanding what lies beneath the surface.</p>
-</section><!-- FEATURED --><section id="featured" class="featured reveal">
-<img src="Moonrise.jpg">
-<h2>Dreams Beyond The Moonrise</h2>
-<div class="btns">
-<a href="https://docs.google.com/document/d/1hX5D8Ji7ckjub0adSA4PB3Sn8DvbhAqhfdLxCyDeeRw/preview">Read Demo</a>
-<a href="https://amzn.in/d/0gVSUUmd">Buy Ebook</a>
+<title>Kumar Abhigyan</title>
+
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="grain"></div>
+
+<!-- INTRO -->
+<div id="intro">
+  <p>Clarity takes time.</p>
+  <h1 id="intro-name"></h1>
 </div>
-</section><!-- BOOKS --><section id="books">
-<h2 class="section-title">Books</h2><div class="book reveal">
-<img src="Illusion.jpg">
-<h3>The Illusion of Stability</h3>
-</div><div class="book reveal">
-<img src="Threads.jpg">
-<h3>Threads of Tomorrow</h3>
-</div><div class="book reveal">
-<img src="Teenager.jpg">
-<h3>The World From an Indian Teenager's POV</h3>
-</div></section><!-- ABOUT --><section id="about">
-<h2 class="section-title">Meet Kumar Abhigyan</h2><p class="about-short">
-A writer focused on clarity, systems, and understanding the forces shaping the world.
-</p><button class="read-btn" onclick="toggleAbout()">Read More</button>
 
-<div id="about-more" class="about-more">
-<p>
-Kumar Abhigyan writes with a quiet intensity — not to react, but to observe. His work is rooted in a deeper curiosity about how systems function, how power moves, and how change forms beneath what is immediately visible.
-</p><p>
-Rather than following noise, his thinking leans toward patterns — those that repeat, evolve, and subtly define the direction of societies. His books are not answers, but explorations — attempts to understand before concluding.
-</p><p>
-Over time, his voice has grown more refined, more patient, and more intentional. What began as perspective is slowly shaping into philosophy — one that values clarity over urgency, depth over reaction, and observation over assumption.
-</p><p>
-This is not writing for attention. It is writing for understanding.
-</p>
-</div></section><!-- CONTACT --><section id="contact">
-<h2 class="section-title">Contact</h2><a href="mailto:abhigyan025@gmail.com">Email</a><br>
-<a href="https://www.instagram.com/kumar.abhigyan_">Instagram</a>
+<!-- NAV -->
+<header>
+  <div class="nav">
+    <div class="logo">Kumar Abhigyan</div>
 
-</section><footer>
-<p class="footer-quote">Clarity over noise. Always.</p>
-<p>Kumar Abhigyan</p>
-<p class="easter">oh captain my captain</p>
-</footer><script src="script.js"></script></body>
+    <div class="menu-btn" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+
+  <nav id="menu" class="menu">
+    <a href="#home">Home</a>
+    <a href="#featured">Latest</a>
+    <a href="#about">About</a>
+    <a href="#books">Books</a>
+    <a href="#essays">Essays</a>
+    <a href="#contact">Contact</a>
+
+    <hr>
+
+    <button onclick="toggleReadingMode()">Reading Mode</button>
+    <button onclick="toggleDarkMode()">Dark Mode</button>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section id="home" class="hero">
+  <h1>
+    <span class="hero-main">Kumar Abhigyan</span>
+    <span class="hero-subline">Clarity over noise.</span>
+  </h1>
+  <p class="hero-sub">Understanding systems, patterns, and what lies beneath.</p>
+</section>
+
+<section class="thought">Most things don’t change loudly.</section>
+
+<!-- FEATURED -->
+<section id="featured" class="featured">
+  <img src="Moonrise.jpg">
+  <h2>Dreams Beyond The Moonrise</h2>
+
+  <div class="btns">
+    <button onclick="openDemo('https://docs.google.com/document/d/1hX5D8Ji7ckjub0adSA4PB3Sn8DvbhAqhfdLxCyDeeRw/preview')">
+      Read Demo
+    </button>
+    <a href="https://amzn.in/d/0gVSUUmd">Buy Ebook</a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <h2 class="section-title">Meet Kumar Abhigyan</h2>
+  <button onclick="toggleAbout()">Read More</button>
+
+  <div id="about-more" class="about-more">
+    <p><strong>Kumar Abhigyan</strong> is a writer focused on systems, clarity, and long-term patterns...</p>
+    <p>His work explores structural forces, perception, and change.</p>
+    <p>His work continues to evolve over time.</p>
+  </div>
+</section>
+
+<!-- BOOKS -->
+<section id="books">
+  <h2 class="section-title">Books</h2>
+
+  <div class="book">
+    <img src="Illusion.jpg">
+    <h3>The Illusion of Stability</h3>
+    <div class="btns">
+      <button onclick="openDemo('https://docs.google.com/document/d/1P_Wta6BUcECNzEKLSVpIUhwUVImD2bTd6KkgeDDpkns/preview')">Read Demo</button>
+      <a href="https://amzn.in/d/0cI5FLPC">Buy</a>
+    </div>
+  </div>
+
+  <div class="book">
+    <img src="Threads.jpg">
+    <h3>Threads of Tomorrow</h3>
+    <div class="btns">
+      <button onclick="openDemo('https://docs.google.com/document/d/1SfJ8AGDsl_oIxxhMbH65jzSPVIRGAdrN_gmJZsz-1oo/preview')">Read Demo</button>
+      <a href="https://amzn.in/d/06dcVKSE">Buy Ebook</a>
+    </div>
+  </div>
+</section>
+
+<!-- ESSAYS -->
+<section id="essays">
+  <h2 class="section-title">Essays</h2>
+
+  <div class="essay-grid">
+    <div class="essay-card">
+      <h3>On Clarity</h3>
+      <p>Clarity is built through observation and removing noise.</p>
+      <button onclick="openEssay(0)">Read</button>
+    </div>
+
+    <div class="essay-card">
+      <h3>Patterns & Systems</h3>
+      <p>Patterns repeat across contexts.</p>
+      <button onclick="openEssay(1)">Read</button>
+    </div>
+
+    <div class="essay-card">
+      <h3>Perception vs Reality</h3>
+      <p>What appears stable often changes slowly.</p>
+      <button onclick="openEssay(2)">Read</button>
+    </div>
+  </div>
+</section>
+
+<!-- READING MODE -->
+<div id="readingMode" class="reading-mode" onclick="closeReading(event)">
+  <div class="reading-content">
+    <span class="close" onclick="closeReading()">×</span>
+    <div id="essayContent"></div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <h2 class="section-title">Contact</h2>
+  <a href="mailto:abhigyan025@gmail.com">📧 Email</a><br>
+  <a href="https://www.instagram.com/kumar.abhigyan_">📷 Instagram</a>
+</section>
+
+<footer>
+  <p>Clarity over noise. Always.</p>
+</footer>
+
+<!-- DEMO -->
+<div id="demoModal" class="modal" onclick="closeDemo(event)">
+  <div class="modal-content">
+    <span class="close" onclick="closeDemo()">×</span>
+    <iframe id="demoFrame"></iframe>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
 </html>
