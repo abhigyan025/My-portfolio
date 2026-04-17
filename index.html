@@ -1,0 +1,55 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kumar Abhigyan</title><link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+</head><body><!-- INTRO --><div id="intro">
+<p>Clarity takes time.</p>
+<h1 id="intro-name"></h1>
+</div><!-- NAV --><header>
+<div class="nav">
+<div class="logo">Kumar Abhigyan</div>
+<div class="menu-btn" id="menuBtn">☰</div>
+</div><nav id="menu">
+<a href="#home">Home</a>
+<a href="#featured">Latest</a>
+<a href="#about">About</a>
+<a href="#books">Books</a>
+<a href="#essays">Essays</a>
+<a href="#contact">Contact</a>
+</nav>
+</header><!-- HERO --><section id="home">
+<h1>Kumar Abhigyan</h1>
+<p>Clarity over noise.</p>
+</section><!-- FEATURED --><section id="featured">
+<img src="Moonrise.jpg">
+<h2>Dreams Beyond The Moonrise</h2>
+<button onclick="openDemo('link')">Read Demo</button>
+</section><!-- ABOUT --><section id="about">
+<h2>Meet Kumar Abhigyan</h2>
+<button onclick="toggleAbout()">Read More</button><div id="about-more">
+<p>Kumar Abhigyan is a writer focused on systems, clarity, and long-term thinking.</p>
+<p>His work explores patterns, perception, and structural forces across different domains.</p>
+<p>He focuses on understanding how systems behave over time, not just how they appear in isolated moments.</p>
+<p>His writing emphasizes clarity, pattern recognition, and disciplined thinking.</p>
+<p>His work continues to evolve through deeper observation and refinement.</p>
+</div>
+</section><!-- BOOKS --><section id="books">
+<h2>Books</h2><div class="book">
+<img src="Illusion.jpg">
+<h3>The Illusion of Stability</h3>
+<button onclick="openDemo('link')">Read Demo</button>
+</div></section><!-- ESSAYS --><section id="essays">
+<h2>Essays</h2><div class="essay-card">
+<h3>Clarity</h3>
+<button onclick="openEssay()">Read</button>
+</div></section><!-- CONTACT --><section id="contact">
+<h2>Contact</h2>
+<p>📧 abhigyan025@gmail.com</p>
+<p>📷 kumar.abhigyan_</p>
+</section><!-- MODAL --><div id="demoModal">
+<span onclick="closeDemo()">×</span>
+<iframe id="demoFrame"></iframe>
+</div><script src="script.js"></script></body>
+</html>
