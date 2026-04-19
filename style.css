@@ -1,0 +1,389 @@
+/* RESET */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+font-family:'Inter',sans-serif;
+background:#f4f1ea;
+color:#111;
+overflow-x:hidden;
+transition:background .3s, color .3s;
+}
+
+/* ================= GRAIN ================= */
+.grain{
+position:fixed;
+inset:0;
+background:url("https://grainy-gradients.vercel.app/noise.svg");
+opacity:.06;
+pointer-events:none;
+z-index:0;
+}
+
+/* ================= INTRO ================= */
+#intro{
+position:fixed;
+inset:0;
+background:#f4f1ea;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:9999;
+transition:opacity .6s ease;
+}
+
+.intro-inner{
+text-align:center;
+}
+
+#intro-name{
+font-family:'Playfair Display',serif;
+font-size:40px;
+margin-top:10px;
+}
+
+/* ================= NAV ================= */
+.nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 24px;
+position:relative;
+z-index:10;
+}
+
+.logo{
+font-weight:500;
+}
+
+.menu-btn{
+cursor:pointer;
+display:flex;
+flex-direction:column;
+gap:5px;
+}
+
+.menu-btn span{
+width:22px;
+height:2px;
+background:#111;
+transition:.3s;
+}
+
+/* FULL MENU */
+.menu{
+position:fixed;
+inset:0;
+background:#f4f1ea;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+gap:20px;
+
+opacity:0;
+pointer-events:none;
+transition:.4s;
+z-index:999;
+}
+
+.menu.show{
+opacity:1;
+pointer-events:auto;
+}
+
+.menu a{
+text-decoration:none;
+color:#111;
+font-size:22px;
+}
+
+/* ================= HERO ================= */
+.hero{
+text-align:center;
+padding:140px 20px 80px;
+position:relative;
+z-index:1;
+}
+
+.hero-main{
+font-family:'Playfair Display',serif;
+font-size:64px;
+display:block;
+}
+
+.hero-subline{
+opacity:.6;
+display:block;
+margin-top:8px;
+}
+
+.hero-sub{
+margin-top:14px;
+opacity:.7;
+}
+
+/* ================= SECTIONS ================= */
+section{
+padding:100px 20px;
+text-align:center;
+position:relative;
+z-index:1;
+}
+
+.section-title{
+font-size:28px;
+margin-bottom:20px;
+}
+
+/* ================= FEATURED ================= */
+.featured img{
+width:240px;
+border-radius:6px;
+box-shadow:0 30px 100px rgba(0,0,0,.2);
+transition:.4s;
+}
+
+.featured img:hover{
+transform:scale(1.05);
+}
+
+/* ================= BOOKS ================= */
+.books-grid{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:30px;
+}
+
+.book{
+max-width:200px;
+}
+
+.book img{
+width:160px;
+height:240px;
+object-fit:cover;
+border-radius:6px;
+transition:.4s;
+}
+
+.book img:hover{
+transform:scale(1.08);
+}
+
+.book h3{
+margin-top:10px;
+font-size:16px;
+}
+
+/* ================= BUTTONS ================= */
+.btn{
+padding:10px 22px;
+border-radius:999px;
+cursor:pointer;
+font-size:14px;
+transition:.3s;
+border:1px solid rgba(0,0,0,.1);
+}
+
+/* PRIMARY */
+.primary{
+background:#111;
+color:#fff;
+}
+
+.primary:hover{
+transform:translateY(-3px);
+box-shadow:0 10px 20px rgba(0,0,0,.2);
+}
+
+/* GLASS */
+.secondary{
+background:rgba(255,255,255,.5);
+backdrop-filter:blur(12px);
+-webkit-backdrop-filter:blur(12px);
+}
+
+.secondary:hover{
+background:#111;
+color:#fff;
+transform:translateY(-3px);
+}
+
+/* BUTTON GROUP */
+.btns{
+margin-top:12px;
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+justify-content:center;
+}
+
+/* ================= ESSAYS ================= */
+.essay-grid{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:20px;
+}
+
+.essay-card{
+width:260px;
+padding:20px;
+border:1px solid rgba(0,0,0,.1);
+border-radius:6px;
+transition:.3s;
+background:rgba(255,255,255,.4);
+}
+
+.essay-card:hover{
+transform:translateY(-8px);
+box-shadow:0 20px 40px rgba(0,0,0,.1);
+}
+
+/* ================= ABOUT ================= */
+.about-more{
+max-height:0;
+overflow:hidden;
+transition:max-height .5s ease;
+}
+
+/* ================= READING MODE ================= */
+.reading-mode{
+display:none;
+position:fixed;
+inset:0;
+background:#fff;
+overflow:auto;
+padding:60px 20px;
+z-index:9999;
+}
+
+.reading-content{
+max-width:700px;
+margin:auto;
+line-height:1.9;
+font-size:17px;
+}
+
+#closeReading{
+position:fixed;
+top:20px;
+right:20px;
+font-size:28px;
+cursor:pointer;
+}
+
+/* ================= MODAL ================= */
+.modal{
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.8);
+z-index:9999;
+}
+
+.modal-content{
+width:85%;
+height:85%;
+margin:auto;
+background:#fff;
+position:relative;
+}
+
+.modal iframe{
+width:100%;
+height:100%;
+border:none;
+}
+
+#closeDemo{
+position:absolute;
+top:10px;
+right:15px;
+font-size:24px;
+cursor:pointer;
+}
+
+/* ================= CONTACT ================= */
+#contact a{
+display:block;
+margin:10px 0;
+text-decoration:none;
+color:#111;
+}
+
+/* ================= FOOTER ================= */
+footer{
+text-align:center;
+padding:40px 20px;
+opacity:.6;
+}
+
+/* ================= REVEAL ================= */
+.reveal{
+opacity:0;
+transform:translateY(40px);
+transition:.8s ease;
+}
+
+.reveal.active{
+opacity:1;
+transform:none;
+}
+
+/* ================= DARK MODE ================= */
+.dark{
+background:#111;
+color:#eee;
+}
+
+.dark .menu{
+background:#111;
+}
+
+.dark .menu a{
+color:#eee;
+}
+
+.dark .secondary{
+background:rgba(255,255,255,.1);
+color:#fff;
+border:1px solid rgba(255,255,255,.2);
+}
+
+.dark .essay-card{
+background:rgba(255,255,255,.05);
+border-color:rgba(255,255,255,.1);
+}
+
+.dark .reading-mode{
+background:#111;
+color:#eee;
+}
+
+.dark .modal-content{
+background:#111;
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:768px){
+
+.hero-main{
+font-size:42px;
+}
+
+.book img{
+width:140px;
+height:210px;
+}
+
+}
