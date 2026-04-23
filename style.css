@@ -1,0 +1,239 @@
+/* =========================  
+   RESET  
+========================= */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  width: 100%;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  color: #24221f;
+  background: #f4efe6;
+  line-height: 1.7;
+  overflow-x: hidden;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  width: 100%;
+}
+
+/* FIX: prevent layout overflow bugs */
+body,
+main,
+section {
+  overflow-x: hidden;
+}
+
+img,
+iframe {
+  max-width: 100%;
+  display: block;
+}
+
+/* 🔥 FIX: covers looking zoomed */
+img {
+  object-fit: contain;
+}
+
+/* =========================  
+   PAPER BACKGROUND (FIXED REAL FEEL)
+========================= */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -2;
+
+  background:
+    url("https://www.transparenttextures.com/patterns/paper-fibers.png"),
+    linear-gradient(180deg, #f6f1e8, #efe8dc);
+
+  background-size: 280px 280px, cover;
+  opacity: 0.9;
+}
+
+/* =========================  
+   GRAIN (SOFTER)
+========================= */
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background:
+    url("https://www.transparenttextures.com/patterns/asfalt-light.png");
+  opacity: 0.05;
+}
+
+/* =========================  
+   LAYOUT  
+========================= */
+.container {
+  width: min(1100px, calc(100% - 32px));
+  margin-inline: auto;
+}
+
+section {
+  padding: clamp(64px, 8vw, 110px) 0;
+}
+
+/* =========================  
+   TYPOGRAPHY IMPROVEMENT
+========================= */
+p {
+  max-width: 70ch;
+  font-size: 0.98rem;
+  color: #5f5a52;
+}
+
+/* =========================  
+   BUTTON FIX (IMPORTANT)
+========================= */
+.btn {
+  border-radius: 14px;
+  font-size: 0.9rem;
+}
+
+/* 🔥 FIX: remove “cheap look” */
+.btn.primary {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.btn.secondary {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* =========================  
+   HERO SPACING FIX
+========================= */
+.hero {
+  padding-top: clamp(90px, 12vw, 140px);
+}
+
+/* =========================  
+   FEATURED IMAGE FIX
+========================= */
+.featured-grid img {
+  width: 100%;
+  max-width: 380px;
+
+  /* 🔥 FIX: NO ZOOM */
+  object-fit: contain;
+
+  background: #fff;
+  padding: 6px;
+}
+
+/* =========================  
+   BOOK COVERS FIX (IMPORTANT)
+========================= */
+.book img {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+
+  /* 🔥 THIS FIXES ZOOM ISSUE */
+  object-fit: contain;
+
+  background: #fff;
+  padding: 6px;
+}
+
+/* =========================  
+   REMOVE EXCESS SCALE EFFECT
+========================= */
+.book:hover img {
+  transform: scale(1.02);
+}
+
+/* =========================  
+   ESSAY CARD FIX
+========================= */
+.essay-card {
+  border-radius: 18px;
+}
+
+/* =========================  
+   READING MODE FIX
+========================= */
+.reading-content {
+  line-height: 1.85;
+  font-size: 1.02rem;
+}
+
+/* =========================  
+   MENU FIX (NO BREAKING)
+========================= */
+.menu {
+  max-width: 320px;
+}
+
+/* =========================  
+   REMOVE RANDOM GAP BUG
+========================= */
+.featured,
+.books,
+.essays {
+  margin-top: 0;
+}
+
+/* =========================  
+   MOBILE FIXES
+========================= */
+@media (max-width: 720px) {
+
+  /* 🔥 Fix scaling issue */
+  .container {
+    width: calc(100% - 20px);
+  }
+
+  .book img {
+    max-width: 260px;
+    margin: 0 auto;
+  }
+
+  .featured-grid img {
+    max-width: 300px;
+  }
+}
+
+/* =========================  
+   DARK MODE FIX
+========================= */
+body.dark::before {
+  opacity: 0.12;
+}
+
+body.dark .book img,
+body.dark .featured-grid img {
+  background: #1a1c1b;
+}
+
+/* =========================  
+   MOTION SAFETY (KEEP)
+========================= */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
