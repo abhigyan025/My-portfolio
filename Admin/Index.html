@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Admin — Kumar Abhigyan</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{ --ink:#0E0E10; --paper:#F4F1EA; --gold:#C9A35C; --slate:#5B6168; --line:rgba(244,241,234,.14); }
+  *{box-sizing:border-box;}
+  body{background:var(--ink);color:var(--paper);font-family:'Inter',sans-serif;margin:0;padding:24px;}
+  h1{font-family:'Playfair Display',serif;font-size:1.6rem;}
+  .tabs{display:flex;gap:10px;margin:20px 0;flex-wrap:wrap;}
+  .tab{padding:9px 16px;border:1px solid var(--line);border-radius:3px;cursor:pointer;background:none;color:var(--paper);font-size:.9rem;}
+  .tab.active{border-color:var(--gold);color:var(--gold);}
+  form{display:none;flex-direction:column;gap:14px;max-width:480px;}
+  form.active{display:flex;}
+  label{font-size:.85rem;color:var(--slate);}
+  input,textarea{background:#1a1a1d;border:1px solid var(--line);color:var(--paper);padding:10px;border-radius:3px;font-family:inherit;font-size:.95rem;}
+  textarea{min-height:160px;resize:vertical;}
+  button[type=submit]{padding:12px;background:var(--gold);color:var(--ink);border:none;border-radius:3px;font-weight:500;cursor:pointer;margin-top:6px;}
+  #status{margin-top:16px;font-size:.9rem;}
+  #lock{max-width:340px;display:flex;flex-direction:column;gap:14px;margin-top:60px;}
+  .hidden{display:none;}
+</style>
+</head>
+<body>
+
+<div id="lock">
+  <h1>Admin Access</h1>
+  <p style="color:var(--slate);font-size:.9rem">This page is private. Enter your passphrase to continue. (You set this yourself — it's not stored anywhere public.)</p>
+  <input type="password" id="pass" placeholder="Passphrase">
+  <button type="button" id="unlockBtn" style="padding:12px;background:var(--gold);color:var(--ink);border:none;border-radius:3px;cursor:pointer;">Unlock</button>
+</div>
+
+<div id="panel" class="hidden">
+  <h1>Add Content</h1>
+  <div class="tabs">
+    <button class="tab active" data-tab="book">Book</button>
+    <button class="tab" data-tab="essay">Essay</button>
+    <button class="tab" data-tab="update">Update</button>
+  </div>
+
+  <form id="bookForm" class="active">
+    <label>Title</label>
+    <input name="title" required>
+    <label>Tagline / short description</label>
+    <input name="tagline">
+    <label>Cover image URL (upload image to any free image host like imgbb.com, paste link here)</label>
+    <input name="coverUrl" placeholder="https://...">
+    <label>Buy link (optional)</label>
+    <input name="buyLink">
+    <label>Demo/read link (optional)</label>
+    <input name="demoLink">
+    <label><input type="checkbox" name="comingSoon" style="width:auto"> Mark as "Coming Soon"</label>
+    <button type="submit">Publish Book</button>
+  </form>
+
+  <form id="essayForm">
+    <label>Title</label>
+    <input name="title" required>
+    <label>Short excerpt (shown on the card)</label>
+    <input name="excerpt">
+    <label>Full essay text (one paragraph per line)</label>
+    <textarea name="body" required></textarea>
+    <button type="submit">Publish Essay</button>
+  </form>
+
+  <form id="updateForm">
+    <label>Date</label>
+    <input type="date" name="date" required>
+    <label>Update text</label>
+    <input name="text" required placeholder="e.g. Started writing book three">
+    <button type="submit">Publish Update</button>
+  </form>
+
+  <div id="status"></div>
+</div>
+
+<script>
+/* ====== CONFIG ====== */
+const SANITY_PROJECT_ID = "zsm7toak";
+const SANITY_DATASET = "production";
+const SANITY_TOKEN = "skLnSwNE8ODqfu6L5XNPhn2XbthxqIiOlTzNZXOCl4mcxGlD9y0SxKFVnrnPPn8HPwhcXbwghtUJUbQNFgkHZgbaWmSvaBk7g1YYjwTE5hJpHnsPbfzHELC5aGlhMomaCI5NJ3Y3dt1ZSUVi5HfJbCY6ac95HNPq5HE7TMbrNOD5d6VoaiZl";
+const ADMIN_PASS = "oWoXabhigyan69"; // ⚠️ CHANGE THIS to your own secret passphrase
+
+document.getElementById("unlockBtn").addEventListener("click", () => {
+  if(document.getElementById("pass").value === ADMIN_PASS){
+    document.getElementById("lock").classList.add("hidden");
+    document.getElementById("panel").classList.remove("hidden");
+  }else{
+    alert("Incorrect passphrase.");
+  }
+});
+
+document.querySelectorAll(".tab").forEach(tab => {
+  tab.addEventListener("click", () => {
+    document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+    document.querySelectorAll("form").forEach(f => f.classList.remove("active"));
+    tab.classList.add("active");
+    document.getElementById(tab.dataset.tab + "Form").classList.add("active");
+  });
+});
+
+async function publish(doc){
+  const status = document.getElementById("status");
+  status.textContent = "Publishing...";
+  try{
+    const res = await fetch(`https://${SANITY_PROJECT_ID}.api.sanity.io/v2024-01-01/data/mutate/${SANITY_DATASET}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${SANITY_TOKEN}`
+      },
+      body: JSON.stringify({ mutations: [{ create: doc }] })
+    });
+    if(!res.ok) throw new Error(await res.text());
+    status.textContent = "✅ Published! It'll appear on your site shortly.";
+    status.style.color = "#7fb069";
+  }catch(err){
+    status.textContent = "❌ Something went wrong. Check your Sanity token is set correctly.";
+    status.style.color = "#e07856";
+    console.error(err);
+  }
+}
+
+document.getElementById("bookForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const f = new FormData(e.target);
+  publish({
+    _type: "book",
+    title: f.get("title"),
+    tagline: f.get("tagline"),
+    coverUrl: f.get("coverUrl"),
+    buyLink: f.get("buyLink"),
+    demoLink: f.get("demoLink"),
+    comingSoon: f.get("comingSoon") === "on"
+  });
+  e.target.reset();
+});
+
+document.getElementById("essayForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const f = new FormData(e.target);
+  publish({
+    _type: "essay",
+    title: f.get("title"),
+    excerpt: f.get("excerpt"),
+    body: f.get("body")
+  });
+  e.target.reset();
+});
+
+document.getElementById("updateForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const f = new FormData(e.target);
+  publish({
+    _type: "update",
+    date: f.get("date"),
+    text: f.get("text")
+  });
+  e.target.reset();
+});
+</script>
+</body>
+</html>
