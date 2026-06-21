@@ -94,6 +94,27 @@ closeReading.addEventListener("click", () => {
   readingMode.classList.remove("open");
 });
 
+/* ===== READING PROGRESS BAR ===== */
+const progressBar = document.getElementById("progressBar");
+readingMode.addEventListener("scroll", () => {
+  const scrollTop = readingMode.scrollTop;
+  const scrollHeight = readingMode.scrollHeight - readingMode.clientHeight;
+  const pct = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+  progressBar.style.width = pct + "%";
+});
+
+/* ===== SUBSCRIBE FORM (placeholder — not yet connected to a real mailing list) ===== */
+const subscribeForm = document.getElementById("subscribeForm");
+if(subscribeForm){
+  subscribeForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const status = document.getElementById("subscribeStatus");
+    status.textContent = "✅ Email registered! I'll let you know when something new drops.";
+    status.style.color = "var(--gold)";
+    e.target.reset();
+  });
+}
+
 /* ===== LOAD DYNAMIC CONTENT FROM SANITY ===== */
 async function loadEssays(){
   const essays = await sanityFetch(`*[_type=="essay"]|order(_createdAt desc)`);
