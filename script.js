@@ -9,56 +9,115 @@ async function sanityFetch(query){
     const json = await res.json();
     return json.result || [];
   }catch(e){
-    console.warn("Sanity fetch failed", e);
+    console.warn("Sanity fetch failed",e);
     return [];
   }
 }
+
+/* ===== CUSTOM CURSOR ===== */
+const cursor = document.createElement("div");
+cursor.className = "cursor";
+document.body.appendChild(cursor);
+document.addEventListener("mousemove", e => {
+  cursor.style.left = e.clientX + "px";
+  cursor.style.top = e.clientY + "px";
+});
+document.querySelectorAll("a,button,.book,.essay-card").forEach(el => {
+  el.addEventListener("mouseenter", () => cursor.classList.add("hovering"));
+  el.addEventListener("mouseleave", () => cursor.classList.remove("hovering"));
+});
 
 /* ===== INTRO ===== */
 window.addEventListener("load", () => {
   setTimeout(() => {
     document.getElementById("intro").classList.add("hide");
-  }, 2200);
+  }, 2400);
 });
+
+/* ===== STAGGERED HERO NAME ===== */
+const heroName = document.querySelector(".hero-name");
+if(heroName){
+  const words = heroName.textContent.trim().split(" ");
+  heroName.innerHTML = words.map((word, wi) =>
+    `<span class="word"><span style="animation-delay:${0.5 + wi * 0.18}s">${word}</span></span>`
+  ).join(" ");
+}
 
 /* ===== MENU ===== */
 const menuBtn = document.getElementById("menuBtn");
 const menu = document.getElementById("menu");
-menuBtn.addEventListener("click", () => {
-  const open = menu.classList.toggle("open");
-  menuBtn.setAttribute("aria-expanded", open);
-});
-menu.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
-  menu.classList.remove("open");
-}));
+const menuOverlay = document.getElementById("menuOverlay");
 
-/* ===== DARK / LIGHT TOGGLE ===== */
+function openMenu(){
+  menu.classList.add("open");
+  menuOverlay.classList.add("open");
+  menuBtn.classList.add("active");
+  menuBtn.setAttribute("aria-expanded", true);
+}
+function closeMenu(){
+  menu.classList.remove("open");
+  menuOverlay.classList.remove("open");
+  menuBtn.classList.remove("active");
+  menuBtn.setAttribute("aria-expanded", false);
+}
+menuBtn.addEventListener("click", () => {
+  menu.classList.contains("open") ? closeMenu() : openMenu();
+});
+menuOverlay.addEventListener("click", closeMenu);
+menu.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
+
+/* ===== DARK MODE ===== */
 const darkToggle = document.getElementById("darkToggle");
 darkToggle.addEventListener("click", () => {
   document.body.classList.toggle("dark");
+  darkToggle.textContent = document.body.classList.contains("dark") ? "Light Mode" : "Dark Mode";
+  closeMenu();
 });
 
 /* ===== ABOUT EXPAND ===== */
 const aboutBtn = document.getElementById("aboutBtn");
 const aboutMore = document.getElementById("about-more");
-aboutBtn.addEventListener("click", () => {
-  const open = aboutMore.classList.toggle("open");
-  aboutBtn.textContent = open ? "Read Less" : "Read More";
-});
+if(aboutBtn){
+  aboutBtn.addEventListener("click", () => {
+    const open = aboutMore.classList.toggle("open");
+    aboutBtn.textContent = open ? "Read Less" : "Read More";
+  });
+}
 
 /* ===== SCROLL REVEAL ===== */
-const revealEls = document.querySelectorAll(".reveal");
-const io = new IntersectionObserver((entries) => {
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add("show"); });
+}, {threshold:.12});
+document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+
+/* ===== STATS COUNT UP ===== */
+function countUp(el, target, duration=1600){
+  let start = 0;
+  const step = target / (duration / 16);
+  const timer = setInterval(() => {
+    start += step;
+    if(start >= target){ el.textContent = target; clearInterval(timer); }
+    else el.textContent = Math.floor(start);
+  }, 16);
+}
+const statsIo = new IntersectionObserver(entries => {
   entries.forEach(e => {
-    if(e.isIntersecting) e.target.classList.add("show");
+    if(e.isIntersecting){
+      e.target.querySelectorAll(".stat strong").forEach(el => {
+        const val = parseInt(el.textContent);
+        if(!isNaN(val)) countUp(el, val);
+      });
+      statsIo.unobserve(e.target);
+    }
   });
-}, {threshold:.15});
-revealEls.forEach(el => io.observe(el));
+}, {threshold:.5});
+const statsEl = document.querySelector(".stats-row");
+if(statsEl) statsIo.observe(statsEl);
 
 /* ===== DEMO MODAL ===== */
 const demoModal = document.getElementById("demoModal");
 const demoFrame = document.getElementById("demoFrame");
-document.addEventListener("click", (e) => {
+document.addEventListener("click", e => {
   if(e.target.classList.contains("demoBtn")){
     demoFrame.src = e.target.dataset.demo;
     demoModal.classList.add("open");
@@ -73,40 +132,33 @@ document.getElementById("closeDemo").addEventListener("click", () => {
 const readingMode = document.getElementById("readingMode");
 const readingToggle = document.getElementById("readingToggle");
 const closeReading = document.getElementById("closeReading");
+const progressBar = document.getElementById("progressBar");
 
 function openEssay(targetId){
   document.querySelectorAll(".essay-full").forEach(el => el.classList.remove("active"));
   const target = document.getElementById(targetId);
   if(target) target.classList.add("active");
   readingMode.classList.add("open");
+  readingMode.scrollTop = 0;
+  progressBar.style.width = "0%";
 }
-
-document.addEventListener("click", (e) => {
-  if(e.target.classList.contains("essayBtn")){
-    openEssay(e.target.dataset.target);
-  }
+document.addEventListener("click", e => {
+  if(e.target.classList.contains("essayBtn")) openEssay(e.target.dataset.target);
+  if(e.target.classList.contains("backToEssays")) readingMode.classList.remove("open");
 });
-
-readingToggle.addEventListener("click", () => {
-  readingMode.classList.add("open");
-});
-closeReading.addEventListener("click", () => {
-  readingMode.classList.remove("open");
-});
+readingToggle.addEventListener("click", () => { readingMode.classList.add("open"); closeMenu(); });
+closeReading.addEventListener("click", () => readingMode.classList.remove("open"));
 
 /* ===== READING PROGRESS BAR ===== */
-const progressBar = document.getElementById("progressBar");
 readingMode.addEventListener("scroll", () => {
-  const scrollTop = readingMode.scrollTop;
-  const scrollHeight = readingMode.scrollHeight - readingMode.clientHeight;
-  const pct = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
-  progressBar.style.width = pct + "%";
+  const pct = readingMode.scrollHeight - readingMode.clientHeight;
+  progressBar.style.width = (pct > 0 ? (readingMode.scrollTop / pct) * 100 : 0) + "%";
 });
 
-/* ===== SUBSCRIBE FORM (placeholder — not yet connected to a real mailing list) ===== */
+/* ===== SUBSCRIBE FORM (placeholder) ===== */
 const subscribeForm = document.getElementById("subscribeForm");
 if(subscribeForm){
-  subscribeForm.addEventListener("submit", (e) => {
+  subscribeForm.addEventListener("submit", e => {
     e.preventDefault();
     const status = document.getElementById("subscribeStatus");
     status.textContent = "✅ Email registered! I'll let you know when something new drops.";
@@ -115,67 +167,54 @@ if(subscribeForm){
   });
 }
 
-/* ===== LOAD DYNAMIC CONTENT FROM SANITY ===== */
+/* ===== SANITY: LOAD ESSAYS ===== */
 async function loadEssays(){
   const essays = await sanityFetch(`*[_type=="essay"]|order(_createdAt desc)`);
-  if(!essays.length) return; // fall back to hardcoded essays already in HTML
-
+  if(!essays.length) return;
   const grid = document.querySelector(".essay-grid");
   const readingContent = document.querySelector(".reading-content");
   grid.innerHTML = "";
-
   essays.forEach((essay, i) => {
     const id = `dyn-essay-${i}`;
-    const card = document.createElement("article");
-    card.className = "essay-card";
     const words = (essay.body || "").split(" ").length;
     const mins = Math.max(1, Math.round(words / 200));
+    const card = document.createElement("article");
+    card.className = "essay-card";
     card.innerHTML = `
       <span class="read-time">${mins} min read</span>
       <h3>${essay.title || "Untitled"}</h3>
       <p>${essay.excerpt || ""}</p>
-      <button class="btn secondary essayBtn" type="button" data-target="${id}">Read</button>
-    `;
+      <button class="btn secondary essayBtn" type="button" data-target="${id}">Read</button>`;
     grid.appendChild(card);
-
     const full = document.createElement("div");
-    full.id = id;
-    full.className = "essay-full";
-    const paras = (essay.body || "").split("\n").filter(Boolean)
-      .map(p => `<p>${p}</p>`).join("");
+    full.id = id; full.className = "essay-full";
     full.innerHTML = `
       <span class="backToEssays" role="button">&larr; Back to essays</span>
       <h2>${essay.title || "Untitled"}</h2>
-      ${paras}
+      ${(essay.body||"").split("\n").filter(Boolean).map(p=>`<p>${p}</p>`).join("")}
       <div class="share-row">
-        <a class="btn secondary" target="_blank" rel="noreferrer" href="https://wa.me/?text=${encodeURIComponent(essay.title || '')}">Share on WhatsApp</a>
-        <a class="btn secondary" target="_blank" rel="noreferrer" href="https://twitter.com/intent/tweet?text=${encodeURIComponent(essay.title || '')}">Share on X</a>
-      </div>
-    `;
+        <a class="btn secondary" target="_blank" rel="noreferrer" href="https://wa.me/?text=${encodeURIComponent(essay.title||'')}">Share on WhatsApp</a>
+        <a class="btn secondary" target="_blank" rel="noreferrer" href="https://twitter.com/intent/tweet?text=${encodeURIComponent(essay.title||'')}">Share on X</a>
+      </div>`;
     readingContent.appendChild(full);
-  });
-
-  document.querySelectorAll(".backToEssays").forEach(b => {
-    b.addEventListener("click", () => readingMode.classList.remove("open"));
   });
 }
 
+/* ===== SANITY: LOAD UPDATES ===== */
 async function loadUpdates(){
   const updates = await sanityFetch(`*[_type=="update"]|order(date desc)`);
   const feed = document.getElementById("updatesFeed");
   if(!feed) return;
-  if(!updates.length){
-    feed.innerHTML = `<p style="color:var(--slate)">No updates yet — check back soon.</p>`;
-    return;
-  }
-  feed.innerHTML = updates.map(u => `
-    <div class="update-item">
-      <div class="update-date">${u.date ? new Date(u.date).toLocaleDateString('en-US',{month:'short',day:'numeric'}) : ''}</div>
-      <div class="update-text">${u.text || ''}</div>
-    </div>
-  `).join("");
+  feed.innerHTML = !updates.length
+    ? `<p style="color:var(--slate);padding:24px 0">No updates yet — check back soon.</p>`
+    : updates.map(u => `
+      <div class="update-item">
+        <div class="update-date">${u.date ? new Date(u.date).toLocaleDateString('en-US',{month:'short',day:'numeric'}) : ''}</div>
+        <div class="update-text">${u.text || ''}</div>
+      </div>`).join("");
 }
 
+/* ===== SANITY: LOAD BOOKS ===== */
 async function loadNewBooks(){
   const books = await sanityFetch(`*[_type=="book"]|order(_createdAt desc)`);
   if(!books.length) return;
@@ -184,14 +223,15 @@ async function loadNewBooks(){
     const el = document.createElement("article");
     el.className = "book";
     el.innerHTML = `
-      <img src="${b.coverUrl || 'placeholder.jpg'}" alt="${b.title} cover">
+      <img src="${b.coverUrl||'placeholder.jpg'}" alt="${b.title} cover">
       <h3>${b.title}</h3>
-      <p style="color:var(--slate);font-size:.9rem">${b.tagline || ''}</p>
-      ${b.comingSoon ? `<span class="read-time">Coming Soon</span>` : `<div class="btns">
-        ${b.demoLink ? `<button class="btn primary demoBtn" data-demo="${b.demoLink}">Read Demo</button>` : ''}
-        ${b.buyLink ? `<a class="btn secondary" href="${b.buyLink}" target="_blank" rel="noreferrer">Buy</a>` : ''}
-      </div>`}
-    `;
+      <p class="book-excerpt">${b.tagline||''}</p>
+      ${b.comingSoon
+        ? `<span class="read-time">Coming Soon</span>`
+        : `<div class="btns">
+            ${b.demoLink?`<button class="btn primary demoBtn" data-demo="${b.demoLink}">Read Demo</button>`:''}
+            ${b.buyLink?`<a class="btn secondary" href="${b.buyLink}" target="_blank" rel="noreferrer">Buy</a>`:''}
+           </div>`}`;
     grid.appendChild(el);
   });
 }
