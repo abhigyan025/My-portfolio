@@ -8,10 +8,7 @@ async function sanityFetch(query){
     const res = await fetch(`${SANITY_API}?query=${encodeURIComponent(query)}`);
     const json = await res.json();
     return json.result || [];
-  }catch(e){
-    console.warn("Sanity fetch failed",e);
-    return [];
-  }
+  }catch(e){ console.warn("Sanity fetch failed",e); return []; }
 }
 
 /* ===== CUSTOM CURSOR ===== */
@@ -22,16 +19,14 @@ document.addEventListener("mousemove", e => {
   cursor.style.left = e.clientX + "px";
   cursor.style.top = e.clientY + "px";
 });
-document.querySelectorAll("a,button,.book,.essay-card").forEach(el => {
+document.querySelectorAll("a,button,.book,.essay-card,.about-card").forEach(el => {
   el.addEventListener("mouseenter", () => cursor.classList.add("hovering"));
   el.addEventListener("mouseleave", () => cursor.classList.remove("hovering"));
 });
 
 /* ===== INTRO ===== */
 window.addEventListener("load", () => {
-  setTimeout(() => {
-    document.getElementById("intro").classList.add("hide");
-  }, 2400);
+  setTimeout(() => document.getElementById("intro").classList.add("hide"), 2400);
 });
 
 /* ===== STAGGERED HERO NAME ===== */
@@ -60,9 +55,7 @@ function closeMenu(){
   menuBtn.classList.remove("active");
   menuBtn.setAttribute("aria-expanded", false);
 }
-menuBtn.addEventListener("click", () => {
-  menu.classList.contains("open") ? closeMenu() : openMenu();
-});
+menuBtn.addEventListener("click", () => menu.classList.contains("open") ? closeMenu() : openMenu());
 menuOverlay.addEventListener("click", closeMenu);
 menu.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
 
@@ -85,10 +78,31 @@ if(aboutBtn){
 }
 
 /* ===== SCROLL REVEAL ===== */
-const io = new IntersectionObserver(entries => {
+const revealIO = new IntersectionObserver(entries => {
   entries.forEach(e => { if(e.isIntersecting) e.target.classList.add("show"); });
-}, {threshold:.12});
-document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+}, {threshold:.1});
+document.querySelectorAll(".reveal").forEach(el => revealIO.observe(el));
+
+/* ===== ACTIVE NAV ON SCROLL ===== */
+const navLinks = document.querySelectorAll(".nav-links a[data-section]");
+const sections = document.querySelectorAll("section[id]");
+const activeNavIO = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      navLinks.forEach(a => {
+        a.classList.toggle("active", a.dataset.section === e.target.id);
+      });
+    }
+  });
+}, {rootMargin:"-40% 0px -55% 0px"});
+sections.forEach(s => activeNavIO.observe(s));
+
+/* ===== PAGE PROGRESS BAR ===== */
+const pageProgress = document.getElementById("pageProgress");
+window.addEventListener("scroll", () => {
+  const total = document.body.scrollHeight - window.innerHeight;
+  pageProgress.style.width = (total > 0 ? window.scrollY / total * 100 : 0) + "%";
+}, {passive:true});
 
 /* ===== STATS COUNT UP ===== */
 function countUp(el, target, duration=1600){
@@ -100,19 +114,19 @@ function countUp(el, target, duration=1600){
     else el.textContent = Math.floor(start);
   }, 16);
 }
-const statsIo = new IntersectionObserver(entries => {
+const statsIO = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if(e.isIntersecting){
       e.target.querySelectorAll(".stat strong").forEach(el => {
         const val = parseInt(el.textContent);
         if(!isNaN(val)) countUp(el, val);
       });
-      statsIo.unobserve(e.target);
+      statsIO.unobserve(e.target);
     }
   });
 }, {threshold:.5});
 const statsEl = document.querySelector(".stats-row");
-if(statsEl) statsIo.observe(statsEl);
+if(statsEl) statsIO.observe(statsEl);
 
 /* ===== DEMO MODAL ===== */
 const demoModal = document.getElementById("demoModal");
@@ -141,18 +155,45 @@ function openEssay(targetId){
   readingMode.classList.add("open");
   readingMode.scrollTop = 0;
   progressBar.style.width = "0%";
+  document.body.style.overflow = "hidden";
 }
+function closeReadingMode(){
+  readingMode.classList.remove("open");
+  document.body.style.overflow = "";
+}
+
 document.addEventListener("click", e => {
   if(e.target.classList.contains("essayBtn")) openEssay(e.target.dataset.target);
-  if(e.target.classList.contains("backToEssays")) readingMode.classList.remove("open");
+  if(e.target.classList.contains("backToEssays")) closeReadingMode();
 });
 readingToggle.addEventListener("click", () => { readingMode.classList.add("open"); closeMenu(); });
-closeReading.addEventListener("click", () => readingMode.classList.remove("open"));
+closeReading.addEventListener("click", closeReadingMode);
 
 /* ===== READING PROGRESS BAR ===== */
 readingMode.addEventListener("scroll", () => {
   const pct = readingMode.scrollHeight - readingMode.clientHeight;
-  progressBar.style.width = (pct > 0 ? (readingMode.scrollTop / pct) * 100 : 0) + "%";
+  progressBar.style.width = (pct > 0 ? readingMode.scrollTop / pct * 100 : 0) + "%";
+}, {passive:true});
+
+/* ===== FONT SIZE CONTROLS ===== */
+document.getElementById("fontSmall").addEventListener("click", () => {
+  document.querySelectorAll(".essay-full").forEach(el => {
+    el.classList.remove("font-large");
+    el.classList.add("font-small");
+  });
+});
+document.getElementById("fontLarge").addEventListener("click", () => {
+  document.querySelectorAll(".essay-full").forEach(el => {
+    el.classList.remove("font-small");
+    el.classList.add("font-large");
+  });
+});
+
+/* ===== FOCUS MODE ===== */
+const focusBtn = document.getElementById("focusMode");
+focusBtn.addEventListener("click", () => {
+  readingMode.classList.toggle("focus-mode");
+  focusBtn.textContent = readingMode.classList.contains("focus-mode") ? "Exit Focus" : "Focus";
 });
 
 /* ===== SUBSCRIBE FORM (placeholder) ===== */
@@ -176,21 +217,22 @@ async function loadEssays(){
   grid.innerHTML = "";
   essays.forEach((essay, i) => {
     const id = `dyn-essay-${i}`;
-    const words = (essay.body || "").split(" ").length;
-    const mins = Math.max(1, Math.round(words / 200));
+    const words = (essay.body||"").split(" ").length;
+    const mins = Math.max(1, Math.round(words/200));
     const card = document.createElement("article");
     card.className = "essay-card";
     card.innerHTML = `
       <span class="read-time">${mins} min read</span>
-      <h3>${essay.title || "Untitled"}</h3>
-      <p>${essay.excerpt || ""}</p>
+      <h3>${essay.title||"Untitled"}</h3>
+      <p>${essay.excerpt||""}</p>
       <button class="btn secondary essayBtn" type="button" data-target="${id}">Read</button>`;
     grid.appendChild(card);
     const full = document.createElement("div");
     full.id = id; full.className = "essay-full";
     full.innerHTML = `
-      <span class="backToEssays" role="button">&larr; Back to essays</span>
-      <h2>${essay.title || "Untitled"}</h2>
+      <span class="backToEssays">&larr; All Essays</span>
+      <p class="essay-meta"><span class="read-time">${mins} min read</span></p>
+      <h2>${essay.title||"Untitled"}</h2>
       ${(essay.body||"").split("\n").filter(Boolean).map(p=>`<p>${p}</p>`).join("")}
       <div class="share-row">
         <a class="btn secondary" target="_blank" rel="noreferrer" href="https://wa.me/?text=${encodeURIComponent(essay.title||'')}">Share on WhatsApp</a>
@@ -207,10 +249,10 @@ async function loadUpdates(){
   if(!feed) return;
   feed.innerHTML = !updates.length
     ? `<p style="color:var(--slate);padding:24px 0">No updates yet — check back soon.</p>`
-    : updates.map(u => `
+    : updates.map(u=>`
       <div class="update-item">
-        <div class="update-date">${u.date ? new Date(u.date).toLocaleDateString('en-US',{month:'short',day:'numeric'}) : ''}</div>
-        <div class="update-text">${u.text || ''}</div>
+        <div class="update-date">${u.date?new Date(u.date).toLocaleDateString('en-US',{month:'short',day:'numeric'}):''}</div>
+        <div class="update-text">${u.text||''}</div>
       </div>`).join("");
 }
 
