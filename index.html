@@ -19,6 +19,7 @@
 <body>
 
 <div class="grain" aria-hidden="true"></div>
+<div id="pageProgress" class="page-progress"></div>
 
 <div id="intro" aria-hidden="true">
   <div class="intro-inner">
@@ -33,13 +34,20 @@
 <header>
   <div class="nav">
     <div class="logo">Kumar Abhigyan</div>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#home" data-section="home">Home</a>
+      <a href="#about" data-section="about">About</a>
+      <a href="#books" data-section="books">Books</a>
+      <a href="#essays" data-section="essays">Essays</a>
+      <a href="#contact" data-section="contact">Contact</a>
+    </nav>
     <button id="menuBtn" class="menu-btn" type="button" aria-label="Open menu" aria-controls="menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
 </header>
 
-<nav id="menu" class="menu" aria-label="Primary navigation">
+<nav id="menu" class="menu" aria-label="Mobile navigation">
   <a href="#home">Home</a>
   <a href="#updates">Latest</a>
   <a href="#about">About</a>
@@ -129,18 +137,60 @@
 
   <section id="about" class="about reveal">
     <div class="container">
-      <h2 class="section-title">Meet Kumar Abhigyan</h2>
-      <p class="about-preview">Kumar Abhigyan, born in October 2011 and based in Jharkhand, is an emerging writer, debater, and systems thinker focused on clarity, long-term understanding, and the deeper patterns beneath events.</p>
-      <div style="margin-top:28px">
-        <button id="aboutBtn" class="btn secondary" type="button">Read More</button>
+      <h2 class="section-title">Kumar Abhigyan</h2>
+
+      <p class="about-opener">
+        Kumar Abhigyan grew up in a part of Jharkhand that most people pass over on a map — a place of open forests, red earth, wide skies, and a kind of stillness that doesn't announce itself. It is not a dramatic landscape. It is a quiet one. And quiet places, it turns out, produce a particular kind of thinker: the kind who notices things before they are pointed out, who sits with questions longer than most people are comfortable with, and who finds it difficult to accept the surface of anything as the whole story.
+      </p>
+
+      <p class="about-opener" style="margin-top:0">
+        He spent more time with trees than with books growing up. He rode his bicycle through the backyard until the route was memorised. He played games that had no real rules, built sand castles in the front yard, and moved through childhood the way most children do — not yet knowing that the curiosity underneath it all would one day become the engine of everything he made.
+      </p>
+
+      <div class="about-pull-quote reveal">
+        "He wasn't trying to become a writer. He was trying to understand the world — and writing turned out to be the clearest way to do it."
       </div>
+
+      <div class="about-cards reveal">
+        <div class="about-card">
+          <h4>The Systems Mind</h4>
+          <p>Most people look at events. Kumar Abhigyan looks at the structure underneath them. Why do the same patterns repeat across different countries, different centuries, different contexts? Why do people adapt to broken systems instead of dismantling them? Why does stability so often arrive not through goodness, but through order — and what does that say about the relationship between justice and power? These are not rhetorical questions for him. They are the questions he wakes up thinking about, reads toward, and writes through. His interest is not in commentary. It is in the architecture of how things actually work — and why they so rarely work the way they are supposed to.</p>
+        </div>
+        <div class="about-card">
+          <h4>The Writing</h4>
+          <p>He started writing seriously in early 2024, at twelve years old. Not because someone told him he was gifted. Not because of a school project or a prize or an external push of any kind. But because ideas had started accumulating faster than conversation could carry them, and writing was the only container large enough to hold what he was thinking. His first book was published in mid 2025. The final polished draft came in early 2026. Five books in, the pace has not slowed — it has sharpened. Each book is an attempt to understand something more precisely than he understood it before. That is the only ambition behind the work: to see more clearly, and to make that clarity available to whoever reads it.</p>
+        </div>
+        <div class="about-card">
+          <h4>The Contradictions</h4>
+          <p>Spend an afternoon with Kumar Abhigyan and you will not find what you expected. He thinks deeply about geopolitical systems and also spends hours watching wild mustangs on YouTube. He writes about human behaviour with the precision of someone twice his age, and also follows motorsports with the genuine intensity of someone who actually cares who wins and why. He is not performing depth. He is not performing anything. He moves through the world fully — interested in the texture of things, the logic underneath them, the way everything connects to everything else if you look long enough. The idea of the serious young intellectual who only speaks in data and citations — that is not him. It has never been him.</p>
+        </div>
+        <div class="about-card">
+          <h4>The Honesty</h4>
+          <p>He holds views that do not fit neatly into any camp, and he is comfortable with that discomfort. He thinks the United States is not all good. He thinks India is not all good. He thinks history is far more complicated than its designated villains, and that stability has sometimes arrived through means most people would prefer not to examine too closely. He is not trying to be controversial. Controversy is not the point. Accuracy is. And accuracy, he has found, is often the most uncomfortable thing you can offer someone — because it refuses to let them stay in the version of the story they already believe.</p>
+        </div>
+        <div class="about-card">
+          <h4>The Place</h4>
+          <p>Jharkhand shaped him in ways that are difficult to articulate precisely because they happened slowly, the way all real formation does. The forests taught him patience. The open land taught him that most things are larger than they first appear. Growing up somewhere unhurried, surrounded by nature that did not care whether he was paying attention, taught him the particular skill of paying attention anyway. He carries that with him — into his writing, into his thinking, into the way he approaches any question worth asking.</p>
+        </div>
+        <div class="about-card">
+          <h4>The Approach</h4>
+          <p>Kumar Abhigyan does not separate his intellectual life from the rest of his life, because he does not believe that separation is real. The curiosity that drives him to understand a geopolitical conflict is the same curiosity that makes him want to understand why a particular animal behaves a certain way, or how a machine performs under pressure, or what a philosopher from three centuries ago actually meant when they said something that everyone quotes but few have read carefully. Everything is a system. Everything has a logic underneath it. His job, as he understands it, is to find that logic and make it visible — without flattening it into something simpler than it actually is.</p>
+        </div>
+      </div>
+
+      <div class="about-pull-quote reveal">
+        "Somewhere in Jharkhand, a boy who played senseless games in the front yard and rode his bicycle until he had memorised every turn started asking why the world works the way it does. He has not stopped."
+      </div>
+
       <div id="about-more" class="about-more">
-        <p>Kumar Abhigyan, born in October 2011 and based in Jharkhand, represents a generation that has grown up surrounded by constant information yet chooses to approach it with discipline rather than reaction.</p>
-        <p>He identifies as a writer, but his work is broader than writing alone. He is an observer of systems, a debater, and someone interested in how ideas hold together when tested. His focus is not on surface-level commentary — it is on the deeper patterns that shape what people believe, how they respond, and why outcomes repeat across different contexts.</p>
-        <p>That systems approach shows up throughout his work. Instead of looking at events as isolated moments, he studies how they connect to history, institutions, incentives, behaviour, and power. This gives his writing its tone: measured, analytical, and intent on making the complicated easier to see without making it shallow.</p>
-        <p>His interests are varied but not random. Motorsports reflects precision, timing, and the importance of marginal gains. Cooking reflects patience, process, and transformation. Human behaviour connects directly to his writing and analysis.</p>
-        <p>The central principle across his work is simple: clarity over noise. He is interested in the kind of understanding that takes time to build and is harder to break.</p>
+        <p>India, for Kumar Abhigyan, is not an abstraction. It is something he has lived inside — the noise, the heat, the gap between what the country is supposed to be and what it actually is on the ground. He has watched people adapt to systems that do not serve them. He has watched them worship politicians who do not deserve it, and call that worship patriotism. He has watched endurance get mistaken for acceptance, and acceptance get mistaken for contentment. That observation lives at the centre of his work — not as anger, not as cynicism, but as a question that keeps demanding an answer: why do people accept what they do not have to accept?</p>
+        <p>The writing comes from that question, and from dozens of others like it. It is not performative. It is not strategic. It is the most honest thing he knows how to do — take something complicated, sit with it long enough to understand it, and then find words for it that are precise without being cold, clear without being simple. That is harder than it sounds. Most writing chooses one or the other. He is interested in both at once.</p>
+        <p>People who know him well say they understand what he is doing, even when they cannot fully explain it. Not because he is constantly explaining himself — he is not — but because once you see how he thinks, it becomes self-evident. He is not building a persona. He is not optimising for an audience. He is genuinely trying to understand things, and he has found that writing them down, slowly and carefully, is the best method available to him.</p>
+        <p>He does not find his age particularly interesting as a fact, though he understands why others do. He was born on the 25th of October, 2011. He is, by any conventional measure, very young. He finds that fact neither remarkable nor limiting. The work either holds up or it does not. The thinking either tracks or it does not. Age is not a variable he spends much time on. The questions are the same regardless.</p>
+        <p>What he is building — slowly, book by book, essay by essay — is a body of work oriented around a single underlying project: making the complicated easier to see, without pretending it is simpler than it is. That is the project. Everything else is detail.</p>
       </div>
+
+      <button id="aboutBtn" class="btn secondary" type="button" style="margin-top:36px">Read More</button>
     </div>
   </section>
 
@@ -190,7 +240,7 @@
         <article class="book">
           <img src="ICanForIAm.jpg" alt="I Can, For I Am cover">
           <h3>I Can, For I Am.</h3>
-          <p class="book-excerpt">For Those Who Learned to Exist Before They Learned to Belong</p>
+          <p class="book-excerpt">For Those Who Learned to Exist Before They Learned to Belong.</p>
           <span class="read-time">Coming Soon</span>
         </article>
       </div>
@@ -235,61 +285,74 @@
 
   <div id="readingMode" class="reading-mode" role="dialog" aria-modal="true" aria-label="Essay Reader">
     <div id="progressBar" class="progress-bar"></div>
-    <div class="reading-content">
+    <div class="reading-toolbar">
       <span id="closeReading" role="button" tabindex="0" aria-label="Close">×</span>
-
+      <div class="reading-controls">
+        <button class="btn secondary" type="button" id="fontSmall">A−</button>
+        <button class="btn secondary" type="button" id="fontLarge">A+</button>
+        <button class="btn secondary" type="button" id="focusMode">Focus</button>
+      </div>
+    </div>
+    <div class="reading-content">
       <div id="essay1" class="essay-full">
-        <span class="backToEssays">&larr; Back to essays</span>
+        <span class="backToEssays">&larr; All Essays</span>
+        <p class="essay-meta"><span class="read-time">4 min read</span></p>
         <h2>US–Iran War — WW3?</h2>
         <p>The tension between the United States and Iran is often discussed as if it is a recent crisis waiting to explode. In reality, it is the product of decades of history, layered distrust, strategic competition, and repeated misunderstandings.</p>
         <p>Before 1979, the two countries were not natural enemies. Iran, under the Shah, maintained close ties with the United States. But Iranian memory of the 1953 coup did not vanish — it sat underneath the surface, waiting for the right moment.</p>
         <div class="pull-quote">"The real danger is not that the conflict is simple. It is that it is so layered that one mistake can move it into a far more dangerous phase."</div>
-        <p>The 1979 Revolution changed everything. The United States, once seen as a partner, became a symbol of external interference. The hostage crisis that followed hardened the divide.</p>
-        <p>Over the decades, rivalry grew through indirect confrontation: sanctions, proxy conflicts, cyber operations, naval incidents, and diplomatic breakdowns.</p>
-        <p>So is it World War III? Not literally. But it is one of the most important fault lines in modern geopolitics — less about one event than about history accumulating pressure.</p>
+        <p>The 1979 Revolution changed everything. The United States, once seen as a partner, became a symbol of external interference. The hostage crisis that followed hardened the divide and made reconciliation far more difficult.</p>
+        <p>Over the decades, rivalry grew through indirect confrontation: sanctions, proxy conflicts, cyber operations, naval incidents, and diplomatic breakdowns all added layers to the same story.</p>
+        <p>The nuclear issue intensified things further. For the US, the fear was leverage and destabilisation. For Iran, the program was tied to sovereignty and the ability to resist pressure.</p>
+        <p>So is it World War III? Not literally. But it is one of the most important fault lines in modern geopolitics — less about one event than about history accumulating pressure until something gives.</p>
         <div class="share-row">
-          <a class="btn secondary" target="_blank" rel="noreferrer" href="https://wa.me/?text=US-Iran%20War%20-%20WW3%3F">Share on WhatsApp</a>
-          <a class="btn secondary" target="_blank" rel="noreferrer" href="https://twitter.com/intent/tweet?text=US-Iran%20War%20-%20WW3%3F">Share on X</a>
+          <a class="btn secondary" target="_blank" rel="noreferrer" href="https://wa.me/?text=US-Iran%20War%20-%20WW3%3F%20by%20Kumar%20Abhigyan">Share on WhatsApp</a>
+          <a class="btn secondary" target="_blank" rel="noreferrer" href="https://twitter.com/intent/tweet?text=US-Iran%20War%20-%20WW3%3F%20by%20%40kumar.abhigyan_">Share on X</a>
         </div>
-        <div class="related">
-          <p style="color:var(--gold);font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px">You might also like</p>
-          <button class="btn secondary essayBtn" data-target="essay2">World War II — Shaping Today</button>
+        <div class="essay-nav">
+          <span></span>
+          <button class="btn secondary essayBtn" data-target="essay2">Next: World War II →</button>
         </div>
       </div>
 
       <div id="essay2" class="essay-full">
-        <span class="backToEssays">&larr; Back to essays</span>
+        <span class="backToEssays">&larr; All Essays</span>
+        <p class="essay-meta"><span class="read-time">5 min read</span></p>
         <h2>World War II — The Event That Shaped the Modern World</h2>
         <p>World War II is often described as the largest conflict in human history, but that description only captures part of its significance. What makes it important is the way it reorganized the world after it ended.</p>
-        <p>Before the war, the global order was dominated by European empires. The war shattered that balance — Europe was devastated physically, economically, and politically.</p>
+        <p>Before the war, the global order was dominated by European empires. The war shattered that balance — Europe was devastated physically, economically, and politically. The assumption that European states could indefinitely control the world was no longer credible.</p>
         <div class="pull-quote">"Almost everything in contemporary geopolitics can be traced back to the changes the war set in motion."</div>
-        <p>The United States and the Soviet Union emerged as the two central superpowers. The Cold War grew directly from this shift.</p>
+        <p>The United States and the Soviet Union emerged as the two central superpowers. The Cold War grew directly from this shift — a bipolar world replacing a European-dominated one.</p>
+        <p>World War II also reshaped institutions. The United Nations was created to prevent another global catastrophe. NATO emerged as a military answer to postwar security fears.</p>
         <p>Perhaps the most important long-term outcome was decolonization. European powers came out weakened, and independence movements across Asia and Africa gained momentum. India's independence in 1947 is one of the most important examples.</p>
+        <p>That is why the war still matters. It was the moment that created the framework of the modern world — superpowers, alliances, institutions, deterrence, decolonization, and the idea that global order is both structured and fragile.</p>
         <div class="share-row">
-          <a class="btn secondary" target="_blank" rel="noreferrer" href="https://wa.me/?text=World%20War%20II%20-%20Shaping%20Today">Share on WhatsApp</a>
-          <a class="btn secondary" target="_blank" rel="noreferrer" href="https://twitter.com/intent/tweet?text=World%20War%20II%20-%20Shaping%20Today">Share on X</a>
+          <a class="btn secondary" target="_blank" rel="noreferrer" href="https://wa.me/?text=World%20War%20II%20-%20Shaping%20Today%20by%20Kumar%20Abhigyan">Share on WhatsApp</a>
+          <a class="btn secondary" target="_blank" rel="noreferrer" href="https://twitter.com/intent/tweet?text=World%20War%20II%20-%20Shaping%20Today%20by%20%40kumar.abhigyan_">Share on X</a>
         </div>
-        <div class="related">
-          <p style="color:var(--gold);font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px">You might also like</p>
-          <button class="btn secondary essayBtn" data-target="essay3">India — Rise or Struggle?</button>
+        <div class="essay-nav">
+          <button class="btn secondary essayBtn" data-target="essay1">← Previous: US–Iran</button>
+          <button class="btn secondary essayBtn" data-target="essay3">Next: India →</button>
         </div>
       </div>
 
       <div id="essay3" class="essay-full">
-        <span class="backToEssays">&larr; Back to essays</span>
+        <span class="backToEssays">&larr; All Essays</span>
+        <p class="essay-meta"><span class="read-time">4 min read</span></p>
         <h2>India — Rise or Struggle?</h2>
-        <p>India is often described as a rising power, and that description is not wrong. Its population is large, its economy is growing, its digital systems are expanding.</p>
-        <p>But a rise in global influence requires more than growth numbers. It requires institutional strength, execution, education, infrastructure, and long-term consistency.</p>
-        <div class="pull-quote">"A country does not become globally significant just because its economy grows. It becomes truly influential when it can convert growth into consistency."</div>
-        <p>Structural challenges remain. Development is uneven across states. Infrastructure still faces major gaps.</p>
-        <p>So is India rising? Yes, in many ways. But it is rising while still carrying structural challenges that shape the pace and form of that rise.</p>
+        <p>India is often described as a rising power, and that description is not wrong. Its population is large, its economy is growing, its digital systems are expanding, and its geopolitical relevance is increasing. But the real question is what kind of rise this actually is.</p>
+        <p>A rise in global influence requires more than growth numbers. It requires institutional strength, execution, education, infrastructure, and long-term consistency. India has real strengths — but it also carries structural weight that shapes the pace and form of everything.</p>
+        <div class="pull-quote">"A country does not become globally significant because its economy grows. It becomes influential when it can convert growth into consistency."</div>
+        <p>Development is uneven across states. Infrastructure still faces major gaps. Education and skills are not yet aligned with the demands of a rapidly changing economy.</p>
+        <p>India's geopolitical role is also important and increasingly complicated. It does not fit neatly into old alliance systems. It maintains relationships with multiple major powers while trying to preserve autonomy.</p>
+        <p>So is India rising? Yes, in many ways. But it is rising while still carrying the weight of systems that were never quite fixed — and that gap between potential and reality is where the real story lives.</p>
         <div class="share-row">
-          <a class="btn secondary" target="_blank" rel="noreferrer" href="https://wa.me/?text=India%20-%20Rise%20or%20Struggle%3F">Share on WhatsApp</a>
-          <a class="btn secondary" target="_blank" rel="noreferrer" href="https://twitter.com/intent/tweet?text=India%20-%20Rise%20or%20Struggle%3F">Share on X</a>
+          <a class="btn secondary" target="_blank" rel="noreferrer" href="https://wa.me/?text=India%20-%20Rise%20or%20Struggle%3F%20by%20Kumar%20Abhigyan">Share on WhatsApp</a>
+          <a class="btn secondary" target="_blank" rel="noreferrer" href="https://twitter.com/intent/tweet?text=India%20-%20Rise%20or%20Struggle%3F%20by%20%40kumar.abhigyan_">Share on X</a>
         </div>
-        <div class="related">
-          <p style="color:var(--gold);font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px">You might also like</p>
-          <button class="btn secondary essayBtn" data-target="essay1">US–Iran War — WW3?</button>
+        <div class="essay-nav">
+          <button class="btn secondary essayBtn" data-target="essay2">← Previous: WWII</button>
+          <span></span>
         </div>
       </div>
     </div>
@@ -314,6 +377,7 @@
   <section id="contact" class="contact reveal">
     <div class="container">
       <h2 class="section-title">Contact</h2>
+      <p style="color:var(--slate);max-width:440px;margin-bottom:32px;line-height:1.8">For readers, publishers, collaborators, or anyone who wants to talk about ideas.</p>
       <a href="mailto:abhigyan025@gmail.com">
         <svg width="18" height="18" viewBox="0 0 24 24"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm16 3.2-8 5.3-8-5.3V6l8 5.3L20 6v1.2z"/></svg>
         abhigyan025@gmail.com
@@ -329,13 +393,21 @@
 </main>
 
 <footer>
-  <p>Clarity over noise.</p>
-  <div class="footer-links">
-    <a href="mailto:abhigyan025@gmail.com">Email</a>
-    <a href="https://www.instagram.com/kumar.abhigyan_" target="_blank" rel="noreferrer">Instagram</a>
-    <a href="#home">Back to top</a>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <p class="footer-name">Kumar Abhigyan</p>
+      <p class="footer-tagline">Clarity over noise.</p>
+    </div>
+    <div class="footer-links">
+      <a href="mailto:abhigyan025@gmail.com">Email</a>
+      <a href="https://www.instagram.com/kumar.abhigyan_" target="_blank" rel="noreferrer">Instagram</a>
+      <a href="#home">Back to top ↑</a>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Kumar Abhigyan. All rights reserved.</p>
+      <p id="easter">We suffer more in imagination than reality</p>
+    </div>
   </div>
-  <p id="easter">We suffer more in imagination than reality</p>
 </footer>
 
 <div id="demoModal" class="modal" role="dialog" aria-modal="true" aria-label="Demo Preview">
@@ -347,5 +419,4 @@
 
 <script src="script.js" defer></script>
 </body>
-</html>
-
+  </html>
