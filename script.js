@@ -11,19 +11,6 @@ async function sanityFetch(query){
   }catch(e){ console.warn("Sanity fetch failed",e); return []; }
 }
 
-/* ===== CUSTOM CURSOR ===== */
-const cursor = document.createElement("div");
-cursor.className = "cursor";
-document.body.appendChild(cursor);
-document.addEventListener("mousemove", e => {
-  cursor.style.left = e.clientX + "px";
-  cursor.style.top = e.clientY + "px";
-});
-document.querySelectorAll("a,button,.book,.essay-card,.about-card").forEach(el => {
-  el.addEventListener("mouseenter", () => cursor.classList.add("hovering"));
-  el.addEventListener("mouseleave", () => cursor.classList.remove("hovering"));
-});
-
 /* ===== INTRO ===== */
 window.addEventListener("load", () => {
   setTimeout(() => document.getElementById("intro").classList.add("hide"), 2400);
@@ -67,13 +54,24 @@ darkToggle.addEventListener("click", () => {
   closeMenu();
 });
 
-/* ===== ABOUT EXPAND ===== */
+/* ===== ABOUT EXPAND (long-form bottom section) ===== */
 const aboutBtn = document.getElementById("aboutBtn");
 const aboutMore = document.getElementById("about-more");
 if(aboutBtn){
   aboutBtn.addEventListener("click", () => {
     const open = aboutMore.classList.toggle("open");
     aboutBtn.textContent = open ? "Read Less" : "Read More";
+  });
+}
+
+/* ===== ABOUT CARDS TOGGLE (global read more for the 6 cards) ===== */
+const cardsToggle = document.getElementById("cardsToggle");
+const aboutCards = document.querySelector(".about-cards");
+if(cardsToggle && aboutCards){
+  cardsToggle.addEventListener("click", () => {
+    const open = aboutCards.classList.toggle("show-more");
+    cardsToggle.textContent = open ? "Read Less" : "Read More";
+    cardsToggle.setAttribute("aria-expanded", open);
   });
 }
 
@@ -103,30 +101,6 @@ window.addEventListener("scroll", () => {
   const total = document.body.scrollHeight - window.innerHeight;
   pageProgress.style.width = (total > 0 ? window.scrollY / total * 100 : 0) + "%";
 }, {passive:true});
-
-/* ===== STATS COUNT UP ===== */
-function countUp(el, target, duration=1600){
-  let start = 0;
-  const step = target / (duration / 16);
-  const timer = setInterval(() => {
-    start += step;
-    if(start >= target){ el.textContent = target; clearInterval(timer); }
-    else el.textContent = Math.floor(start);
-  }, 16);
-}
-const statsIO = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if(e.isIntersecting){
-      e.target.querySelectorAll(".stat strong").forEach(el => {
-        const val = parseInt(el.textContent);
-        if(!isNaN(val)) countUp(el, val);
-      });
-      statsIO.unobserve(e.target);
-    }
-  });
-}, {threshold:.5});
-const statsEl = document.querySelector(".stats-row");
-if(statsEl) statsIO.observe(statsEl);
 
 /* ===== DEMO MODAL ===== */
 const demoModal = document.getElementById("demoModal");
@@ -261,11 +235,15 @@ async function loadNewBooks(){
   const books = await sanityFetch(`*[_type=="book"]|order(_createdAt desc)`);
   if(!books.length) return;
   const grid = document.querySelector(".books-grid");
+  let idx = grid.querySelectorAll(".book").length + 1;
   books.forEach(b => {
     const el = document.createElement("article");
     el.className = "book";
     el.innerHTML = `
-      <img src="${b.coverUrl||'placeholder.jpg'}" alt="${b.title} cover">
+      <span class="book-index">${String(idx).padStart(2,"0")}</span>
+      <div class="book-cover-wrap">
+        <img src="${b.coverUrl||'placeholder.jpg'}" alt="${b.title} cover">
+      </div>
       <h3>${b.title}</h3>
       <p class="book-excerpt">${b.tagline||''}</p>
       ${b.comingSoon
@@ -275,6 +253,7 @@ async function loadNewBooks(){
             ${b.buyLink?`<a class="btn secondary" href="${b.buyLink}" target="_blank" rel="noreferrer">Buy</a>`:''}
            </div>`}`;
     grid.appendChild(el);
+    idx++;
   });
 }
 
