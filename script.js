@@ -55,6 +55,16 @@ darkToggle.addEventListener("click", () => {
   closeMenu();
 });
 
+/* ===== ABOUT "READ MORE" (long-form paragraphs) ===== */
+const aboutBtn = document.getElementById("aboutBtn");
+const aboutMore = document.getElementById("about-more");
+if(aboutBtn && aboutMore){
+  aboutBtn.addEventListener("click", () => {
+    const open = aboutMore.classList.toggle("open");
+    aboutBtn.textContent = open ? "Read Less" : "Read More";
+  });
+}
+
 /* ===== SCROLL REVEAL ===== */
 const revealIO = new IntersectionObserver(entries => {
   entries.forEach(e => { if(e.isIntersecting) e.target.classList.add("show"); });
@@ -302,10 +312,11 @@ async function loadBooks(){
   });
 }
 
-/* ===== ABOUT TIMELINE (tap-to-expand tiles) ===== */
+/* ===== ABOUT TIMELINE (connected horizontal chain) ===== */
 async function loadAboutTimeline(){
   const tiles = await sanityFetch(`*[_type=="aboutTile" && hidden != true]|order(order asc)`);
   const wrap = document.getElementById("aboutTimeline");
+  const panel = document.getElementById("timelineAnswer");
   if(!wrap) return;
 
   if(!tiles.length){
@@ -314,26 +325,30 @@ async function loadAboutTimeline(){
   }
 
   wrap.innerHTML = tiles.map((t, i) => `
-    <div class="timeline-stop reveal">
-      <div class="timeline-dot"></div>
+    <span class="timeline-stop" data-index="${i}">
       <button type="button" class="timeline-tile" data-index="${i}" aria-expanded="false">
-        <span class="timeline-question">${t.question||''}</span>
-        <span class="timeline-teaser">${t.teaser||''}</span>
+        ${t.question||''}
       </button>
-      <div class="timeline-full" id="timelineFull-${i}">
-        <p>${t.full||''}</p>
-      </div>
-    </div>`).join("");
-
-  observeReveals(wrap);
+    </span>`).join("");
 
   wrap.querySelectorAll(".timeline-tile").forEach(btn => {
     btn.addEventListener("click", () => {
       const idx = btn.dataset.index;
-      const panel = document.getElementById(`timelineFull-${idx}`);
-      const isOpen = panel.classList.toggle("open");
-      btn.setAttribute("aria-expanded", isOpen);
-      btn.closest(".timeline-stop").classList.toggle("active", isOpen);
+      const t = tiles[idx];
+      const alreadyActive = btn.closest(".timeline-stop").classList.contains("active");
+
+      wrap.querySelectorAll(".timeline-stop").forEach(s => s.classList.remove("active"));
+      wrap.querySelectorAll(".timeline-tile").forEach(b => b.setAttribute("aria-expanded","false"));
+
+      if(alreadyActive){
+        panel.classList.remove("open");
+        return;
+      }
+
+      btn.closest(".timeline-stop").classList.add("active");
+      btn.setAttribute("aria-expanded","true");
+      panel.innerHTML = `<p>${t.full||''}</p>`;
+      panel.classList.add("open");
     });
   });
 }
