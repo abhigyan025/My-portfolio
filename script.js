@@ -9,10 +9,7 @@ async function sanityFetch(query){
     const res = await fetch(`${SANITY_API}?query=${encodeURIComponent(query)}`);
     const json = await res.json();
     return json.result || [];
-  }catch(e){
-    console.warn("Sanity fetch failed",e);
-    return [];
-  }
+  }catch(e){ console.warn("Sanity fetch failed",e); return []; }
 }
 
 /* ===== INTRO ===== */
@@ -22,10 +19,8 @@ window.addEventListener("load", () => {
 
 /* ===== STAGGERED HERO NAME ===== */
 const heroName = document.querySelector(".hero-name");
-
 if(heroName){
   const words = heroName.textContent.trim().split(" ");
-
   heroName.innerHTML = words.map((word, wi) =>
     `<span class="word"><span style="animation-delay:${0.5 + wi * 0.18}s">${word}</span></span>`
   ).join(" ");
@@ -42,32 +37,21 @@ function openMenu(){
   menuBtn.classList.add("active");
   menuBtn.setAttribute("aria-expanded", true);
 }
-
 function closeMenu(){
   menu.classList.remove("open");
   menuOverlay.classList.remove("open");
   menuBtn.classList.remove("active");
   menuBtn.setAttribute("aria-expanded", false);
 }
-
-menuBtn.addEventListener("click", () =>
-  menu.classList.contains("open") ? closeMenu() : openMenu()
-);
-
+menuBtn.addEventListener("click", () => menu.classList.contains("open") ? closeMenu() : openMenu());
 menuOverlay.addEventListener("click", closeMenu);
 menu.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
 
 /* ===== DARK MODE ===== */
 const darkToggle = document.getElementById("darkToggle");
-
 darkToggle.addEventListener("click", () => {
   document.body.classList.toggle("dark");
-
-  darkToggle.textContent =
-    document.body.classList.contains("dark")
-      ? "Light Mode"
-      : "Dark Mode";
-
+  darkToggle.textContent = document.body.classList.contains("dark") ? "Light Mode" : "Dark Mode";
   closeMenu();
 });
 
@@ -78,10 +62,7 @@ const aboutMore = document.getElementById("about-more");
 if(aboutBtn && aboutMore){
   aboutBtn.addEventListener("click", () => {
     const open = aboutMore.classList.toggle("open");
-
-    aboutBtn.textContent = open
-      ? "Read Less"
-      : "Read More";
+    aboutBtn.textContent = open ? "Read Less" : "Read More";
   });
 }
 
@@ -124,9 +105,7 @@ const pageProgress = document.getElementById("pageProgress");
 
 window.addEventListener("scroll", () => {
   const total = document.body.scrollHeight - window.innerHeight;
-
-  pageProgress.style.width =
-    (total > 0 ? window.scrollY / total * 100 : 0) + "%";
+  pageProgress.style.width = (total > 0 ? window.scrollY / total * 100 : 0) + "%";
 }, {passive:true});
 
 /* ===== DEMO MODAL ===== */
@@ -152,8 +131,7 @@ const closeReading = document.getElementById("closeReading");
 const progressBar = document.getElementById("progressBar");
 
 function openEssay(targetId){
-  document.querySelectorAll(".essay-full")
-    .forEach(el => el.classList.remove("active"));
+  document.querySelectorAll(".essay-full").forEach(el => el.classList.remove("active"));
 
   const target = document.getElementById(targetId);
 
@@ -191,7 +169,6 @@ closeReading.addEventListener("click", closeReadingMode);
 
 readingMode.addEventListener("scroll", () => {
   const pct = readingMode.scrollHeight - readingMode.clientHeight;
-
   progressBar.style.width =
     (pct > 0 ? readingMode.scrollTop / pct * 100 : 0) + "%";
 }, {passive:true});
@@ -216,7 +193,6 @@ const focusBtn = document.getElementById("focusMode");
 
 focusBtn.addEventListener("click", () => {
   readingMode.classList.toggle("focus-mode");
-
   focusBtn.textContent =
     readingMode.classList.contains("focus-mode")
       ? "Exit Focus"
@@ -230,7 +206,8 @@ if(subscribeForm){
   subscribeForm.addEventListener("submit", e => {
     e.preventDefault();
 
-    const status = document.getElementById("subscribeStatus");
+    const status =
+      document.getElementById("subscribeStatus");
 
     status.textContent =
       "✅ Email registered! I'll let you know when something new drops.";
@@ -240,27 +217,37 @@ if(subscribeForm){
   });
 }
 
-/* ===== LOAD SITE SETTINGS ===== */
+/* ===== LOAD SITE SETTINGS (footer quote, followers, sales, now-reading/writing) ===== */
 async function loadSettings(){
-  const docs = await sanityFetch(`*[_id=="${SETTINGS_ID}"]`);
+
+  const docs =
+    await sanityFetch(`*[_id=="${SETTINGS_ID}"]`);
+
   const s = docs[0] || {};
 
-  const easter = document.getElementById("easter");
+  const easter =
+    document.getElementById("easter");
+
   if(easter && s.footerQuote){
     easter.textContent = s.footerQuote;
   }
 
-  const followers = document.getElementById("statFollowers");
+  const followers =
+    document.getElementById("statFollowers");
+
   if(followers && s.followers){
     followers.textContent = s.followers;
   }
 
-  const sales = document.getElementById("statSales");
+  const sales =
+    document.getElementById("statSales");
+
   if(sales && s.salesLastMonth){
     sales.textContent = s.salesLastMonth;
   }
 
-  const nowText = document.getElementById("nowText");
+  const nowText =
+    document.getElementById("nowText");
 
   if(nowText && (s.currentlyReading || s.currentlyWriting)){
     nowText.innerHTML =
@@ -270,12 +257,17 @@ async function loadSettings(){
 
 /* ===== LOAD ESSAYS ===== */
 async function loadEssays(){
-  const essays = await sanityFetch(
-    `*[_type=="essay" && hidden != true]|order(order asc)`
-  );
 
-  const grid = document.querySelector(".essay-grid");
-  const readingContent = document.querySelector(".reading-content");
+  const essays =
+    await sanityFetch(
+      `*[_type=="essay" && hidden != true]|order(order asc)`
+    );
+
+  const grid =
+    document.querySelector(".essay-grid");
+
+  const readingContent =
+    document.querySelector(".reading-content");
 
   if(!grid || !readingContent) return;
 
@@ -289,8 +281,11 @@ async function loadEssays(){
     return;
   }
 
-  const featured = essays[0];
-  const featuredWrap = document.querySelector(".featured-essay");
+  const featured =
+    essays[0];
+
+  const featuredWrap =
+    document.querySelector(".featured-essay");
 
   if(featuredWrap){
     featuredWrap.innerHTML = `
@@ -298,32 +293,38 @@ async function loadEssays(){
       <h3>${featured.title || "Untitled"}</h3>
       <p>${featured.excerpt || ""}</p>
       <div style="margin-top:24px">
-        <button class="btn primary essayBtn" type="button" data-target="essay-0">
-          Read Featured Essay
-        </button>
+        <button class="btn primary essayBtn" type="button" data-target="essay-0">Read Featured Essay</button>
       </div>`;
   }
 
   essays.forEach((essay, i) => {
-    const id = `essay-${i}`;
-    const words = (essay.body || "").split(" ").length;
-    const mins = Math.max(1, Math.round(words / 200));
 
-    const card = document.createElement("article");
+    const id =
+      `essay-${i}`;
 
-    card.className = "essay-card";
+    const words =
+      (essay.body || "").split(" ").length;
+
+    const mins =
+      Math.max(1, Math.round(words / 200));
+
+    const card =
+      document.createElement("article");
+
+    card.className =
+      "essay-card";
 
     card.innerHTML = `
       <span class="read-time">${mins} min read</span>
       <h3>${essay.title || "Untitled"}</h3>
       <p>${essay.excerpt || ""}</p>
-      <button class="btn secondary essayBtn" type="button" data-target="${id}">
-        Read
-      </button>`;
+      <button class="btn secondary essayBtn" type="button" data-target="${id}">Read</button>
+    `;
 
     grid.appendChild(card);
 
-    const full = document.createElement("div");
+    const full =
+      document.createElement("div");
 
     full.id = id;
     full.className = "essay-full";
@@ -344,16 +345,18 @@ async function loadEssays(){
           class="btn secondary"
           target="_blank"
           rel="noreferrer"
-          href="https://wa.me/?text=${encodeURIComponent(essay.title || '')}"
-        >Share on WhatsApp</a>
-
+          href="https://wa.me/?text=${encodeURIComponent(essay.title || '')}">
+          Share on WhatsApp
+        </a>
         <a
           class="btn secondary"
           target="_blank"
           rel="noreferrer"
-          href="https://twitter.com/intent/tweet?text=${encodeURIComponent(essay.title || '')}"
-        >Share on X</a>
-      </div>`;
+          href="https://twitter.com/intent/tweet?text=${encodeURIComponent(essay.title || '')}">
+          Share on X
+        </a>
+      </div>
+    `;
 
     readingContent.appendChild(full);
   });
@@ -361,41 +364,49 @@ async function loadEssays(){
 
 /* ===== LOAD UPDATES ===== */
 async function loadUpdates(){
-  const updates = await sanityFetch(
-    `*[_type=="update" && hidden != true]|order(date desc)`
-  );
 
-  const feed = document.getElementById("updatesFeed");
+  const updates =
+    await sanityFetch(
+      `*[_type=="update" && hidden != true]|order(date desc)`
+    );
+
+  const feed =
+    document.getElementById("updatesFeed");
 
   if(!feed) return;
 
-  feed.innerHTML = !updates.length
-    ? `<p style="color:var(--slate);padding:24px 0">No updates yet — check back soon.</p>`
-    : updates.map(u => `
-      <div class="update-item">
-        <div class="update-date">
-          ${u.date
-            ? new Date(u.date).toLocaleDateString("en-US", {
-                month:"short",
-                day:"numeric"
-              })
-            : ""}
-        </div>
+  feed.innerHTML =
+    !updates.length
 
-        <div class="update-text">
-          ${u.text || ""}
-        </div>
-      </div>
-    `).join("");
+      ? `<p style="color:var(--slate);padding:24px 0">No updates yet — check back soon.</p>`
+
+      : updates.map(u => `
+          <div class="update-item">
+            <div class="update-date">
+              ${u.date
+                ? new Date(u.date).toLocaleDateString(
+                    'en-US',
+                    {month:'short',day:'numeric'}
+                  )
+                : ''}
+            </div>
+            <div class="update-text">
+              ${u.text || ''}
+            </div>
+          </div>
+        `).join("");
 }
 
-/* ===== LOAD BOOKS ===== */
+/* ===== LOAD BOOKS (with featured book support) ===== */
 async function loadBooks(){
-  const books = await sanityFetch(
-    `*[_type=="book" && hidden != true]|order(order asc)`
-  );
 
-  const grid = document.querySelector(".books-grid");
+  const books =
+    await sanityFetch(
+      `*[_type=="book" && hidden != true]|order(order asc)`
+    );
+
+  const grid =
+    document.querySelector(".books-grid");
 
   if(!grid) return;
 
@@ -416,24 +427,30 @@ async function loadBooks(){
   if(featuredWrap){
     featuredWrap.innerHTML = `
       <img
-        src="${featured.coverUrl || "placeholder.jpg"}"
-        alt="${featured.title} cover"
-      >
+        src="${featured.coverUrl || 'placeholder.jpg'}"
+        alt="${featured.title} cover">
 
       <div class="featured-content">
-        <span class="read-time">Latest Release</span>
+
+        <span class="read-time">
+          Latest Release
+        </span>
+
         <h2>${featured.title}</h2>
-        <p>${featured.tagline || ""}</p>
+
+        <p>${featured.tagline || ''}</p>
 
         <div class="btns">
+
           ${
             featured.demoLink
               ? `<button
                   class="btn primary demoBtn"
                   type="button"
-                  data-demo="${featured.demoLink}"
-                >Read Demo</button>`
-              : ""
+                  data-demo="${featured.demoLink}">
+                  Read Demo
+                </button>`
+              : ''
           }
 
           ${
@@ -442,18 +459,25 @@ async function loadBooks(){
                   class="btn secondary"
                   href="${featured.buyLink}"
                   target="_blank"
-                  rel="noreferrer"
-                >Buy Ebook</a>`
-              : ""
+                  rel="noreferrer">
+                  Buy Ebook
+                </a>`
+              : ''
           }
+
         </div>
-      </div>`;
+
+      </div>
+    `;
   }
 
   books.forEach((b, i) => {
-    const el = document.createElement("article");
 
-    el.className = "book";
+    const el =
+      document.createElement("article");
+
+    el.className =
+      "book";
 
     el.innerHTML = `
       <span class="book-index">
@@ -461,30 +485,34 @@ async function loadBooks(){
       </span>
 
       <div class="book-cover-wrap">
+
         <img
-          src="${b.coverUrl || "placeholder.jpg"}"
-          alt="${b.title} cover"
-        >
+          src="${b.coverUrl || 'placeholder.jpg'}"
+          alt="${b.title} cover">
+
       </div>
 
       <h3>${b.title}</h3>
 
       <p class="book-excerpt">
-        ${b.tagline || ""}
+        ${b.tagline || ''}
       </p>
 
       ${
         b.comingSoon
+
           ? `<span class="read-time">Coming Soon</span>`
-          : `
-            <div class="btns">
+
+          : `<div class="btns">
+
               ${
                 b.demoLink
                   ? `<button
                       class="btn primary demoBtn"
-                      data-demo="${b.demoLink}"
-                    >Read Demo</button>`
-                  : ""
+                      data-demo="${b.demoLink}">
+                      Read Demo
+                    </button>`
+                  : ''
               }
 
               ${
@@ -493,121 +521,172 @@ async function loadBooks(){
                       class="btn secondary"
                       href="${b.buyLink}"
                       target="_blank"
-                      rel="noreferrer"
-                    >Buy</a>`
-                  : ""
+                      rel="noreferrer">
+                      Buy
+                    </a>`
+                  : ''
               }
-            </div>
-          `
-      }`;
+
+            </div>`
+      }
+    `;
 
     grid.appendChild(el);
   });
 }
 
 /* =========================================================
-   ABOUT TIMELINE — CONNECTED SNAKE
+   ABOUT TIMELINE
+   =========================================================
+   Layout:
+
+   A ───────── B ───────── C
+                             │
+   F ───────── E ───────── D
+   │
+   G ───────── H ───────── I
+
+   Rows alternate direction.
+   One shared answer panel sits below the whole timeline.
    ========================================================= */
 
 async function loadAboutTimeline(){
-  const tiles = await sanityFetch(
-    `*[_type=="aboutTile" && hidden != true]|order(order asc)`
-  );
 
-  const wrap = document.getElementById("aboutTimeline");
-  const panel = document.getElementById("timelineAnswer");
+  const tiles =
+    await sanityFetch(
+      `*[_type=="aboutTile" && hidden != true]|order(order asc)`
+    );
+
+  const wrap =
+    document.getElementById("aboutTimeline");
+
+  const panel =
+    document.getElementById("timelineAnswer");
 
   if(!wrap) return;
 
   if(!tiles.length){
+
     wrap.innerHTML =
       `<p style="color:var(--slate)">More coming soon.</p>`;
+
+    if(panel){
+      panel.innerHTML = "";
+      panel.classList.remove("open");
+    }
 
     return;
   }
 
   /*
-    Build rows of 3.
+    Keep three tiles per row so the snake has a clear
+    right-angle connection between rows.
 
-    Row 1:
-    A B C
+    Source order:
+      0 1 2
+      3 4 5
+      6 7 8
 
-    Row 2:
-    F E D
-
-    Row 3:
-    G H I
-
-    This creates the actual snake order:
-    A → B → C
-              ↓
-    F ← E ← D
-    ↓
-    G → H → I
+    Visual order:
+      0 1 2
+      5 4 3
+      6 7 8
   */
 
+  const ROW_SIZE = 3;
   const rows = [];
 
-  for(let i = 0; i < tiles.length; i += 3){
-    const row = tiles.slice(i, i + 3);
-
-    if(rows.length % 2 === 1){
-      row.reverse();
-    }
-
-    rows.push(row);
+  for(let i = 0; i < tiles.length; i += ROW_SIZE){
+    rows.push(tiles.slice(i, i + ROW_SIZE));
   }
 
-  wrap.innerHTML = rows.map((row, rowIndex) => `
-    <div class="timeline-row" data-row="${rowIndex}">
-      ${row.map(t => {
-        const originalIndex = tiles.indexOf(t);
+  wrap.innerHTML = rows.map((row, rowIndex) => {
 
-        return `
-          <div class="timeline-stop">
-            <button
-              type="button"
-              class="timeline-tile"
-              data-index="${originalIndex}"
-              aria-expanded="false"
-            >
-              ${t.question || ""}
-            </button>
-          </div>
-        `;
-      }).join("")}
-    </div>
-  `).join("");
+    const reversed =
+      rowIndex % 2 === 1;
 
+    const visibleRow =
+      reversed ? [...row].reverse() : row;
+
+    return `
+      <div class="timeline-row ${reversed ? "reverse" : ""}">
+
+        ${visibleRow.map(tile => {
+
+          const index =
+            tiles.indexOf(tile);
+
+          return `
+            <div
+              class="timeline-stop"
+              data-index="${index}">
+
+              <button
+                type="button"
+                class="timeline-tile"
+                data-index="${index}"
+                aria-expanded="false">
+
+                ${tile.question || ''}
+
+              </button>
+
+            </div>
+          `;
+        }).join("")}
+
+      </div>
+    `;
+
+  }).join("");
+
+  /*
+    Reset shared answer panel.
+  */
   if(panel){
-    panel.classList.remove("open");
     panel.innerHTML = "";
+    panel.classList.remove("open");
   }
 
+  /*
+    Tile interaction.
+  */
   wrap.querySelectorAll(".timeline-tile").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const idx = Number(btn.dataset.index);
-      const tile = tiles[idx];
 
-      const stop = btn.closest(".timeline-stop");
-      const alreadyActive = stop.classList.contains("active");
+    btn.addEventListener("click", () => {
+
+      const index =
+        Number(btn.dataset.index);
+
+      const tile =
+        tiles[index];
+
+      const stop =
+        btn.closest(".timeline-stop");
+
+      const wasActive =
+        stop.classList.contains("active");
 
       /*
-        Close every other tile first.
+        Close all active states first.
       */
       wrap
         .querySelectorAll(".timeline-stop")
-        .forEach(s => s.classList.remove("active"));
+        .forEach(item => {
+          item.classList.remove("active");
+        });
 
       wrap
         .querySelectorAll(".timeline-tile")
-        .forEach(b => b.setAttribute("aria-expanded","false"));
+        .forEach(item => {
+          item.setAttribute("aria-expanded", "false");
+        });
 
       /*
-        Clicking the currently open tile closes
-        the shared answer panel.
+        Clicking the active tile closes the panel.
       */
-      if(alreadyActive){
+      if(wasActive){
+
         if(panel){
           panel.classList.remove("open");
         }
@@ -616,16 +695,28 @@ async function loadAboutTimeline(){
       }
 
       /*
-        Open selected tile.
+        Activate the selected tile.
       */
       stop.classList.add("active");
-      btn.setAttribute("aria-expanded","true");
 
+      btn.setAttribute(
+        "aria-expanded",
+        "true"
+      );
+
+      /*
+        Put the selected answer into the one shared panel.
+      */
       if(panel){
-        panel.innerHTML = `<p>${tile.full || ""}</p>`;
+
+        panel.innerHTML =
+          `<p>${tile.full || ''}</p>`;
+
         panel.classList.add("open");
       }
+
     });
+
   });
 }
 
