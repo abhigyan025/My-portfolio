@@ -2,6 +2,7 @@
 const SANITY_PROJECT_ID = "zsm7toak";
 const SANITY_DATASET = "production";
 const SANITY_API = `https://${SANITY_PROJECT_ID}.api.sanity.io/v2024-01-01/data/query/${SANITY_DATASET}`;
+const SETTINGS_ID = "siteSettings";
 
 async function sanityFetch(query){
   try{
@@ -54,32 +55,14 @@ darkToggle.addEventListener("click", () => {
   closeMenu();
 });
 
-/* ===== ABOUT EXPAND (long-form bottom section) ===== */
-const aboutBtn = document.getElementById("aboutBtn");
-const aboutMore = document.getElementById("about-more");
-if(aboutBtn){
-  aboutBtn.addEventListener("click", () => {
-    const open = aboutMore.classList.toggle("open");
-    aboutBtn.textContent = open ? "Read Less" : "Read More";
-  });
-}
-
-/* ===== ABOUT CARDS TOGGLE (global read more for the 6 cards) ===== */
-const cardsToggle = document.getElementById("cardsToggle");
-const aboutCards = document.querySelector(".about-cards");
-if(cardsToggle && aboutCards){
-  cardsToggle.addEventListener("click", () => {
-    const open = aboutCards.classList.toggle("show-more");
-    cardsToggle.textContent = open ? "Read Less" : "Read More";
-    cardsToggle.setAttribute("aria-expanded", open);
-  });
-}
-
 /* ===== SCROLL REVEAL ===== */
 const revealIO = new IntersectionObserver(entries => {
   entries.forEach(e => { if(e.isIntersecting) e.target.classList.add("show"); });
 }, {threshold:.1});
-document.querySelectorAll(".reveal").forEach(el => revealIO.observe(el));
+function observeReveals(root=document){
+  root.querySelectorAll(".reveal").forEach(el => revealIO.observe(el));
+}
+observeReveals();
 
 /* ===== ACTIVE NAV ON SCROLL ===== */
 const navLinks = document.querySelectorAll(".nav-links a[data-section]");
@@ -143,7 +126,6 @@ document.addEventListener("click", e => {
 readingToggle.addEventListener("click", () => { readingMode.classList.add("open"); closeMenu(); });
 closeReading.addEventListener("click", closeReadingMode);
 
-/* ===== READING PROGRESS BAR ===== */
 readingMode.addEventListener("scroll", () => {
   const pct = readingMode.scrollHeight - readingMode.clientHeight;
   progressBar.style.width = (pct > 0 ? readingMode.scrollTop / pct * 100 : 0) + "%";
@@ -182,17 +164,58 @@ if(subscribeForm){
   });
 }
 
-/* ===== SANITY: LOAD ESSAYS ===== */
+/* ===== LOAD SITE SETTINGS (footer quote, followers, sales, now-reading/writing) ===== */
+async function loadSettings(){
+  const docs = await sanityFetch(`*[_id=="${SETTINGS_ID}"]`);
+  const s = docs[0] || {};
+
+  const easter = document.getElementById("easter");
+  if(easter && s.footerQuote) easter.textContent = s.footerQuote;
+
+  const followers = document.getElementById("statFollowers");
+  if(followers && s.followers) followers.textContent = s.followers;
+
+  const sales = document.getElementById("statSales");
+  if(sales && s.salesLastMonth) sales.textContent = s.salesLastMonth;
+
+  const nowText = document.getElementById("nowText");
+  if(nowText && (s.currentlyReading || s.currentlyWriting)){
+    nowText.innerHTML = `Reading: <em>${s.currentlyReading || "—"}</em> &nbsp;·&nbsp; Writing: <em>${s.currentlyWriting || "—"}</em>`;
+  }
+}
+
+/* ===== LOAD ESSAYS ===== */
 async function loadEssays(){
-  const essays = await sanityFetch(`*[_type=="essay"]|order(_createdAt desc)`);
-  if(!essays.length) return;
+  const essays = await sanityFetch(`*[_type=="essay" && hidden != true]|order(order asc)`);
   const grid = document.querySelector(".essay-grid");
   const readingContent = document.querySelector(".reading-content");
+  if(!grid || !readingContent) return;
+
   grid.innerHTML = "";
+  document.querySelectorAll(".essay-full").forEach(el => el.remove());
+
+  if(!essays.length){
+    grid.innerHTML = `<p style="color:var(--slate)">No essays yet.</p>`;
+    return;
+  }
+
+  const featured = essays[0];
+  const featuredWrap = document.querySelector(".featured-essay");
+  if(featuredWrap){
+    featuredWrap.innerHTML = `
+      <span class="read-time">Featured</span>
+      <h3>${featured.title || "Untitled"}</h3>
+      <p>${featured.excerpt || ""}</p>
+      <div style="margin-top:24px">
+        <button class="btn primary essayBtn" type="button" data-target="essay-0">Read Featured Essay</button>
+      </div>`;
+  }
+
   essays.forEach((essay, i) => {
-    const id = `dyn-essay-${i}`;
+    const id = `essay-${i}`;
     const words = (essay.body||"").split(" ").length;
     const mins = Math.max(1, Math.round(words/200));
+
     const card = document.createElement("article");
     card.className = "essay-card";
     card.innerHTML = `
@@ -201,6 +224,7 @@ async function loadEssays(){
       <p>${essay.excerpt||""}</p>
       <button class="btn secondary essayBtn" type="button" data-target="${id}">Read</button>`;
     grid.appendChild(card);
+
     const full = document.createElement("div");
     full.id = id; full.className = "essay-full";
     full.innerHTML = `
@@ -216,9 +240,9 @@ async function loadEssays(){
   });
 }
 
-/* ===== SANITY: LOAD UPDATES ===== */
+/* ===== LOAD UPDATES ===== */
 async function loadUpdates(){
-  const updates = await sanityFetch(`*[_type=="update"]|order(date desc)`);
+  const updates = await sanityFetch(`*[_type=="update" && hidden != true]|order(date desc)`);
   const feed = document.getElementById("updatesFeed");
   if(!feed) return;
   feed.innerHTML = !updates.length
@@ -230,17 +254,39 @@ async function loadUpdates(){
       </div>`).join("");
 }
 
-/* ===== SANITY: LOAD BOOKS ===== */
-async function loadNewBooks(){
-  const books = await sanityFetch(`*[_type=="book"]|order(_createdAt desc)`);
-  if(!books.length) return;
+/* ===== LOAD BOOKS (with featured book support) ===== */
+async function loadBooks(){
+  const books = await sanityFetch(`*[_type=="book" && hidden != true]|order(order asc)`);
   const grid = document.querySelector(".books-grid");
-  let idx = grid.querySelectorAll(".book").length + 1;
-  books.forEach(b => {
+  if(!grid) return;
+  grid.innerHTML = "";
+
+  if(!books.length){
+    grid.innerHTML = `<p style="color:var(--slate)">No books yet.</p>`;
+    return;
+  }
+
+  const featured = books.find(b => b.featured) || books[0];
+  const featuredWrap = document.querySelector(".featured-grid");
+  if(featuredWrap){
+    featuredWrap.innerHTML = `
+      <img src="${featured.coverUrl||'placeholder.jpg'}" alt="${featured.title} cover">
+      <div class="featured-content">
+        <span class="read-time">Latest Release</span>
+        <h2>${featured.title}</h2>
+        <p>${featured.tagline||''}</p>
+        <div class="btns">
+          ${featured.demoLink?`<button class="btn primary demoBtn" type="button" data-demo="${featured.demoLink}">Read Demo</button>`:''}
+          ${featured.buyLink?`<a class="btn secondary" href="${featured.buyLink}" target="_blank" rel="noreferrer">Buy Ebook</a>`:''}
+        </div>
+      </div>`;
+  }
+
+  books.forEach((b, i) => {
     const el = document.createElement("article");
     el.className = "book";
     el.innerHTML = `
-      <span class="book-index">${String(idx).padStart(2,"0")}</span>
+      <span class="book-index">${String(i+1).padStart(2,"0")}</span>
       <div class="book-cover-wrap">
         <img src="${b.coverUrl||'placeholder.jpg'}" alt="${b.title} cover">
       </div>
@@ -253,10 +299,48 @@ async function loadNewBooks(){
             ${b.buyLink?`<a class="btn secondary" href="${b.buyLink}" target="_blank" rel="noreferrer">Buy</a>`:''}
            </div>`}`;
     grid.appendChild(el);
-    idx++;
   });
 }
 
+/* ===== ABOUT TIMELINE (tap-to-expand tiles) ===== */
+async function loadAboutTimeline(){
+  const tiles = await sanityFetch(`*[_type=="aboutTile" && hidden != true]|order(order asc)`);
+  const wrap = document.getElementById("aboutTimeline");
+  if(!wrap) return;
+
+  if(!tiles.length){
+    wrap.innerHTML = `<p style="color:var(--slate)">More coming soon.</p>`;
+    return;
+  }
+
+  wrap.innerHTML = tiles.map((t, i) => `
+    <div class="timeline-stop reveal">
+      <div class="timeline-dot"></div>
+      <button type="button" class="timeline-tile" data-index="${i}" aria-expanded="false">
+        <span class="timeline-question">${t.question||''}</span>
+        <span class="timeline-teaser">${t.teaser||''}</span>
+      </button>
+      <div class="timeline-full" id="timelineFull-${i}">
+        <p>${t.full||''}</p>
+      </div>
+    </div>`).join("");
+
+  observeReveals(wrap);
+
+  wrap.querySelectorAll(".timeline-tile").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const idx = btn.dataset.index;
+      const panel = document.getElementById(`timelineFull-${idx}`);
+      const isOpen = panel.classList.toggle("open");
+      btn.setAttribute("aria-expanded", isOpen);
+      btn.closest(".timeline-stop").classList.toggle("active", isOpen);
+    });
+  });
+}
+
+/* ===== LOAD EVERYTHING ===== */
+loadSettings();
 loadEssays();
 loadUpdates();
-loadNewBooks();
+loadBooks();
+loadAboutTimeline();
