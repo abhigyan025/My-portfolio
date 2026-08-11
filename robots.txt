@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://kumarabhigyan.vercel.app/sitemap.xml
+Sitemap: https://kumarabhigyan.com/sitemap.xml
