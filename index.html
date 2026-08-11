@@ -86,7 +86,7 @@
   <section class="now reveal">
     <div class="container" style="text-align:center">
       <p class="now-label">Right now</p>
-      <p class="now-text">Reading: <em>The Brothers Karamazov</em> &nbsp;·&nbsp; Writing: <em>"I Can, For I Am."</em></p>
+      <p id="nowText" class="now-text">Reading: <em>The Brothers Karamazov</em> &nbsp;·&nbsp; Writing: <em>"I Can, For I Am."</em></p>
     </div>
   </section>
 
@@ -108,16 +108,7 @@
   <section id="featured" class="featured reveal">
     <div class="container">
       <div class="featured-grid">
-        <img src="Moonrise.jpg" alt="Dreams Beyond The Moonrise cover">
-        <div class="featured-content">
-          <span class="read-time">Latest Release</span>
-          <h2>Dreams Beyond The Moonrise</h2>
-          <p>A reflection on ambition, perception, and the quiet forces shaping human decisions — what we chase, and what chasing it costs.</p>
-          <div class="btns">
-            <button class="btn primary demoBtn" type="button" data-demo="https://docs.google.com/document/d/1hX5D8Ji7ckjub0adSA4PB3Sn8DvbhAqhfdLxCyDeeRw/preview">Read Demo</button>
-            <a class="btn secondary" href="https://amzn.in/d/0gVSUUmd" target="_blank" rel="noreferrer">Buy Ebook</a>
-          </div>
-        </div>
+        <!-- populated by script.js from the featured book -->
       </div>
     </div>
   </section>
@@ -151,35 +142,10 @@
         "He wasn't trying to become a writer. He was trying to understand the world — and writing turned out to be the clearest way to do it."
       </div>
 
-      <div class="about-cards reveal">
-        <div class="about-card">
-          <h4>The Systems Mind</h4>
-          <p>Most people look at events. Kumar Abhigyan looks at the structure underneath them. <span class="card-more">Why do the same patterns repeat across different countries, different centuries, different contexts? Why do people adapt to broken systems instead of dismantling them? Why does stability so often arrive not through goodness, but through order — and what does that say about the relationship between justice and power? These are not rhetorical questions for him. They are the questions he wakes up thinking about, reads toward, and writes through. His interest is not in commentary. It is in the architecture of how things actually work — and why they so rarely work the way they are supposed to.</span></p>
-        </div>
-        <div class="about-card">
-          <h4>The Writing</h4>
-          <p>He started writing seriously in early 2024, at twelve years old. <span class="card-more">Not because someone told him he was gifted. Not because of a school project or a prize or an external push of any kind. But because ideas had started accumulating faster than conversation could carry them, and writing was the only container large enough to hold what he was thinking. His first book was published in mid 2025. The final polished draft came in early 2026. Five books in, the pace has not slowed — it has sharpened. Each book is an attempt to understand something more precisely than he understood it before. That is the only ambition behind the work: to see more clearly, and to make that clarity available to whoever reads it.</span></p>
-        </div>
-        <div class="about-card">
-          <h4>The Contradictions</h4>
-          <p>Spend an afternoon with Kumar Abhigyan and you will not find what you expected. <span class="card-more">He thinks deeply about geopolitical systems and also spends hours watching wild mustangs on YouTube. He writes about human behaviour with the precision of someone twice his age, and also follows motorsports with the genuine intensity of someone who actually cares who wins and why. He is not performing depth. He is not performing anything. He moves through the world fully — interested in the texture of things, the logic underneath them, the way everything connects to everything else if you look long enough. The idea of the serious young intellectual who only speaks in data and citations — that is not him. It has never been him.</span></p>
-        </div>
-        <div class="about-card">
-          <h4>The Honesty</h4>
-          <p>He holds views that do not fit neatly into any camp, and he is comfortable with that discomfort. <span class="card-more">He thinks the United States is not all good. He thinks India is not all good. He thinks history is far more complicated than its designated villains, and that stability has sometimes arrived through means most people would prefer not to examine too closely. He is not trying to be controversial. Controversy is not the point. Accuracy is. And accuracy, he has found, is often the most uncomfortable thing you can offer someone — because it refuses to let them stay in the version of the story they already believe.</span></p>
-        </div>
-        <div class="about-card">
-          <h4>The Place</h4>
-          <p>Jharkhand shaped him in ways that are difficult to articulate precisely because they happened slowly, the way all real formation does. <span class="card-more">The forests taught him patience. The open land taught him that most things are larger than they first appear. Growing up somewhere unhurried, surrounded by nature that did not care whether he was paying attention, taught him the particular skill of paying attention anyway. He carries that with him — into his writing, into his thinking, into the way he approaches any question worth asking.</span></p>
-        </div>
-        <div class="about-card">
-          <h4>The Approach</h4>
-          <p>Kumar Abhigyan does not separate his intellectual life from the rest of his life, because he does not believe that separation is real. <span class="card-more">The curiosity that drives him to understand a geopolitical conflict is the same curiosity that makes him want to understand why a particular animal behaves a certain way, or how a machine performs under pressure, or what a philosopher from three centuries ago actually meant when they said something that everyone quotes but few have read carefully. Everything is a system. Everything has a logic underneath it. His job, as he understands it, is to find that logic and make it visible — without flattening it into something simpler than it actually is.</span></p>
-        </div>
-      </div>
+      <p class="timeline-intro">Dig in — tap whatever you're curious about.</p>
 
-      <div class="about-cards-toggle">
-        <button id="cardsToggle" class="btn secondary" type="button" aria-expanded="false">Read More</button>
+      <div id="aboutTimeline" class="about-timeline">
+        <p style="color:var(--slate)">Loading...</p>
       </div>
 
       <div class="about-pull-quote reveal">
@@ -204,64 +170,8 @@
     <div class="container">
       <h2 class="section-title">Books</h2>
       <div class="books-grid">
-        <article class="book">
-          <span class="book-index">01</span>
-          <div class="book-cover-wrap">
-            <img src="Moonrise.jpg" alt="Dreams Beyond The Moonrise cover">
-          </div>
-          <h3>Dreams Beyond The Moonrise</h3>
-          <p class="book-excerpt">What we chase, and what chasing it costs. A reflection on ambition and the quiet forces shaping human decisions.</p>
-          <div class="btns">
-            <button class="btn primary demoBtn" type="button" data-demo="https://docs.google.com/document/d/1hX5D8Ji7ckjub0adSA4PB3Sn8DvbhAqhfdLxCyDeeRw/preview">Read Demo</button>
-            <a class="btn secondary" href="https://amzn.in/d/0gVSUUmd" target="_blank" rel="noreferrer">Buy</a>
-          </div>
-        </article>
-        <article class="book">
-          <span class="book-index">02</span>
-          <div class="book-cover-wrap">
-            <img src="Illusion.jpg" alt="The Illusion of Stability cover">
-          </div>
-          <h3>The Illusion of Stability</h3>
-          <p class="book-excerpt">What feels permanent rarely is. A look at the systems we trust most, and why they're more fragile than they appear.</p>
-          <div class="btns">
-            <button class="btn primary demoBtn" type="button" data-demo="https://docs.google.com/document/d/1P_Wta6BUcECNzEKLSVpIUhwUVImD2bTd6KkgeDDpkns/preview">Read Demo</button>
-            <a class="btn secondary" href="https://amzn.in/d/0cI5FLPC" target="_blank" rel="noreferrer">Buy</a>
-          </div>
-        </article>
-        <article class="book">
-          <span class="book-index">03</span>
-          <div class="book-cover-wrap">
-            <img src="Threads.jpg" alt="Threads of Tomorrow cover">
-          </div>
-          <h3>Threads of Tomorrow</h3>
-          <p class="book-excerpt">Every future is built from threads laid down today. A study of cause, consequence, and the patterns that connect them.</p>
-          <div class="btns">
-            <button class="btn primary demoBtn" type="button" data-demo="https://docs.google.com/document/d/1SfJ8AGDsl_oIxxhMbH65jzSPVIRGAdrN_gmJZsz-1oo/preview">Read Demo</button>
-            <a class="btn secondary" href="https://amzn.in/d/06dcVKSE" target="_blank" rel="noreferrer">Buy</a>
-          </div>
-        </article>
-        <article class="book">
-          <span class="book-index">04</span>
-          <div class="book-cover-wrap">
-            <img src="Teenager.jpg" alt="The World from an Indian Teenager's POV cover">
-          </div>
-          <h3>The World from an Indian Teenager's POV</h3>
-          <p class="book-excerpt">An honest, unfiltered account of growing up in modern India — the noise, the pressure, and the clarity found in between.</p>
-          <div class="btns">
-            <button class="btn primary demoBtn" type="button" data-demo="https://docs.google.com/document/d/1vKai0FN4P92hSbNgSvuZVGJo-z1Cm6r7/preview">Read Demo</button>
-            <a class="btn secondary" href="https://amzn.in/d/0jjF0uhg" target="_blank" rel="noreferrer">Buy Ebook</a>
-            <a class="btn secondary" href="https://store.pothi.com/book/kumar-abhigyan-world-indian-teenagers-pov/" target="_blank" rel="noreferrer">Paperback</a>
-          </div>
-        </article>
-        <article class="book">
-          <span class="book-index">05</span>
-          <div class="book-cover-wrap">
-            <img src="ICanForIAm.jpg" alt="I Can, For I Am cover">
-          </div>
-          <h3>I Can, For I Am.</h3>
-          <p class="book-excerpt">For Those Who Learned to Exist Before They Learned to Belong.</p>
-          <span class="read-time">Coming Soon</span>
-        </article>
+        <!-- populated by script.js -->
+        <p style="color:var(--slate)">Loading books...</p>
       </div>
     </div>
   </section>
@@ -277,7 +187,7 @@
           <span>Instagram Followers</span>
         </div>
         <div class="achievement">
-          <strong id="statSales">147+</strong>
+          <strong id="statSales">500+</strong>
           <span>Sales Last Month</span>
         </div>
       </div>
@@ -290,32 +200,10 @@
     <div class="container">
       <h2 class="section-title">Essays</h2>
       <div class="featured-essay">
-        <span class="read-time">Featured</span>
-        <h3>US–Iran War — WW3?</h3>
-        <p>A deep look at how decades of distrust, strategic rivalry, and regional pressure shaped one of today's most important geopolitical fault lines.</p>
-        <div style="margin-top:24px">
-          <button class="btn primary essayBtn" type="button" data-target="essay1">Read Featured Essay</button>
-        </div>
+        <!-- populated by script.js -->
       </div>
       <div class="essay-grid">
-        <article class="essay-card">
-          <span class="read-time">4 min read</span>
-          <h3>US–Iran War — WW3?</h3>
-          <p>A deep look at how decades of distrust and rivalry shaped the conflict.</p>
-          <button class="btn secondary essayBtn" type="button" data-target="essay1">Read</button>
-        </article>
-        <article class="essay-card">
-          <span class="read-time">5 min read</span>
-          <h3>World War II — Shaping Today</h3>
-          <p>Why WWII is not just history, but the foundation of the modern global order.</p>
-          <button class="btn secondary essayBtn" type="button" data-target="essay2">Read</button>
-        </article>
-        <article class="essay-card">
-          <span class="read-time">4 min read</span>
-          <h3>India — Rise or Struggle?</h3>
-          <p>India's growth, structural challenges, and the real question behind the "rise".</p>
-          <button class="btn secondary essayBtn" type="button" data-target="essay3">Read</button>
-        </article>
+        <!-- populated by script.js -->
       </div>
     </div>
   </section>
@@ -331,67 +219,7 @@
       </div>
     </div>
     <div class="reading-content">
-      <div id="essay1" class="essay-full">
-        <span class="backToEssays">&larr; All Essays</span>
-        <p class="essay-meta"><span class="read-time">4 min read</span></p>
-        <h2>US–Iran War — WW3?</h2>
-        <p>The tension between the United States and Iran is often discussed as if it is a recent crisis waiting to explode. In reality, it is the product of decades of history, layered distrust, strategic competition, and repeated misunderstandings.</p>
-        <p>Before 1979, the two countries were not natural enemies. Iran, under the Shah, maintained close ties with the United States. But Iranian memory of the 1953 coup did not vanish — it sat underneath the surface, waiting for the right moment.</p>
-        <div class="pull-quote">"The real danger is not that the conflict is simple. It is that it is so layered that one mistake can move it into a far more dangerous phase."</div>
-        <p>The 1979 Revolution changed everything. The United States, once seen as a partner, became a symbol of external interference. The hostage crisis that followed hardened the divide and made reconciliation far more difficult.</p>
-        <p>Over the decades, rivalry grew through indirect confrontation: sanctions, proxy conflicts, cyber operations, naval incidents, and diplomatic breakdowns all added layers to the same story.</p>
-        <p>The nuclear issue intensified things further. For the US, the fear was leverage and destabilisation. For Iran, the program was tied to sovereignty and the ability to resist pressure.</p>
-        <p>So is it World War III? Not literally. But it is one of the most important fault lines in modern geopolitics — less about one event than about history accumulating pressure until something gives.</p>
-        <div class="share-row">
-          <a class="btn secondary" target="_blank" rel="noreferrer" href="https://wa.me/?text=US-Iran%20War%20-%20WW3%3F%20by%20Kumar%20Abhigyan">Share on WhatsApp</a>
-          <a class="btn secondary" target="_blank" rel="noreferrer" href="https://twitter.com/intent/tweet?text=US-Iran%20War%20-%20WW3%3F%20by%20%40kumar.abhigyan_">Share on X</a>
-        </div>
-        <div class="essay-nav">
-          <span></span>
-          <button class="btn secondary essayBtn" data-target="essay2">Next: World War II →</button>
-        </div>
-      </div>
-
-      <div id="essay2" class="essay-full">
-        <span class="backToEssays">&larr; All Essays</span>
-        <p class="essay-meta"><span class="read-time">5 min read</span></p>
-        <h2>World War II — The Event That Shaped the Modern World</h2>
-        <p>World War II is often described as the largest conflict in human history, but that description only captures part of its significance. What makes it important is the way it reorganized the world after it ended.</p>
-        <p>Before the war, the global order was dominated by European empires. The war shattered that balance — Europe was devastated physically, economically, and politically. The assumption that European states could indefinitely control the world was no longer credible.</p>
-        <div class="pull-quote">"Almost everything in contemporary geopolitics can be traced back to the changes the war set in motion."</div>
-        <p>The United States and the Soviet Union emerged as the two central superpowers. The Cold War grew directly from this shift — a bipolar world replacing a European-dominated one.</p>
-        <p>World War II also reshaped institutions. The United Nations was created to prevent another global catastrophe. NATO emerged as a military answer to postwar security fears.</p>
-        <p>Perhaps the most important long-term outcome was decolonization. European powers came out weakened, and independence movements across Asia and Africa gained momentum. India's independence in 1947 is one of the most important examples.</p>
-        <p>That is why the war still matters. It was the moment that created the framework of the modern world — superpowers, alliances, institutions, deterrence, decolonization, and the idea that global order is both structured and fragile.</p>
-        <div class="share-row">
-          <a class="btn secondary" target="_blank" rel="noreferrer" href="https://wa.me/?text=World%20War%20II%20-%20Shaping%20Today%20by%20Kumar%20Abhigyan">Share on WhatsApp</a>
-          <a class="btn secondary" target="_blank" rel="noreferrer" href="https://twitter.com/intent/tweet?text=World%20War%20II%20-%20Shaping%20Today%20by%20%40kumar.abhigyan_">Share on X</a>
-        </div>
-        <div class="essay-nav">
-          <button class="btn secondary essayBtn" data-target="essay1">← Previous: US–Iran</button>
-          <button class="btn secondary essayBtn" data-target="essay3">Next: India →</button>
-        </div>
-      </div>
-
-      <div id="essay3" class="essay-full">
-        <span class="backToEssays">&larr; All Essays</span>
-        <p class="essay-meta"><span class="read-time">4 min read</span></p>
-        <h2>India — Rise or Struggle?</h2>
-        <p>India is often described as a rising power, and that description is not wrong. Its population is large, its economy is growing, its digital systems are expanding, and its geopolitical relevance is increasing. But the real question is what kind of rise this actually is.</p>
-        <p>A rise in global influence requires more than growth numbers. It requires institutional strength, execution, education, infrastructure, and long-term consistency. India has real strengths — but it also carries structural weight that shapes the pace and form of everything.</p>
-        <div class="pull-quote">"A country does not become globally significant because its economy grows. It becomes influential when it can convert growth into consistency."</div>
-        <p>Development is uneven across states. Infrastructure still faces major gaps. Education and skills are not yet aligned with the demands of a rapidly changing economy.</p>
-        <p>India's geopolitical role is also important and increasingly complicated. It does not fit neatly into old alliance systems. It maintains relationships with multiple major powers while trying to preserve autonomy.</p>
-        <p>So is India rising? Yes, in many ways. But it is rising while still carrying the weight of systems that were never quite fixed — and that gap between potential and reality is where the real story lives.</p>
-        <div class="share-row">
-          <a class="btn secondary" target="_blank" rel="noreferrer" href="https://wa.me/?text=India%20-%20Rise%20or%20Struggle%3F%20by%20Kumar%20Abhigyan">Share on WhatsApp</a>
-          <a class="btn secondary" target="_blank" rel="noreferrer" href="https://twitter.com/intent/tweet?text=India%20-%20Rise%20or%20Struggle%3F%20by%20%40kumar.abhigyan_">Share on X</a>
-        </div>
-        <div class="essay-nav">
-          <button class="btn secondary essayBtn" data-target="essay2">← Previous: WWII</button>
-          <span></span>
-        </div>
-      </div>
+      <!-- populated by script.js -->
     </div>
   </div>
 
@@ -411,7 +239,7 @@
 
   <div class="gold-divider reveal"><span></span></div>
 
-  <section id="contact" class="contact reveal">
+  <section id="contact" class="contact contact-boosted reveal">
     <div class="container">
       <h2 class="section-title">Contact</h2>
       <p style="color:var(--slate);max-width:440px;margin-bottom:32px;line-height:1.8">For readers, publishers, collaborators, or anyone who wants to talk about ideas.</p>
@@ -423,6 +251,11 @@
       <a href="https://www.instagram.com/kumar.abhigyan_" target="_blank" rel="noreferrer">
         <svg width="18" height="18" viewBox="0 0 24 24"><path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm5 5a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm6.5-.8a1.3 1.3 0 1 1-2.6 0 1.3 1.3 0 0 1 2.6 0z"/></svg>
         @kumar.abhigyan_
+      </a>
+      <br>
+      <a href="https://www.linkedin.com/in/kumar-abhigyan-6891083b4" target="_blank" rel="noreferrer">
+        <svg width="18" height="18" viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.11 1 2.48 1 4.98 2.12 4.98 3.5zM.5 8h4V23h-4V8zM8.5 8h3.8v2.05h.05c.53-1 1.83-2.05 3.77-2.05C20.5 8 22 10.2 22 14.1V23h-4v-7.9c0-1.9-.03-4.3-2.6-4.3-2.6 0-3 2.05-3 4.15V23h-4V8z"/></svg>
+        Kumar Abhigyan
       </a>
     </div>
   </section>
@@ -438,6 +271,7 @@
     <div class="footer-links">
       <a href="mailto:abhigyan025@gmail.com">Email</a>
       <a href="https://www.instagram.com/kumar.abhigyan_" target="_blank" rel="noreferrer">Instagram</a>
+      <a href="https://www.linkedin.com/in/kumar-abhigyan-6891083b4" target="_blank" rel="noreferrer">LinkedIn</a>
       <a href="#home">Back to top ↑</a>
     </div>
     <div class="footer-bottom">
@@ -456,4 +290,4 @@
 
 <script src="script.js" defer></script>
 </body>
-  </html>
+</html>
