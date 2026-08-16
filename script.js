@@ -303,6 +303,7 @@ async function loadEssays(){
     idPrefix: "essay",
     showMoreId: "essayShowMore"
   });
+  essayCount = essays.length;
   updateCounts();
 }
 
@@ -318,6 +319,7 @@ async function loadStories(){
     idPrefix: "story",
     showMoreId: "storyShowMore"
   });
+  storyCount = stories.length;
   updateCounts();
 }
 
@@ -383,21 +385,26 @@ async function loadBooks(){
     grid.appendChild(el);
   });
 
+  bookCount = books.length;
   updateCounts();
 }
 
-/* ===== AUTO STATS COUNT (Books / Essays) ===== */
-let bookCount = null, essayCount = null;
-function updateCounts(){
-  const booksEl = document.querySelector(".books-grid");
-  const essaysEl = document.querySelector(".essay-grid");
-  if(booksEl) bookCount = booksEl.querySelectorAll(".book").length;
-  if(essaysEl) essayCount = essaysEl.querySelectorAll(".essay-card").length + (document.querySelector(".featured-essay h3") ? 1 : 0);
+/* ===== AUTO STATS COUNT (Books exact / Essays + Short Stories as "(n-1)+") ===== */
+let bookCount = null, essayCount = null, storyCount = null;
 
+function formatSoftCount(n){
+  if(n === null) return null;
+  return n > 1 ? `${n - 1}+` : String(n);
+}
+
+function updateCounts(){
   const statBooks = document.getElementById("statBooksCount");
   const statEssays = document.getElementById("statEssaysCount");
+  const statStories = document.getElementById("statStoriesCount");
+
   if(statBooks && bookCount !== null) statBooks.textContent = bookCount;
-  if(statEssays && essayCount !== null) statEssays.textContent = essayCount;
+  if(statEssays && essayCount !== null) statEssays.textContent = formatSoftCount(essayCount);
+  if(statStories && storyCount !== null) statStories.textContent = formatSoftCount(storyCount);
 }
 
 /* ===== ABOUT TIMELINE (connected chip chain, shared answer panel) ===== */
@@ -448,3 +455,4 @@ loadStories();
 loadEssays();
 loadUpdates();
 loadAboutTimeline();
+
