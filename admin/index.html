@@ -38,9 +38,10 @@
   .edit-form{display:none;flex-direction:column;gap:10px;margin-top:12px;}
   .edit-form.active{display:flex;}
   .section-heading{color:var(--gold);font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;margin:28px 0 12px;}
-  .import-btn{padding:14px;background:var(--gold);color:var(--ink);border:none;border-radius:3px;font-weight:500;width:100%;}
-  .import-log{background:#1a1a1d;border:1px solid var(--line);border-radius:6px;padding:16px;margin-top:16px;font-size:.85rem;color:var(--slate);white-space:pre-wrap;min-height:60px;}
-  .warn-box{border:1px solid rgba(224,120,86,.4);background:rgba(224,120,86,.08);border-radius:6px;padding:14px;font-size:.85rem;color:#e07856;margin-bottom:20px;}
+  .field-row{display:flex;gap:14px;flex-wrap:wrap;}
+  .field-row > div{flex:1;min-width:140px;}
+  .checkbox-row{display:flex;align-items:center;gap:8px;}
+  .checkbox-row input{width:auto;}
 </style>
 </head>
 <body>
@@ -56,25 +57,15 @@
 <div id="panel" class="hidden">
   <h1>Admin Panel</h1>
   <div class="tabs">
-    <button class="tab active" data-tab="import">Import</button>
-    <button class="tab" data-tab="book">Books</button>
+    <button class="tab active" data-tab="book">Books</button>
     <button class="tab" data-tab="essay">Essays</button>
+    <button class="tab" data-tab="story">Short Stories</button>
     <button class="tab" data-tab="update">Updates</button>
     <button class="tab" data-tab="settings">Settings</button>
   </div>
 
-  <!-- IMPORT -->
-  <div class="panel-section active" id="importSection">
-    <p class="section-heading">One-Time Import</p>
-    <div class="warn-box">
-      This pushes your 5 existing books, 3 existing essays, and 6 About tiles into Sanity. Only run this once — running it twice will create duplicates. If it fails partway, tell Claude before retrying.
-    </div>
-    <button type="button" id="importBtn" class="import-btn">Import Existing Content</button>
-    <div id="importLog" class="import-log">Ready. Tap the button above to begin.</div>
-  </div>
-
   <!-- BOOKS -->
-  <div class="panel-section" id="bookSection">
+  <div class="panel-section active" id="bookSection">
     <p class="section-heading">Add Book</p>
     <form id="bookForm">
       <label>Title</label>
@@ -87,8 +78,14 @@
       <input name="buyLink">
       <label>Demo/read link (optional)</label>
       <input name="demoLink">
-      <label><input type="checkbox" name="comingSoon" style="width:auto"> Mark as "Coming Soon"</label>
-      <label><input type="checkbox" name="featured" style="width:auto"> Feature this book on homepage</label>
+      <div class="field-row">
+        <div>
+          <label>Position (lower shows first)</label>
+          <input type="number" name="order" placeholder="1">
+        </div>
+      </div>
+      <div class="checkbox-row"><input type="checkbox" name="comingSoon" id="bookComingSoon"><label for="bookComingSoon">Mark as "Coming Soon"</label></div>
+      <div class="checkbox-row"><input type="checkbox" name="featured" id="bookFeatured"><label for="bookFeatured">Feature this book on homepage</label></div>
       <button type="submit">Publish Book</button>
     </form>
     <p class="section-heading">Existing Books</p>
@@ -105,10 +102,40 @@
       <input name="excerpt">
       <label>Full essay text (one paragraph per line)</label>
       <textarea name="body" required></textarea>
+      <div class="field-row">
+        <div>
+          <label>Position (1, 2, 3 show first; rest hide behind "Show More")</label>
+          <input type="number" name="order" placeholder="1">
+        </div>
+      </div>
+      <div class="checkbox-row"><input type="checkbox" name="featured" id="essayFeatured"><label for="essayFeatured">Feature this essay (shown large, above the rest)</label></div>
       <button type="submit">Publish Essay</button>
     </form>
     <p class="section-heading">Existing Essays</p>
     <div id="essayList" class="list-loading">Loading...</div>
+  </div>
+
+  <!-- SHORT STORIES -->
+  <div class="panel-section" id="storySection">
+    <p class="section-heading">Add Short Story</p>
+    <form id="storyForm">
+      <label>Title</label>
+      <input name="title" required>
+      <label>Short excerpt (shown on the card)</label>
+      <input name="excerpt">
+      <label>Full story text (one paragraph per line)</label>
+      <textarea name="body" required></textarea>
+      <div class="field-row">
+        <div>
+          <label>Position (1, 2, 3 show first; rest hide behind "Show More")</label>
+          <input type="number" name="order" placeholder="1">
+        </div>
+      </div>
+      <div class="checkbox-row"><input type="checkbox" name="featured" id="storyFeatured"><label for="storyFeatured">Feature this story (shown large, above the rest)</label></div>
+      <button type="submit">Publish Story</button>
+    </form>
+    <p class="section-heading">Existing Short Stories</p>
+    <div id="storyList" class="list-loading">Loading...</div>
   </div>
 
   <!-- UPDATES -->
@@ -232,61 +259,6 @@ async function apiMutate(body){
   return data;
 }
 
-/* ====== IMPORT EXISTING CONTENT ====== */
-const importBooks = [
-  { _type:"book", order:1, featured:true, title:"Dreams Beyond The Moonrise", tagline:"What we chase, and what chasing it costs. A reflection on ambition and the quiet forces shaping human decisions.", coverUrl:"Moonrise.jpg", buyLink:"https://amzn.in/d/0gVSUUmd", demoLink:"https://docs.google.com/document/d/1hX5D8Ji7ckjub0adSA4PB3Sn8DvbhAqhfdLxCyDeeRw/preview", comingSoon:false, hidden:false },
-  { _type:"book", order:2, featured:false, title:"The Illusion of Stability", tagline:"What feels permanent rarely is. A look at the systems we trust most, and why they're more fragile than they appear.", coverUrl:"Illusion.jpg", buyLink:"https://amzn.in/d/0cI5FLPC", demoLink:"https://docs.google.com/document/d/1P_Wta6BUcECNzEKLSVpIUhwUVImD2bTd6KkgeDDpkns/preview", comingSoon:false, hidden:false },
-  { _type:"book", order:3, featured:false, title:"Threads of Tomorrow", tagline:"Every future is built from threads laid down today. A study of cause, consequence, and the patterns that connect them.", coverUrl:"Threads.jpg", buyLink:"https://amzn.in/d/06dcVKSE", demoLink:"https://docs.google.com/document/d/1SfJ8AGDsl_oIxxhMbH65jzSPVIRGAdrN_gmJZsz-1oo/preview", comingSoon:false, hidden:false },
-  { _type:"book", order:4, featured:false, title:"The World from an Indian Teenager's POV", tagline:"An honest, unfiltered account of growing up in modern India — the noise, the pressure, and the clarity found in between.", coverUrl:"Teenager.jpg", buyLink:"https://amzn.in/d/0jjF0uhg", demoLink:"https://docs.google.com/document/d/1vKai0FN4P92hSbNgSvuZVGJo-z1Cm6r7/preview", comingSoon:false, hidden:false },
-  { _type:"book", order:5, featured:false, title:"I Can, For I Am.", tagline:"For Those Who Learned to Exist Before They Learned to Belong.", coverUrl:"ICanForIAm.jpg", buyLink:"", demoLink:"", comingSoon:true, hidden:false }
-];
-
-const importEssays = [
-  { _type:"essay", order:1, title:"US–Iran War — WW3?", excerpt:"A deep look at how decades of distrust and rivalry shaped the conflict.",
-    body:"The tension between the United States and Iran is often discussed as if it is a recent crisis waiting to explode. In reality, it is the product of decades of history, layered distrust, strategic competition, and repeated misunderstandings.\nBefore 1979, the two countries were not natural enemies. Iran, under the Shah, maintained close ties with the United States. But Iranian memory of the 1953 coup did not vanish — it sat underneath the surface, waiting for the right moment.\nThe 1979 Revolution changed everything. The United States, once seen as a partner, became a symbol of external interference. The hostage crisis that followed hardened the divide and made reconciliation far more difficult.\nOver the decades, rivalry grew through indirect confrontation: sanctions, proxy conflicts, cyber operations, naval incidents, and diplomatic breakdowns all added layers to the same story.\nThe nuclear issue intensified things further. For the US, the fear was leverage and destabilisation. For Iran, the program was tied to sovereignty and the ability to resist pressure.\nSo is it World War III? Not literally. But it is one of the most important fault lines in modern geopolitics — less about one event than about history accumulating pressure until something gives.",
-    hidden:false },
-  { _type:"essay", order:2, title:"World War II — The Event That Shaped the Modern World", excerpt:"Why WWII is not just history, but the foundation of the modern global order.",
-    body:"World War II is often described as the largest conflict in human history, but that description only captures part of its significance. What makes it important is the way it reorganized the world after it ended.\nBefore the war, the global order was dominated by European empires. The war shattered that balance — Europe was devastated physically, economically, and politically. The assumption that European states could indefinitely control the world was no longer credible.\nThe United States and the Soviet Union emerged as the two central superpowers. The Cold War grew directly from this shift — a bipolar world replacing a European-dominated one.\nWorld War II also reshaped institutions. The United Nations was created to prevent another global catastrophe. NATO emerged as a military answer to postwar security fears.\nPerhaps the most important long-term outcome was decolonization. European powers came out weakened, and independence movements across Asia and Africa gained momentum. India's independence in 1947 is one of the most important examples.\nThat is why the war still matters. It was the moment that created the framework of the modern world — superpowers, alliances, institutions, deterrence, decolonization, and the idea that global order is both structured and fragile.",
-    hidden:false },
-  { _type:"essay", order:3, title:"India — Rise or Struggle?", excerpt:"India's growth, structural challenges, and the real question behind the \"rise\".",
-    body:"India is often described as a rising power, and that description is not wrong. Its population is large, its economy is growing, its digital systems are expanding, and its geopolitical relevance is increasing. But the real question is what kind of rise this actually is.\nA rise in global influence requires more than growth numbers. It requires institutional strength, execution, education, infrastructure, and long-term consistency. India has real strengths — but it also carries structural weight that shapes the pace and form of everything.\nDevelopment is uneven across states. Infrastructure still faces major gaps. Education and skills are not yet aligned with the demands of a rapidly changing economy.\nIndia's geopolitical role is also important and increasingly complicated. It does not fit neatly into old alliance systems. It maintains relationships with multiple major powers while trying to preserve autonomy.\nSo is India rising? Yes, in many ways. But it is rising while still carrying the weight of systems that were never quite fixed — and that gap between potential and reality is where the real story lives.",
-    hidden:false }
-];
-
-const importTiles = [
-  { _type:"aboutTile", order:1, question:"Why does he care more about patterns than events?", teaser:"Most people look at events. Kumar Abhigyan looks at the structure underneath them.", full:"Why do the same patterns repeat across different countries, different centuries, different contexts? Why do people adapt to broken systems instead of dismantling them? Why does stability so often arrive not through goodness, but through order — and what does that say about the relationship between justice and power? These are not rhetorical questions for him. They are the questions he wakes up thinking about, reads toward, and writes through. His interest is not in commentary. It is in the architecture of how things actually work — and why they so rarely work the way they are supposed to.", hidden:false },
-  { _type:"aboutTile", order:2, question:"Why start writing seriously at twelve?", teaser:"He started writing seriously in early 2024, at twelve years old.", full:"Not because someone told him he was gifted. Not because of a school project or a prize or an external push of any kind. But because ideas had started accumulating faster than conversation could carry them, and writing was the only container large enough to hold what he was thinking. His first book was published in mid 2025. The final polished draft came in early 2026. Five books in, the pace has not slowed — it has sharpened. Each book is an attempt to understand something more precisely than he understood it before. That is the only ambition behind the work: to see more clearly, and to make that clarity available to whoever reads it.", hidden:false },
-  { _type:"aboutTile", order:3, question:"Geopolitics and wild mustang videos — really?", teaser:"Spend an afternoon with Kumar Abhigyan and you will not find what you expected.", full:"He thinks deeply about geopolitical systems and also spends hours watching wild mustangs on YouTube. He writes about human behaviour with the precision of someone twice his age, and also follows motorsports with the genuine intensity of someone who actually cares who wins and why. He is not performing depth. He is not performing anything. He moves through the world fully — interested in the texture of things, the logic underneath them, the way everything connects to everything else if you look long enough. The idea of the serious young intellectual who only speaks in data and citations — that is not him. It has never been him.", hidden:false },
-  { _type:"aboutTile", order:4, question:"What does he actually think about The World?", teaser:"He holds views that do not fit neatly into any camp, and he is comfortable with that discomfort.", full:"He thinks the United States is not all good. He thinks India is not all good. He thinks history is far more complicated than its designated villains, and that stability has sometimes arrived through means most people would prefer not to examine too closely. He is not trying to be controversial. Controversy is not the point. Accuracy is. And accuracy, he has found, is often the most uncomfortable thing you can offer someone — because it refuses to let them stay in the version of the story they already believe.", hidden:false },
-  { _type:"aboutTile", order:5, question:"How did growing up in Jharkhand shape him?", teaser:"Jharkhand shaped him in ways that are difficult to articulate precisely because they happened slowly, the way all real formation does.", full:"The forests taught him patience. The open land taught him that most things are larger than they first appear. Somewhere between the red earth and the quiet of Hazaribagh, growing up unhurried, surrounded by nature that did not care whether he was paying attention, he learned the particular skill of paying attention anyway. He carries that with him — into his writing, into his thinking, into the way he approaches any question worth asking.", hidden:false },
-  { _type:"aboutTile", order:6, question:"Is there a method behind all this, or just curiosity?", teaser:"Kumar Abhigyan does not separate his intellectual life from the rest of his life, because he does not believe that separation is real.", full:"The curiosity that drives him to understand a geopolitical conflict is the same curiosity that makes him want to understand why a particular animal behaves a certain way, or how a machine performs under pressure, or what a philosopher from three centuries ago actually meant when they said something that everyone quotes but few have read carefully. Everything is a system. Everything has a logic underneath it. His job, as he understands it, is to find that logic and make it visible — without flattening it into something simpler than it actually is.", hidden:false }
-];
-
-document.getElementById("importBtn").addEventListener("click", async () => {
-  const log = document.getElementById("importLog");
-  const items = [
-    ...importBooks,
-    ...importEssays,
-    ...importTiles
-  ];
-  log.textContent = `Starting import of ${items.length} items...\n`;
-  let success = 0, failed = 0;
-  for(const doc of items){
-    try{
-      await apiPublish(doc);
-      success++;
-      log.textContent += `✅ ${doc.title || doc.question}\n`;
-    }catch(err){
-      failed++;
-      log.textContent += `❌ ${doc.title || doc.question} — ${err.message}\n`;
-    }
-  }
-  log.textContent += `\nDone. ${success} succeeded, ${failed} failed.`;
-  if(failed === 0){
-    log.textContent += `\n\nAll good — do not tap this button again.`;
-  }
-});
-
 /* ====== ADD FORMS ====== */
 document.getElementById("bookForm").addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -300,6 +272,7 @@ document.getElementById("bookForm").addEventListener("submit", async (e) => {
       coverUrl: f.get("coverUrl"),
       buyLink: f.get("buyLink"),
       demoLink: f.get("demoLink"),
+      order: f.get("order") ? Number(f.get("order")) : 999,
       comingSoon: f.get("comingSoon") === "on",
       featured: f.get("featured") === "on",
       hidden: false
@@ -320,11 +293,33 @@ document.getElementById("essayForm").addEventListener("submit", async (e) => {
       title: f.get("title"),
       excerpt: f.get("excerpt"),
       body: f.get("body"),
+      order: f.get("order") ? Number(f.get("order")) : 999,
+      featured: f.get("featured") === "on",
       hidden: false
     });
     setStatus("✅ Essay published.", true);
     e.target.reset();
     loadEssays();
+  }catch(err){ setStatus("❌ " + err.message, false); }
+});
+
+document.getElementById("storyForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const f = new FormData(e.target);
+  setStatus("Publishing...", true);
+  try{
+    await apiPublish({
+      _type: "shortStory",
+      title: f.get("title"),
+      excerpt: f.get("excerpt"),
+      body: f.get("body"),
+      order: f.get("order") ? Number(f.get("order")) : 999,
+      featured: f.get("featured") === "on",
+      hidden: false
+    });
+    setStatus("✅ Story published.", true);
+    e.target.reset();
+    loadStories();
   }catch(err){ setStatus("❌ " + err.message, false); }
 });
 
@@ -384,7 +379,7 @@ async function loadBooks(){
   list.innerHTML = books.map(b => `
     <div class="item ${b.hidden ? 'is-hidden' : ''}" data-id="${b._id}">
       <h2>${b.title || "Untitled"} ${b.featured ? "★" : ""}</h2>
-      <div class="item-meta">${b.tagline || ""} ${b.comingSoon ? "· Coming Soon" : ""} ${b.hidden ? "· HIDDEN" : ""}</div>
+      <div class="item-meta">Position: ${b.order ?? '—'} ${b.tagline ? '· '+b.tagline : ''} ${b.comingSoon ? "· Coming Soon" : ""} ${b.hidden ? "· HIDDEN" : ""}</div>
       ${itemActionsHtml(b._id, !!b.hidden)}
       <div class="edit-form" data-editid="${b._id}">
         <label>Title</label><input class="ef-title" value="${(b.title||"").replace(/"/g,'&quot;')}">
@@ -392,7 +387,8 @@ async function loadBooks(){
         <label>Cover URL</label><input class="ef-coverUrl" value="${(b.coverUrl||"").replace(/"/g,'&quot;')}">
         <label>Buy link</label><input class="ef-buyLink" value="${(b.buyLink||"").replace(/"/g,'&quot;')}">
         <label>Demo link</label><input class="ef-demoLink" value="${(b.demoLink||"").replace(/"/g,'&quot;')}">
-        <label><input type="checkbox" class="ef-featured" ${b.featured?'checked':''} style="width:auto"> Featured</label>
+        <label>Position</label><input type="number" class="ef-order" value="${b.order ?? ''}">
+        <div class="checkbox-row"><input type="checkbox" class="ef-featured" ${b.featured?'checked':''}><label>Featured</label></div>
         <button type="button" class="saveEditBtn" data-id="${b._id}" data-type="book">Save Changes</button>
       </div>
     </div>`).join("");
@@ -406,17 +402,41 @@ async function loadEssays(){
   if(!essays.length){ list.innerHTML = `<p class="list-loading">No essays yet.</p>`; return; }
   list.innerHTML = essays.map(es => `
     <div class="item ${es.hidden ? 'is-hidden' : ''}" data-id="${es._id}">
-      <h2>${es.title || "Untitled"}</h2>
-      <div class="item-meta">${es.excerpt || ""} ${es.hidden ? "· HIDDEN" : ""}</div>
+      <h2>${es.title || "Untitled"} ${es.featured ? "★" : ""}</h2>
+      <div class="item-meta">Position: ${es.order ?? '—'} ${es.excerpt ? '· '+es.excerpt : ''} ${es.hidden ? "· HIDDEN" : ""}</div>
       ${itemActionsHtml(es._id, !!es.hidden)}
       <div class="edit-form" data-editid="${es._id}">
         <label>Title</label><input class="ef-title" value="${(es.title||"").replace(/"/g,'&quot;')}">
         <label>Excerpt</label><input class="ef-excerpt" value="${(es.excerpt||"").replace(/"/g,'&quot;')}">
         <label>Body</label><textarea class="ef-body">${es.body||""}</textarea>
+        <label>Position</label><input type="number" class="ef-order" value="${es.order ?? ''}">
+        <div class="checkbox-row"><input type="checkbox" class="ef-featured" ${es.featured?'checked':''}><label>Featured</label></div>
         <button type="button" class="saveEditBtn" data-id="${es._id}" data-type="essay">Save Changes</button>
       </div>
     </div>`).join("");
   wireItemButtons("essay");
+}
+
+async function loadStories(){
+  const list = document.getElementById("storyList");
+  list.innerHTML = "Loading...";
+  const stories = await sanityFetch(`*[_type=="shortStory"]|order(order asc)`);
+  if(!stories.length){ list.innerHTML = `<p class="list-loading">No short stories yet.</p>`; return; }
+  list.innerHTML = stories.map(st => `
+    <div class="item ${st.hidden ? 'is-hidden' : ''}" data-id="${st._id}">
+      <h2>${st.title || "Untitled"} ${st.featured ? "★" : ""}</h2>
+      <div class="item-meta">Position: ${st.order ?? '—'} ${st.excerpt ? '· '+st.excerpt : ''} ${st.hidden ? "· HIDDEN" : ""}</div>
+      ${itemActionsHtml(st._id, !!st.hidden)}
+      <div class="edit-form" data-editid="${st._id}">
+        <label>Title</label><input class="ef-title" value="${(st.title||"").replace(/"/g,'&quot;')}">
+        <label>Excerpt</label><input class="ef-excerpt" value="${(st.excerpt||"").replace(/"/g,'&quot;')}">
+        <label>Body</label><textarea class="ef-body">${st.body||""}</textarea>
+        <label>Position</label><input type="number" class="ef-order" value="${st.order ?? ''}">
+        <div class="checkbox-row"><input type="checkbox" class="ef-featured" ${st.featured?'checked':''}><label>Featured</label></div>
+        <button type="button" class="saveEditBtn" data-id="${st._id}" data-type="story">Save Changes</button>
+      </div>
+    </div>`).join("");
+  wireItemButtons("story");
 }
 
 async function loadUpdates(){
@@ -493,13 +513,16 @@ function wireItemButtons(type){
           coverUrl: ef.querySelector(".ef-coverUrl").value,
           buyLink: ef.querySelector(".ef-buyLink").value,
           demoLink: ef.querySelector(".ef-demoLink").value,
+          order: ef.querySelector(".ef-order").value ? Number(ef.querySelector(".ef-order").value) : 999,
           featured: ef.querySelector(".ef-featured").checked
         };
-      } else if(t === "essay"){
+      } else if(t === "essay" || t === "story"){
         fields = {
           title: ef.querySelector(".ef-title").value,
           excerpt: ef.querySelector(".ef-excerpt").value,
-          body: ef.querySelector(".ef-body").value
+          body: ef.querySelector(".ef-body").value,
+          order: ef.querySelector(".ef-order").value ? Number(ef.querySelector(".ef-order").value) : 999,
+          featured: ef.querySelector(".ef-featured").checked
         };
       } else if(t === "update"){
         fields = {
@@ -520,12 +543,14 @@ function wireItemButtons(type){
 function reloadList(type){
   if(type === "book") loadBooks();
   if(type === "essay") loadEssays();
+  if(type === "story") loadStories();
   if(type === "update") loadUpdates();
 }
 
 function loadAll(){
   loadBooks();
   loadEssays();
+  loadStories();
   loadUpdates();
   loadSettings();
 }
