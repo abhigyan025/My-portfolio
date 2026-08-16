@@ -296,8 +296,8 @@ async function loadEssays(){
   const essays = await sanityFetch(`*[_type=="essay" && hidden != true]|order(order asc)`);
   renderContentList({
     items: essays,
-    gridSelector: ".essay-grid",
-    featuredWrapSelector: ".featured-essay",
+    gridSelector: "#essays .essay-grid",
+    featuredWrapSelector: "#essays .featured-essay",
     featuredLabel: "Featured",
     featuredBtnLabel: "Read Featured Essay",
     idPrefix: "essay",
@@ -312,8 +312,8 @@ async function loadStories(){
   const stories = await sanityFetch(`*[_type=="shortStory" && hidden != true]|order(order asc)`);
   renderContentList({
     items: stories,
-    gridSelector: ".story-grid",
-    featuredWrapSelector: ".featured-story",
+    gridSelector: "#stories .story-grid",
+    featuredWrapSelector: "#stories .featured-story",
     featuredLabel: "Featured",
     featuredBtnLabel: "Read Featured Story",
     idPrefix: "story",
