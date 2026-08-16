@@ -235,10 +235,10 @@ body.dark .menu{background:#0E0E10;}
 
 /* stats */
 .stats{padding:60px 0;}
-.stats-row{display:flex;justify-content:center;gap:90px;flex-wrap:wrap;text-align:center;}
+.stats-row{display:flex;justify-content:center;gap:70px;flex-wrap:wrap;text-align:center;}
 .stat strong{
   display:block;font-family:'Playfair Display',serif;font-weight:600;
-  font-size:2.8rem;color:var(--gold);line-height:1;
+  font-size:2.6rem;color:var(--gold);line-height:1;
 }
 .stat span{color:var(--slate);font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;margin-top:6px;display:block;}
 
@@ -387,6 +387,17 @@ body.dark .achievement strong{color:var(--paper);}
 .essay-card p{color:var(--slate);font-size:.95rem;margin:8px 0 20px;}
 .read-time{color:var(--gold);font-size:.74rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;display:block;}
 
+/* short stories section — shares essay styling, distinct section spacing only */
+.stories-section{padding-top:190px;}
+
+/* show more */
+.show-more-wrap{
+  grid-column:1/-1;
+  display:flex;justify-content:center;
+  padding-top:8px;
+}
+.show-more-wrap .btn{min-width:160px;}
+
 /* updates */
 .updates-feed{display:flex;flex-direction:column;border-top:1px solid var(--line);}
 .update-item{display:flex;gap:32px;padding:26px 0;border-bottom:1px solid var(--line);}
@@ -523,9 +534,10 @@ body.dark .nav-links a.active{color:var(--paper);}
   .hero-roles{font-size:.72rem;}
   .hero-sub{font-size:.88rem;}
 
-  .stats-row{gap:34px;}
-  .stat strong{font-size:1.9rem;}
-  .stat span{font-size:.68rem;}
+  .stats-row{gap:26px 34px;}
+  .stat strong{font-size:1.7rem;}
+  .stat span{font-size:.6rem;}
+  .show-more-wrap .btn{width:100%;}
 
   .quote{padding:64px 0;}
   .quote p{font-size:1.15rem;}
